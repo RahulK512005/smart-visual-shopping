@@ -1,0 +1,403 @@
+# Smart Visual Shopping — Backend API
+
+Backend application for **Smart Visual Shopping**, providing visual search orchestration, a rich product catalog with verified specifications, and a deterministic, category-specific compatibility rules engine.
+
+---
+
+## 1. Architecture Overview & Ownership Boundary
+
+```
+┌─────────────────────────────────┐                 ┌─────────────────────────────────┐
+│        Frontend Client          │                 │       External AI/ML Service    │
+│    (Web / Mobile Application)   │                 │    (Owned by AI/ML Engineer)    │
+└──────────────┬──────────────────┘                 └────────────────▲────────────────┘
+               │                                                     │
+               │ HTTP REST (JSON & Multipart)                        │ POST /internal/search
+               ▼                                                     │ (Image / Vector Query)
+┌────────────────────────────────────────────────────────────────────┴────────────────┐
+│                           SMART VISUAL SHOPPING BACKEND                             │
+│                                                                                     │
+│  ┌───────────────────────┐   ┌──────────────────────────┐   ┌────────────────────┐  │
+│  │   API Route Layer     │   │  Visual Search Pipeline  │   │ Compatibility Rules│  │
+│  │  - GET /api/health    │   │  - Upload validation     │   │  - Deterministic   │  │
+│  │  - GET /api/products  │──▶│  - PIL integrity check   │──▶│  - Category rules  │  │
+│  │  - POST /api/visual.. │   │  - ML Client (HTTPX)     │   │  - Traceable       │  │
+│  │  - POST /api/compat.. │   │  - Rank preservation     │   │    verdicts        │  │
+│  └───────────────────────┘   └──────────────────────────┘   └────────────────────┘  │
+│                                           │                                         │
+│                                           ▼                                         │
+│                      ┌─────────────────────────────────────────┐                    │
+│                      │       SQLAlchemy ORM & Catalog DB       │                    │
+│                      │  - Flexible specifications JSON         │                    │
+│                      │  - Verification & provenance metadata   │                    │
+│                      └─────────────────────────────────────────┘                    │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### AI/ML Boundary
+- **Backend Responsibility**: Request validation, safe image buffering, invoking the AI/ML service via an explicit client, preserving ML ranking order, enriching candidate IDs with verified catalog records, and executing deterministic compatibility evaluation.
+- **AI/ML Service Responsibility**: Image embeddings (CLIP/SigLIP), vector index search (FAISS), and returning ranked candidate product IDs with similarity scores.
+- **No Generative Guesswork**: The backend owns compatibility rules deterministically. Compatibility decisions are never delegated to an LLM or ML classifier. If required specifications are unverified or absent, the engine reports `cannot_verify`.
+
+---
+
+## 2. Technology Stack
+
+- **Language & Runtime**: Python 3.11+
+- **API Framework**: FastAPI, Starlette
+- **Data Modeling & Validation**: Pydantic v2, Pydantic-Settings
+- **Database & ORM**: SQLAlchemy 2.0 (SQLite for local development, PostgreSQL compatible)
+- **HTTP Client**: HTTPX (async & sync client support with connection/read timeouts)
+- **Image Validation**: Pillow (PIL)
+- **Testing**: Pytest, Pytest-Asyncio, FastAPI TestClient
+
+---
+
+## 3. Directory Structure
+
+```
+smart visual shopping/
+├── backend/
+│   ├── app/
+│   │   ├── main.py                      # FastAPI application entrypoint & middleware
+│   │   ├── api/
+│   │   │   └── routes/
+│   │   │       ├── health.py            # GET /api/health
+│   │   │       ├── products.py          # GET /api/products, GET /api/products/{id}
+│   │   │       ├── visual_search.py     # POST /api/visual-search
+│   │   │       └── compatibility.py     # POST /api/compatibility/check
+│   │   ├── core/
+│   │   │   ├── config.py                # Pydantic Settings & environment variables
+│   │   │   ├── errors.py                # Domain exceptions & error codes
+│   │   │   └── logging.py               # Structured logger
+│   │   ├── db/
+│   │   │   ├── session.py               # Database engine & sessionmaker
+│   │   │   ├── models.py                # Product SQLAlchemy model
+│   │   │   ├── init_db.py               # Database initialization routine
+│   │   │   ├── seed_data.py             # 15 curated seed products with verified specs
+│   │   │   └── repositories/
+│   │   │       └── product_repo.py      # Parameterized catalog repository
+│   │   ├── schemas/
+│   │   │   ├── product.py               # Product schemas & pagination responses
+│   │   │   ├── visual_search.py         # Visual search request/response schemas
+│   │   │   ├── compatibility.py         # Compatibility verdicts and check items
+│   │   │   └── ml_contract.py           # Contract definition for internal ML service
+│   │   ├── services/
+│   │   │   ├── product_service.py       # Catalog query orchestration
+│   │   │   ├── ml_client.py             # Internal ML HTTP client with timeouts
+│   │   │   ├── visual_search_orchestrator.py # Image validation & ML enrichment
+│   │   │   └── compatibility_service.py # Deterministic compatibility evaluator
+│   │   └── rules/
+│   │       ├── base.py                  # Base rule abstractions & RuleContext
+│   │       ├── registry.py              # Rule registry & fallback handling
+│   │       └── categories/
+│   │           ├── power_rules.py       # Chargers, Power Banks, Wattage & Protocols
+│   │           ├── cable_rules.py       # Cable plugs, MFi, and throughput
+│   │           ├── display_rules.py     # Monitors, DP Alt Mode, and 90W PD
+│   │           ├── wearable_rules.py    # iOS vs Android smartwatch ecosystems
+│   │           ├── case_rules.py        # Exact chassis model & dimension fit
+│   │           └── audio_rules.py       # Bluetooth codecs & 3.5mm jacks
+│   └── tests/
+│       ├── conftest.py                  # In-memory DB and test client fixtures
+│       ├── test_health.py               # Health & dependency status tests
+│       ├── test_products.py             # Catalog pagination & filtering tests
+│       ├── test_visual_search.py        # Visual search & rank preservation tests
+│       ├── test_compatibility.py        # Cross-category compatibility tests
+│       ├── test_ml_client.py            # ML client timeout & error tests
+│       └── test_rules_engine.py         # Seed idempotency, display & audio tests
+├── mock_ml_service.py                   # Standalone mock ML microservice for local dev
+├── seed_catalog.py                      # Standalone catalog seeder runner
+├── requirements.txt                     # Pinned project dependencies
+├── .env.example                         # Environment configuration template
+└── README.md                            # Comprehensive technical documentation
+```
+
+---
+
+## 4. Setup & Installation
+
+### Step 1: Create Virtual Environment
+Using `uv`:
+```bash
+uv venv .venv
+.venv\Scripts\activate
+uv pip install -r requirements.txt
+```
+Or standard Python:
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Step 2: Configure Environment
+Copy the example environment configuration:
+```bash
+cp .env.example .env
+```
+
+Key environment settings in `.env`:
+| Key | Default | Description |
+|---|---|---|
+| `DATABASE_URL` | `sqlite:///./smart_visual_shopping.db` | Database connection string (SQLite or PostgreSQL) |
+| `ML_SERVICE_URL` | `http://localhost:8001` | Base URL of the AI/ML visual embedding service |
+| `ML_SERVICE_TIMEOUT_SECONDS` | `5.0` | Timeout for ML vector inference |
+| `MAX_UPLOAD_SIZE_BYTES` | `10485760` | Maximum uploaded query image size (10MB) |
+| `CORS_ORIGINS` | `http://localhost:3000,...` | Allowed frontend origins |
+
+### Step 3: Seed Catalog Data
+Initialize the database tables and populate 15 curated products:
+```bash
+python seed_catalog.py
+```
+
+---
+
+## 5. Running Locally
+
+### Starting the Backend API
+Run with Uvicorn:
+```bash
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+Interactive OpenAPI documentation is available at:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+### Starting the Mock ML Service (for Local Development)
+To test visual search locally without needing the AI/ML team's GPU infrastructure:
+```bash
+uvicorn mock_ml_service:app --port 8001 --reload
+```
+
+---
+
+## 6. Running Automated Tests
+
+Run the complete test suite with verbose output:
+```bash
+pytest -v
+```
+All 30 unit and integration tests validate:
+- Product queries, filtering, and 404 responses.
+- Image size limits, format restrictions, and header validation.
+- External ML service timeouts, 502/503 errors, and rank ordering preservation.
+- Compatible, incompatible, and cannot_verify outcomes across all categories.
+- Database initialization and seed idempotency.
+
+---
+
+## 7. API Endpoints & Sample Requests
+
+### 1. Health Check
+`GET /api/health`
+
+```bash
+curl -X GET "http://localhost:8000/api/health"
+```
+**Response:**
+```json
+{
+  "status": "healthy",
+  "timestamp": "2026-10-10T08:15:00Z",
+  "dependencies": {
+    "database": {
+      "status": "healthy"
+    },
+    "ml_visual_search_service": {
+      "status": "reachable",
+      "details": {
+        "model": "clip-vit-base-patch32",
+        "service": "visual-embedding-inference"
+      }
+    }
+  }
+}
+```
+
+---
+
+### 2. Product Catalog
+`GET /api/products`
+
+**Query Parameters:**
+- `category` (optional, e.g. `smartphone`, `charger`, `monitor`)
+- `brand` (optional, e.g. `Apple`, `Samsung`, `Dell`, `Anker`)
+- `q` (optional full-text search)
+- `page` (default: 1)
+- `page_size` (default: 20)
+
+```bash
+curl -X GET "http://localhost:8000/api/products?category=charger"
+```
+
+`GET /api/products/{id}`
+
+```bash
+curl -X GET "http://localhost:8000/api/products/prod_apple_iphone_15_pro"
+```
+
+---
+
+### 3. Visual Search
+`POST /api/visual-search`
+
+Uploads an image, contacts the ML service for similarity scoring, and returns ranked products with full catalog details.
+
+```bash
+curl -X POST "http://localhost:8000/api/visual-search" \
+  -F "file=@sample_product.jpg;type=image/jpeg" \
+  -F "limit=5"
+```
+
+**Response:**
+```json
+{
+  "query_image": {
+    "filename": "sample_product.jpg",
+    "content_type": "image/jpeg",
+    "size_bytes": 142050,
+    "width": 1024,
+    "height": 768,
+    "format": "JPEG"
+  },
+  "total_matches": 3,
+  "results": [
+    {
+      "rank": 1,
+      "similarity_score": 0.9421,
+      "product": {
+        "id": "prod_apple_iphone_15_pro",
+        "name": "Apple iPhone 15 Pro (128GB, Natural Titanium)",
+        "brand": "Apple",
+        "model": "iPhone 15 Pro",
+        "category": "smartphone",
+        "specifications": {
+          "port_type": "USB-C",
+          "charging_protocols": ["USB Power Delivery (PD 3.0)", "Qi2", "MagSafe"],
+          "max_charging_wattage_w": 27.0
+        },
+        "verification_status": "verified"
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 4. Compatibility Check
+`POST /api/compatibility/check`
+
+Evaluates deterministic compatibility between the user's existing device and a candidate accessory.
+
+#### Example 1: Incompatible Connector (iPhone 15 Pro + Lightning Cable)
+```bash
+curl -X POST "http://localhost:8000/api/compatibility/check" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "existing_product_id": "prod_apple_iphone_15_pro",
+    "candidate_product_id": "prod_anker_lightning_cable_mfi"
+  }'
+```
+**Response:**
+```json
+{
+  "verdict": "incompatible",
+  "summary_explanation": "Incompatible: Anker PowerLine III USB-C to Lightning Cable is not compatible with Apple iPhone 15 Pro.\n- Cable Connector Mating: Physical incompatibility: Apple iPhone 15 Pro requires a USB-C plug, but this cable terminates in Lightning.",
+  "failed_checks": [
+    {
+      "check_id": "cable_connector_mating",
+      "title": "Cable Connector Mating",
+      "property_checked": "connector_types",
+      "existing_value": "USB-C",
+      "candidate_value": "USB-C to Lightning",
+      "rule_applied": "Device port requires matching plug type (USB-C cannot mate with Lightning)",
+      "outcome": "fail",
+      "severity": "critical",
+      "explanation": "Physical incompatibility: Apple iPhone 15 Pro requires a USB-C plug, but this cable terminates in Lightning.",
+      "evidence": "Apple MFi Licensee Database & Anker Product Compliance Registry",
+      "verification_status": "verified"
+    }
+  ],
+  "passed_checks": [],
+  "cannot_verify_checks": [],
+  "missing_specifications": []
+}
+```
+
+#### Example 2: Incompatible Ecosystem (Galaxy S24 Ultra + Apple Watch)
+```bash
+curl -X POST "http://localhost:8000/api/compatibility/check" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "existing_product_id": "prod_samsung_galaxy_s24_ultra",
+    "candidate_product_id": "prod_apple_watch_series_9"
+  }'
+```
+**Response:**
+```json
+{
+  "verdict": "incompatible",
+  "summary_explanation": "Incompatible: Apple Watch Series 9 GPS 41mm is not compatible with Samsung Galaxy S24 Ultra.\n- Operating System Ecosystem Match: Apple Watch requires an Apple iPhone running iOS and does not pair with Android devices like Samsung Galaxy S24 Ultra."
+}
+```
+
+#### Example 3: Missing Specifications (Phone + Unverified Hub)
+```bash
+curl -X POST "http://localhost:8000/api/compatibility/check" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "existing_product_id": "prod_apple_iphone_15_pro",
+    "candidate_product_id": "prod_generic_usb_hub_unverified"
+  }'
+```
+**Response:**
+```json
+{
+  "verdict": "cannot_verify",
+  "summary_explanation": "Cannot verify compatibility between Generic Mini 4-in-1 Hub and Apple iPhone 15 Pro due to unverified or missing technical specifications.",
+  "cannot_verify_checks": [ ... ],
+  "missing_specifications": [
+    {
+      "product_id": "prod_generic_usb_hub_unverified",
+      "product_name": "Generic Mini 4-in-1 Hub",
+      "missing_property": "output_ports",
+      "impact_reason": "Cannot verify connector interface compatibility"
+    }
+  ]
+}
+```
+
+---
+
+## 8. Summary of Implemented Compatibility Rules
+
+| Category Pair | Properties Evaluated | Deterministic Decision Logic |
+|---|---|---|
+| **Charger ↔ Device** | `output_ports`, `charging_protocols`, `max_output_wattage_w`, `min_recommended_charger_w` | Fails if charger port cannot connect to device or wattage is below minimum device requirement. Warns if below maximum fast-charging rate. |
+| **Cable ↔ Device** | `source_connector`, `target_connector`, `max_supported_wattage_w`, `mfi_certified` | Fails if connector ends (e.g. Lightning vs USB-C) do not mate. Warns if cable wattage throttles laptop power. |
+| **Monitor ↔ Computer** | `video_inputs`, `video_out_support`, `usb_c_power_delivery_w` | Validates DP Alt Mode / HDMI / Thunderbolt match. Verifies monitor reverse power delivery satisfies laptop wattage. |
+| **Smartwatch ↔ Phone** | `compatible_os`, `min_os_version`, `bluetooth_version` | Enforces iOS vs Android ecosystem boundaries. Checks OS release version numbers. |
+| **Case ↔ Phone** | `target_device_model`, `dimensions_mm` | Validates exact model name match and sub-millimeter physical dimension tolerance. |
+| **Audio ↔ Device** | `bluetooth_version`, `headphone_jack_3_5mm`, `bluetooth_codecs` | Verifies Bluetooth radio and validates 3.5mm jack requirement against host chassis. |
+| **Unverified / Missing Specs** | Any required technical attribute | Emits `cannot_verify` with explicit missing attribute notices; never guesses or hallucinates. |
+
+---
+
+## 9. AI/ML Integration Boundary & Dependencies
+
+- **Agreed Endpoint**: `POST /internal/search` on `ML_SERVICE_URL`.
+- **Agreed Health Endpoint**: `GET /internal/health`.
+- **Payload**: Multipart form with `file: UploadFile` and `limit: int`.
+- **Output**: JSON payload matching `MLSearchResponse` schema:
+  ```json
+  {
+    "results": [
+      { "product_id": "prod_apple_iphone_15_pro", "score": 0.9421 }
+    ],
+    "model_version": "clip-vit-base-patch32:v1.2",
+    "inference_time_ms": 38.5
+  }
+  ```
+- **Unresolved Dependencies**: Final production deployment requires pairing with the AI/ML engineer's production container hosting the trained CLIP/SigLIP inference service. For all local and testing purposes, `mock_ml_service.py` provides full functional parity with the agreed contract.
