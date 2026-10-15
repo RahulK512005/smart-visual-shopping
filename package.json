@@ -1,0 +1,15 @@
+{
+  "name": "smart-visual-shopping",
+  "version": "1.0.0",
+  "description": "Smart Visual Shopping - Full Stack Visual Search & Compatibility Engine",
+  "scripts": {
+    "dev": "py run_all.py",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "py -m uvicorn backend.app.main:app --port 8000 --reload",
+    "dev:ml": "py -m uvicorn mock_ml_service:app --port 8001 --reload",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "py -m pytest backend/tests",
+    "test:frontend": "cd frontend && npm test",
+    "seed": "py seed_catalog.py"
+  }
+}
