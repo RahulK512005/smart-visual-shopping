@@ -1,10 +1,12 @@
 import type { CheckStatus, Verdict } from "@/lib/types";
 
 export const VERDICT_META: Record<Verdict, { label: string; icon: string; cls: string; blurb: string }> = {
-  compatible: { label: "Compatible", icon: "✓", cls: "border-ok bg-ok-tint text-ok", blurb: "The backend found these products work together." },
-  incompatible: { label: "Incompatible", icon: "✕", cls: "border-bad bg-bad-tint text-bad", blurb: "The backend found at least one check that fails." },
-  cannot_verify: { label: "Cannot verify", icon: "?", cls: "border-warn bg-warn-tint text-warn", blurb: "There isn't enough verified information to decide." },
+  compatible: { label: "Compatible", icon: "✓", cls: "border-ok bg-ok-tint text-ok", blurb: "Fully Compatible: Verified hardware, protocol, and interface alignment." },
+  partially_compatible: { label: "Partly Compatible", icon: "⚡", cls: "border-amber-500 bg-amber-50 text-amber-700", blurb: "Partly Compatible: Works with technical advisories or reduced speed." },
+  incompatible: { label: "Incompatible", icon: "✕", cls: "border-bad bg-bad-tint text-bad", blurb: "Not Compatible: At least one critical hardware requirement fails." },
+  cannot_verify: { label: "Cannot verify", icon: "?", cls: "border-warn bg-warn-tint text-warn", blurb: "Not Enough Information: Missing verified technical specifications to decide." },
 };
+
 
 export const STATUS_META: Record<CheckStatus, { label: string; icon: string; cls: string }> = {
   passed: { label: "Passed", icon: "✓", cls: "text-ok" },

@@ -16,6 +16,7 @@ class VisualSearchResultItem(BaseModel):
     rank: int = Field(..., ge=1, description="1-based rank preserved directly from ML service ordering")
     similarity_score: float = Field(..., ge=0.0, le=1.0, description="Similarity score from visual embedding search")
     product: ProductRead = Field(..., description="Full enriched catalog product details")
+    similarity_explanation: Optional[str] = Field(None, description="Human-readable explanation of visual similarity")
 
 
 # Convenience alias

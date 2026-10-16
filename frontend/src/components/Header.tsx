@@ -3,10 +3,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/search", label: "Visual search" },
-  { href: "/compatibility", label: "Compatibility" },
-  { href: "/products", label: "Catalog" },
+  { href: "/", label: "2-in-1 Experience" },
+  { href: "/search", label: "Mode A: Visual Search" },
+  { href: "/compatibility", label: "Mode B: Compatibility" },
+  { href: "/products", label: "Catalog (320+)" },
 ];
+
 
 export function Header() {
   const path = usePathname();

@@ -69,17 +69,19 @@ class CompatibilityService:
                 + "\n".join(unverified_reasons)
             )
         else:
-            verdict = CompatibilityVerdict.COMPATIBLE
             if failed_checks:  # Only non-critical warnings
+                verdict = CompatibilityVerdict.PARTIALLY_COMPATIBLE
                 warning_notes = [f"- {c.title}: {c.explanation}" for c in failed_checks]
                 summary_explanation = (
-                    f"Compatible with advisories: {candidate.name} works with {existing.name}.\n"
+                    f"Partly compatible: {candidate.name} works with {existing.name} with performance advisories.\n"
                     + "\n".join(warning_notes)
                 )
             else:
+                verdict = CompatibilityVerdict.COMPATIBLE
                 summary_explanation = (
                     f"Fully compatible: {candidate.name} satisfies all hardware, protocol, and interface requirements for {existing.name}."
                 )
+
 
         return CompatibilityCheckResponse(
             existing_product=ProductSummary(

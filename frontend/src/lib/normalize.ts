@@ -82,16 +82,19 @@ export function normalizeSearchResults(raw: unknown): SearchResult[] {
       rank: num(item.rank) ?? i + 1,
       product,
       score: num(item.score ?? item.similarity ?? item.similarity_score),
+      explanation: str(item.similarity_explanation ?? item.explanation ?? item.detection_label),
     };
   });
 }
 
 const VERDICTS: Record<string, Verdict> = {
   compatible: "compatible", yes: "compatible", pass: "compatible", passed: "compatible",
+  partially_compatible: "partially_compatible", partly_compatible: "partially_compatible", partial: "partially_compatible",
   incompatible: "incompatible", not_compatible: "incompatible", no: "incompatible", fail: "incompatible", failed: "incompatible",
   cannot_verify: "cannot_verify", cannotverify: "cannot_verify", unknown: "cannot_verify",
   uncertain: "cannot_verify", insufficient_data: "cannot_verify", unverifiable: "cannot_verify",
 };
+
 const STATUSES: Record<string, CheckStatus> = {
   passed: "passed", pass: "passed", ok: "passed", compatible: "passed",
   failed: "failed", fail: "failed", incompatible: "failed",

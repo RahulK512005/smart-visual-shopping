@@ -381,3 +381,14 @@ SAMPLE_PRODUCTS = [
         "is_active": True
     }
 ]
+
+try:
+    from backend.app.db.catalog_data_300 import CATALOG_PRODUCTS_300
+    _orig_ids = {p["id"] for p in SAMPLE_PRODUCTS}
+    for _p in CATALOG_PRODUCTS_300:
+        if _p["id"] not in _orig_ids:
+            SAMPLE_PRODUCTS.append(_p)
+            _orig_ids.add(_p["id"])
+except Exception:
+    pass
+

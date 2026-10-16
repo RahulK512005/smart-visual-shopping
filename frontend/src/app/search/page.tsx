@@ -56,13 +56,38 @@ export default function SearchPage() {
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {results.map((r) => (
-              <ProductCard key={r.product.id} product={r.product} rank={r.rank} score={r.score} actions={
-                <>
-                  <button type="button" className="btn-secondary" onClick={() => { setCandidate(r.product); router.push("/compatibility"); }}>Check compatibility</button>
-                  <button type="button" className="btn-secondary" onClick={() => { setOwned(r.product); router.push("/compatibility"); }}>I own this</button>
-                </>
-              } />
+              <ProductCard
+                key={r.product.id}
+                product={r.product}
+                rank={r.rank}
+                score={r.score}
+                explanation={r.explanation}
+                actions={
+                  <div className="flex flex-wrap gap-2 w-full">
+                    <button type="button" className="btn-primary text-xs" onClick={() => { setCandidate(r.product); router.push("/compatibility"); }}>Check compatibility</button>
+                    <button type="button" className="btn-secondary text-xs" onClick={() => { setOwned(r.product); router.push("/compatibility"); }}>I own this</button>
+                    <button
+                      type="button"
+                      className="btn-secondary text-xs"
+                      onClick={async () => {
+                        setLoading(true);
+                        try {
+                          const { searchMoreLikeThis } = await import("@/lib/api");
+                          setResults(await searchMoreLikeThis(r.product.id));
+                        } catch (err) {
+                          setError("Failed to fetch similar products.");
+                        } finally {
+                          setLoading(false);
+                        }
+                      }}
+                    >
+                      More like this
+                    </button>
+                  </div>
+                }
+              />
             ))}
+
           </div>
         </section>
       )}

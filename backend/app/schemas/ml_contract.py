@@ -6,6 +6,7 @@ class MLSearchItemResult(BaseModel):
     product_id: str = Field(..., description="Stable catalog product ID identified by ML model")
     score: float = Field(..., ge=0.0, le=1.0, description="Normalized similarity or confidence score")
     detection_label: Optional[str] = Field(None, description="Optional predicted label or detected class from ML")
+    similarity_explanation: Optional[str] = Field(None, description="Human-readable explanation of visual similarity")
 
 
 class MLSearchResponse(BaseModel):

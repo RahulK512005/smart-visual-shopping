@@ -6,8 +6,10 @@ from pydantic import BaseModel, Field
 
 class CompatibilityVerdict(str, Enum):
     COMPATIBLE = "compatible"
+    PARTIALLY_COMPATIBLE = "partially_compatible"
     INCOMPATIBLE = "incompatible"
     CANNOT_VERIFY = "cannot_verify"
+
 
 
 class CheckOutcome(str, Enum):

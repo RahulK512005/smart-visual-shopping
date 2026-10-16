@@ -27,3 +27,18 @@ async def perform_visual_search(
         limit=limit,
         min_score=min_score,
     )
+
+
+@router.get("/more-like-this/{product_id}", response_model=VisualSearchResponse)
+def get_more_like_this(
+    product_id: str,
+    limit: int = Query(6, ge=1, le=50, description="Maximum number of similar products to return"),
+    db: Session = Depends(get_db),
+):
+    """
+    GET /api/visual-search/more-like-this/{product_id}
+    Retrieves the nearest visual neighbors using FAISS dense embeddings.
+    """
+    orchestrator = VisualSearchOrchestrator(db=db)
+    return orchestrator.search_more_like_this(product_id=product_id, limit=limit)
+

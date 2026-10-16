@@ -75,8 +75,34 @@ export const getProduct = (id: string, signal?: AbortSignal): Promise<Product> =
 export const visualSearch = (image: File, signal?: AbortSignal): Promise<SearchResult[]> => {
   const form = new FormData();
   form.append("file", image); // backend: UploadFile field named "file"
-  return request("/api/visual-search", normalizeSearchResults, { method: "POST", body: form }, signal);
+  return request("/api/visual-search?limit=6", normalizeSearchResults, { method: "POST", body: form }, signal);
 };
+
+export const searchMoreLikeThis = (productId: string, signal?: AbortSignal): Promise<SearchResult[]> =>
+  request(`/api/visual-search/more-like-this/${encodeURIComponent(productId)}?limit=6`, normalizeSearchResults, {}, signal);
+
+export interface IdentifyPhotoResponse {
+  identified: Product | null;
+  confidence: number;
+  candidates: { product: Product; score: number; explanation?: string }[];
+}
+
+export const identifyOwnedPhoto = (image: File, signal?: AbortSignal): Promise<IdentifyPhotoResponse> => {
+  const form = new FormData();
+  form.append("file", image);
+  return request("/api/compatibility/identify-photo", (raw: any) => ({
+    identified: raw?.identified ? normalizeProduct(raw.identified) : null,
+    confidence: Number(raw?.confidence || 0),
+    candidates: Array.isArray(raw?.candidates)
+      ? raw.candidates.map((c: any) => ({
+          product: normalizeProduct(c.product),
+          score: Number(c.score || 0),
+          explanation: typeof c.explanation === "string" ? c.explanation : undefined,
+        }))
+      : [],
+  }), { method: "POST", body: form }, signal);
+};
+
 
 export const checkCompatibility = (req: CompatibilityRequest, signal?: AbortSignal): Promise<CompatibilityResult> =>
   request("/api/compatibility/check", normalizeCompatibility, {

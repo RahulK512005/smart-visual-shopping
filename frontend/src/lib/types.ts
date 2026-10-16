@@ -21,9 +21,11 @@ export interface SearchResult {
   product: Product;
   /** Only present when the backend supplies it. Never computed in the browser. */
   score?: number;
+  explanation?: string;
 }
 
-export type Verdict = "compatible" | "incompatible" | "cannot_verify";
+export type Verdict = "compatible" | "incompatible" | "cannot_verify" | "partially_compatible";
+
 export type CheckStatus = "passed" | "failed" | "warning" | "unknown";
 
 export interface CompatibilityCheck {

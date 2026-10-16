@@ -120,6 +120,7 @@ class VisualSearchOrchestrator:
                     rank=current_rank,
                     similarity_score=round(ml_item.score, 4),
                     product=ProductRead.model_validate(product),
+                    similarity_explanation=ml_item.similarity_explanation or f"Matching visual form factor and {product.category} profile",
                 )
             )
             current_rank += 1
@@ -129,3 +130,39 @@ class VisualSearchOrchestrator:
             total_matches=len(enriched_results),
             results=enriched_results,
         )
+
+    def search_more_like_this(self, product_id: str, limit: int = 6) -> VisualSearchResponse:
+        from backend.app.services.faiss_engine import faiss_engine
+        raw_results = faiss_engine.search_more_like_this(product_id=product_id, limit=limit)
+        candidate_ids = [r["product_id"] for r in raw_results]
+        db_products = self.repo.get_by_ids(candidate_ids)
+        product_map = {prod.id: prod for prod in db_products}
+
+        enriched_results = []
+        for rank, r in enumerate(raw_results, 1):
+            product = product_map.get(r["product_id"])
+            if not product:
+                continue
+            enriched_results.append(
+                VisualSearchResultItem(
+                    rank=rank,
+                    similarity_score=round(r["score"], 4),
+                    product=ProductRead.model_validate(product),
+                    similarity_explanation=r.get("similarity_explanation"),
+                )
+            )
+
+        target_prod = self.repo.get_by_id(product_id)
+        return VisualSearchResponse(
+            query_image=QueryImageMetadata(
+                filename=f"{product_id}.jpg",
+                content_type="image/jpeg",
+                size_bytes=1024,
+                width=600,
+                height=600,
+                format="JPEG"
+            ),
+            total_matches=len(enriched_results),
+            results=enriched_results,
+        )
+
