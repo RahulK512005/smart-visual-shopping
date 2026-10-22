@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   checkCompatibility,
   getProducts,
@@ -21,14 +20,13 @@ import { ProductCard } from "./ProductCard";
 import { ProductPicker } from "./ProductPicker";
 import { ResultView } from "./ResultView";
 import { EmptyState, ErrorBox, Spinner } from "./States";
-import { VERDICT_META } from "./Verdict";
 
 type Mode = "search" | "compatibility";
 
 export function UnifiedShoppingExperience() {
   const [mode, setMode] = useState<Mode>("search");
   const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [, setPreviewUrl] = useState<string | null>(null);
 
   // Mode A: Search state
   const [searchLoading, setSearchLoading] = useState(false);
@@ -37,7 +35,7 @@ export function UnifiedShoppingExperience() {
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   // Mode B: Compatibility state
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [, setAllProducts] = useState<Product[]>([]);
   const [ownedProduct, setOwnedProduct] = useState<Product | null>(null);
   const [candidateProduct, setCandidateProduct] = useState<Product | null>(null);
   const [compatLoading, setCompatLoading] = useState(false);
@@ -87,7 +85,7 @@ export function UnifiedShoppingExperience() {
       const results = await searchMoreLikeThis(product.id);
       setSearchResults(results.slice(0, 6));
       window.scrollTo({ top: 400, behavior: "smooth" });
-    } catch (e) {
+    } catch {
       setSearchError("Failed to fetch similar items for this product.");
     } finally {
       setSearchLoading(false);
@@ -118,7 +116,7 @@ export function UnifiedShoppingExperience() {
           `Identified as: ${res.identified.name} (${Math.round(res.confidence * 100)}% visual match)`
         );
       }
-    } catch (e) {
+    } catch {
       // Fallback
     } finally {
       setIdentifyingPhoto(false);

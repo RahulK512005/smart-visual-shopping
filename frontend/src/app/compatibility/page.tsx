@@ -18,7 +18,7 @@ export default function CompatibilityPage() {
   const [result, setResult] = useState<CompatibilityResult | null>(null);
   const busy = useRef(false);
 
-  const [ownedPhoto, setOwnedPhoto] = useState<File | null>(null);
+  const [, setOwnedPhoto] = useState<File | null>(null);
   const [identifying, setIdentifying] = useState(false);
   const [photoNote, setPhotoNote] = useState<string | null>(null);
 
@@ -48,7 +48,7 @@ export default function CompatibilityPage() {
         setOwned(res.identified);
         setPhotoNote(`Identified as: ${res.identified.name} (${Math.round(res.confidence * 100)}% match)`);
       }
-    } catch (e) {
+    } catch {
       // Fallback
     } finally {
       setIdentifying(false);

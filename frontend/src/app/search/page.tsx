@@ -74,7 +74,7 @@ export default function SearchPage() {
                         try {
                           const { searchMoreLikeThis } = await import("@/lib/api");
                           setResults(await searchMoreLikeThis(r.product.id));
-                        } catch (err) {
+                        } catch {
                           setError("Failed to fetch similar products.");
                         } finally {
                           setLoading(false);

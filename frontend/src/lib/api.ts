@@ -87,20 +87,35 @@ export interface IdentifyPhotoResponse {
   candidates: { product: Product; score: number; explanation?: string }[];
 }
 
+interface RawCandidateItem {
+  product: unknown;
+  score?: number;
+  explanation?: string;
+}
+
+interface RawPhotoIdentifyResponse {
+  identified?: unknown;
+  confidence?: number;
+  candidates?: RawCandidateItem[];
+}
+
 export const identifyOwnedPhoto = (image: File, signal?: AbortSignal): Promise<IdentifyPhotoResponse> => {
   const form = new FormData();
   form.append("file", image);
-  return request("/api/compatibility/identify-photo", (raw: any) => ({
-    identified: raw?.identified ? normalizeProduct(raw.identified) : null,
-    confidence: Number(raw?.confidence || 0),
-    candidates: Array.isArray(raw?.candidates)
-      ? raw.candidates.map((c: any) => ({
-          product: normalizeProduct(c.product),
-          score: Number(c.score || 0),
-          explanation: typeof c.explanation === "string" ? c.explanation : undefined,
-        }))
-      : [],
-  }), { method: "POST", body: form }, signal);
+  return request("/api/compatibility/identify-photo", (raw: unknown) => {
+    const data = raw as RawPhotoIdentifyResponse;
+    return {
+      identified: data?.identified ? normalizeProduct(data.identified) : null,
+      confidence: Number(data?.confidence || 0),
+      candidates: Array.isArray(data?.candidates)
+        ? data.candidates.map((c: RawCandidateItem) => ({
+            product: normalizeProduct(c.product),
+            score: Number(c.score || 0),
+            explanation: typeof c.explanation === "string" ? c.explanation : undefined,
+          }))
+        : [],
+    };
+  }, { method: "POST", body: form }, signal);
 };
 
 
