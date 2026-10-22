@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import APIRouter, Depends, File, Query, UploadFile
 from sqlalchemy.orm import Session
 
@@ -13,6 +14,7 @@ async def perform_visual_search(
     file: UploadFile = File(..., description="Uploaded query image (JPEG, PNG, WebP)"),
     limit: int = Query(10, ge=1, le=50, description="Maximum number of matches to return"),
     min_score: float = Query(0.0, ge=0.0, le=1.0, description="Minimum confidence/similarity threshold"),
+    category: Optional[str] = Query(None, description="Optional category filter to restrict matches"),
     db: Session = Depends(get_db),
 ):
     """
@@ -26,6 +28,7 @@ async def perform_visual_search(
         upload_file=file,
         limit=limit,
         min_score=min_score,
+        category_filter=category,
     )
 
 

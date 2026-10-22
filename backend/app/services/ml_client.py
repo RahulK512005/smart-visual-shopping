@@ -1,3 +1,4 @@
+# pyrefly: ignore[missing-import]
 import httpx
 from typing import Optional
 from backend.app.core.config import settings
@@ -37,6 +38,7 @@ class MLServiceClient:
         filename: str = "query.jpg",
         content_type: str = "image/jpeg",
         limit: int = 10,
+        category_filter: Optional[str] = None,
     ) -> MLSearchResponse:
         """
         Sends the uploaded image to the internal ML service via POST /internal/search.
@@ -56,6 +58,8 @@ class MLServiceClient:
         data = {
             "limit": str(limit)
         }
+        if category_filter:
+            data["category_filter"] = category_filter
 
         try:
             with httpx.Client(timeout=timeout_config) as client:

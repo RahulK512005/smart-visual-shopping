@@ -1,1 +1,4818 @@
-{"product_ids": ["prod_apple_iphone_15_pro", "prod_apple_iphone_14", "prod_samsung_galaxy_s24_ultra", "prod_apple_macbook_pro_14_m3", "prod_dell_xps_15_9530", "prod_anker_737_charger_120w", "prod_apple_20w_charger", "prod_anker_lightning_cable_mfi", "prod_anker_usbc_to_usbc_100w_cable", "prod_dell_u2723qe_4k_monitor", "prod_apple_watch_series_9", "prod_samsung_galaxy_watch_6", "prod_sony_wh1000xm5", "prod_apple_case_iphone_15_pro_finewoven", "prod_generic_usb_hub_unverified", "prod_cat_smartphone_apple_101", "prod_cat_smartphone_samsung_102", "prod_cat_smartphone_google_103", "prod_cat_smartphone_oneplus_104", "prod_cat_smartphone_sony_105", "prod_cat_smartphone_xiaomi_106", "prod_cat_smartphone_motorola_107", "prod_cat_smartphone_nothing_108", "prod_cat_smartphone_apple_109", "prod_cat_smartphone_samsung_110", "prod_cat_smartphone_google_111", "prod_cat_smartphone_oneplus_112", "prod_cat_smartphone_sony_113", "prod_cat_smartphone_xiaomi_114", "prod_cat_smartphone_motorola_115", "prod_cat_smartphone_nothing_116", "prod_cat_smartphone_apple_117", "prod_cat_smartphone_samsung_118", "prod_cat_smartphone_google_119", "prod_cat_smartphone_oneplus_120", "prod_cat_smartphone_sony_121", "prod_cat_smartphone_xiaomi_122", "prod_cat_smartphone_motorola_123", "prod_cat_smartphone_nothing_124", "prod_cat_smartphone_apple_125", "prod_cat_smartphone_samsung_126", "prod_cat_smartphone_google_127", "prod_cat_smartphone_oneplus_128", "prod_cat_smartphone_sony_129", "prod_cat_smartphone_xiaomi_130", "prod_cat_smartphone_motorola_131", "prod_cat_laptop_apple_132", "prod_cat_laptop_dell_133", "prod_cat_laptop_lenovo_134", "prod_cat_laptop_hp_135", "prod_cat_laptop_asus_136", "prod_cat_laptop_microsoft_137", "prod_cat_laptop_razer_138", "prod_cat_laptop_acer_139", "prod_cat_laptop_apple_140", "prod_cat_laptop_dell_141", "prod_cat_laptop_lenovo_142", "prod_cat_laptop_hp_143", "prod_cat_laptop_asus_144", "prod_cat_laptop_microsoft_145", "prod_cat_laptop_razer_146", "prod_cat_laptop_acer_147", "prod_cat_laptop_apple_148", "prod_cat_laptop_dell_149", "prod_cat_laptop_lenovo_150", "prod_cat_laptop_hp_151", "prod_cat_laptop_asus_152", "prod_cat_laptop_microsoft_153", "prod_cat_laptop_razer_154", "prod_cat_laptop_acer_155", "prod_cat_laptop_apple_156", "prod_cat_laptop_dell_157", "prod_cat_laptop_lenovo_158", "prod_cat_laptop_hp_159", "prod_cat_laptop_asus_160", "prod_cat_laptop_microsoft_161", "prod_cat_laptop_razer_162", "prod_cat_charger_anker_163", "prod_cat_charger_apple_164", "prod_cat_charger_samsung_165", "prod_cat_charger_belkin_166", "prod_cat_charger_ugreen_167", "prod_cat_charger_baseus_168", "prod_cat_charger_satechi_169", "prod_cat_charger_shargeek_170", "prod_cat_charger_anker_171", "prod_cat_charger_apple_172", "prod_cat_charger_samsung_173", "prod_cat_charger_belkin_174", "prod_cat_charger_ugreen_175", "prod_cat_charger_baseus_176", "prod_cat_charger_satechi_177", "prod_cat_charger_shargeek_178", "prod_cat_charger_anker_179", "prod_cat_charger_apple_180", "prod_cat_charger_samsung_181", "prod_cat_charger_belkin_182", "prod_cat_charger_ugreen_183", "prod_cat_charger_baseus_184", "prod_cat_charger_satechi_185", "prod_cat_charger_shargeek_186", "prod_cat_charger_anker_187", "prod_cat_charger_apple_188", "prod_cat_charger_samsung_189", "prod_cat_charger_belkin_190", "prod_cat_charger_ugreen_191", "prod_cat_charger_baseus_192", "prod_cat_charger_satechi_193", "prod_cat_powerbank_anker_194", "prod_cat_powerbank_baseus_195", "prod_cat_powerbank_ugreen_196", "prod_cat_powerbank_belkin_197", "prod_cat_powerbank_shargeek_198", "prod_cat_powerbank_xiaomi_199", "prod_cat_powerbank_iniu_200", "prod_cat_powerbank_romoss_201", "prod_cat_powerbank_anker_202", "prod_cat_powerbank_baseus_203", "prod_cat_powerbank_ugreen_204", "prod_cat_powerbank_belkin_205", "prod_cat_powerbank_shargeek_206", "prod_cat_powerbank_xiaomi_207", "prod_cat_powerbank_iniu_208", "prod_cat_powerbank_romoss_209", "prod_cat_powerbank_anker_210", "prod_cat_powerbank_baseus_211", "prod_cat_powerbank_ugreen_212", "prod_cat_powerbank_belkin_213", "prod_cat_powerbank_shargeek_214", "prod_cat_powerbank_xiaomi_215", "prod_cat_powerbank_iniu_216", "prod_cat_powerbank_romoss_217", "prod_cat_powerbank_anker_218", "prod_cat_powerbank_baseus_219", "prod_cat_powerbank_ugreen_220", "prod_cat_powerbank_belkin_221", "prod_cat_powerbank_shargeek_222", "prod_cat_powerbank_xiaomi_223", "prod_cat_powerbank_iniu_224", "prod_cat_cable_anker_225", "prod_cat_cable_apple_226", "prod_cat_cable_belkin_227", "prod_cat_cable_ugreen_228", "prod_cat_cable_cablecreation_229", "prod_cat_cable_baseus_230", "prod_cat_cable_nomad_231", "prod_cat_cable_native union_232", "prod_cat_cable_anker_233", "prod_cat_cable_apple_234", "prod_cat_cable_belkin_235", "prod_cat_cable_ugreen_236", "prod_cat_cable_cablecreation_237", "prod_cat_cable_baseus_238", "prod_cat_cable_nomad_239", "prod_cat_cable_native union_240", "prod_cat_cable_anker_241", "prod_cat_cable_apple_242", "prod_cat_cable_belkin_243", "prod_cat_cable_ugreen_244", "prod_cat_cable_cablecreation_245", "prod_cat_cable_baseus_246", "prod_cat_cable_nomad_247", "prod_cat_cable_native union_248", "prod_cat_cable_anker_249", "prod_cat_cable_apple_250", "prod_cat_cable_belkin_251", "prod_cat_cable_ugreen_252", "prod_cat_cable_cablecreation_253", "prod_cat_cable_baseus_254", "prod_cat_cable_nomad_255", "prod_cat_monitor_dell_256", "prod_cat_monitor_lg_257", "prod_cat_monitor_apple_258", "prod_cat_monitor_samsung_259", "prod_cat_monitor_asus_260", "prod_cat_monitor_benq_261", "prod_cat_monitor_philips_262", "prod_cat_monitor_viewsonic_263", "prod_cat_monitor_dell_264", "prod_cat_monitor_lg_265", "prod_cat_monitor_apple_266", "prod_cat_monitor_samsung_267", "prod_cat_monitor_asus_268", "prod_cat_monitor_benq_269", "prod_cat_monitor_philips_270", "prod_cat_monitor_viewsonic_271", "prod_cat_monitor_dell_272", "prod_cat_monitor_lg_273", "prod_cat_monitor_apple_274", "prod_cat_monitor_samsung_275", "prod_cat_monitor_asus_276", "prod_cat_monitor_benq_277", "prod_cat_monitor_philips_278", "prod_cat_monitor_viewsonic_279", "prod_cat_monitor_dell_280", "prod_cat_monitor_lg_281", "prod_cat_monitor_apple_282", "prod_cat_monitor_samsung_283", "prod_cat_monitor_asus_284", "prod_cat_monitor_benq_285", "prod_cat_monitor_philips_286", "prod_cat_wearable_apple_287", "prod_cat_wearable_samsung_288", "prod_cat_wearable_google_289", "prod_cat_wearable_garmin_290", "prod_cat_wearable_fitbit_291", "prod_cat_wearable_oneplus_292", "prod_cat_wearable_amazfit_293", "prod_cat_wearable_polar_294", "prod_cat_wearable_apple_295", "prod_cat_wearable_samsung_296", "prod_cat_wearable_google_297", "prod_cat_wearable_garmin_298", "prod_cat_wearable_fitbit_299", "prod_cat_wearable_oneplus_300", "prod_cat_wearable_amazfit_301", "prod_cat_wearable_polar_302", "prod_cat_wearable_apple_303", "prod_cat_wearable_samsung_304", "prod_cat_wearable_google_305", "prod_cat_wearable_garmin_306", "prod_cat_wearable_fitbit_307", "prod_cat_wearable_oneplus_308", "prod_cat_wearable_amazfit_309", "prod_cat_wearable_polar_310", "prod_cat_wearable_apple_311", "prod_cat_wearable_samsung_312", "prod_cat_wearable_google_313", "prod_cat_wearable_garmin_314", "prod_cat_wearable_fitbit_315", "prod_cat_wearable_oneplus_316", "prod_cat_wearable_amazfit_317", "prod_cat_case_apple_318", "prod_cat_case_spigen_319", "prod_cat_case_otterbox_320", "prod_cat_case_nomad_321", "prod_cat_case_torras_322", "prod_cat_case_caseology_323", "prod_cat_case_bellroy_324", "prod_cat_case_uag_325", "prod_cat_case_apple_326", "prod_cat_case_spigen_327", "prod_cat_case_otterbox_328", "prod_cat_case_nomad_329", "prod_cat_case_torras_330", "prod_cat_case_caseology_331", "prod_cat_case_bellroy_332", "prod_cat_case_uag_333", "prod_cat_case_apple_334", "prod_cat_case_spigen_335", "prod_cat_case_otterbox_336", "prod_cat_case_nomad_337", "prod_cat_case_torras_338", "prod_cat_case_caseology_339", "prod_cat_case_bellroy_340", "prod_cat_case_uag_341", "prod_cat_case_apple_342", "prod_cat_case_spigen_343", "prod_cat_case_otterbox_344", "prod_cat_case_nomad_345", "prod_cat_case_torras_346", "prod_cat_case_caseology_347", "prod_cat_case_bellroy_348", "prod_cat_audio_sony_349", "prod_cat_audio_apple_350", "prod_cat_audio_bose_351", "prod_cat_audio_sennheiser_352", "prod_cat_audio_samsung_353", "prod_cat_audio_jbl_354", "prod_cat_audio_anker soundcore_355", "prod_cat_audio_audio-technica_356", "prod_cat_audio_sony_357", "prod_cat_audio_apple_358", "prod_cat_audio_bose_359", "prod_cat_audio_sennheiser_360", "prod_cat_audio_samsung_361", "prod_cat_audio_jbl_362", "prod_cat_audio_anker soundcore_363", "prod_cat_audio_audio-technica_364", "prod_cat_audio_sony_365", "prod_cat_audio_apple_366", "prod_cat_audio_bose_367", "prod_cat_audio_sennheiser_368", "prod_cat_audio_samsung_369", "prod_cat_audio_jbl_370", "prod_cat_audio_anker soundcore_371", "prod_cat_audio_audio-technica_372", "prod_cat_audio_sony_373", "prod_cat_audio_apple_374", "prod_cat_audio_bose_375", "prod_cat_audio_sennheiser_376", "prod_cat_audio_samsung_377", "prod_cat_audio_jbl_378", "prod_cat_audio_anker soundcore_379", "prod_cat_hub_caldigit_380", "prod_cat_hub_anker_381", "prod_cat_hub_satechi_382", "prod_cat_hub_hyperdrive_383", "prod_cat_hub_belkin_384", "prod_cat_hub_ugreen_385", "prod_cat_hub_dell_386", "prod_cat_hub_owc_387", "prod_cat_hub_caldigit_388", "prod_cat_hub_anker_389", "prod_cat_hub_satechi_390", "prod_cat_hub_hyperdrive_391", "prod_cat_hub_belkin_392", "prod_cat_hub_ugreen_393", "prod_cat_hub_dell_394", "prod_cat_hub_owc_395", "prod_cat_hub_caldigit_396", "prod_cat_hub_anker_397", "prod_cat_hub_satechi_398", "prod_cat_hub_hyperdrive_399", "prod_cat_hub_belkin_400", "prod_cat_hub_ugreen_401", "prod_cat_hub_dell_402", "prod_cat_hub_owc_403", "prod_cat_hub_caldigit_404", "prod_cat_hub_anker_405"]}
+{
+  "version": "2.0.0",
+  "model_id": "openai/clip-vit-base-patch32",
+  "dimension": 512,
+  "created_at": "2026-10-22T05:19:55.206522+00:00",
+  "total_vectors": 321,
+  "unique_products": 320,
+  "index_entries": [
+    {
+      "index": 0,
+      "product_id": "prod_apple_iphone_15_pro",
+      "image_url": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 1,
+      "product_id": "prod_apple_iphone_15_pro",
+      "image_url": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1200",
+      "image_type": "additional"
+    },
+    {
+      "index": 2,
+      "product_id": "prod_apple_iphone_14",
+      "image_url": "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 3,
+      "product_id": "prod_samsung_galaxy_s24_ultra",
+      "image_url": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 4,
+      "product_id": "prod_apple_macbook_pro_14_m3",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 5,
+      "product_id": "prod_dell_xps_15_9530",
+      "image_url": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 6,
+      "product_id": "prod_anker_737_charger_120w",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 7,
+      "product_id": "prod_apple_20w_charger",
+      "image_url": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 8,
+      "product_id": "prod_anker_lightning_cable_mfi",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 9,
+      "product_id": "prod_anker_usbc_to_usbc_100w_cable",
+      "image_url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 10,
+      "product_id": "prod_dell_u2723qe_4k_monitor",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 11,
+      "product_id": "prod_apple_watch_series_9",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 12,
+      "product_id": "prod_samsung_galaxy_watch_6",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 13,
+      "product_id": "prod_sony_wh1000xm5",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 14,
+      "product_id": "prod_apple_case_iphone_15_pro_finewoven",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 15,
+      "product_id": "prod_generic_usb_hub_unverified",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 16,
+      "product_id": "prod_cat_smartphone_apple_101",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 17,
+      "product_id": "prod_cat_smartphone_samsung_102",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 18,
+      "product_id": "prod_cat_smartphone_google_103",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 19,
+      "product_id": "prod_cat_smartphone_oneplus_104",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 20,
+      "product_id": "prod_cat_smartphone_sony_105",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 21,
+      "product_id": "prod_cat_smartphone_xiaomi_106",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 22,
+      "product_id": "prod_cat_smartphone_motorola_107",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 23,
+      "product_id": "prod_cat_smartphone_nothing_108",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 24,
+      "product_id": "prod_cat_smartphone_apple_109",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 25,
+      "product_id": "prod_cat_smartphone_samsung_110",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 26,
+      "product_id": "prod_cat_smartphone_google_111",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 27,
+      "product_id": "prod_cat_smartphone_oneplus_112",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 28,
+      "product_id": "prod_cat_smartphone_sony_113",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 29,
+      "product_id": "prod_cat_smartphone_xiaomi_114",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 30,
+      "product_id": "prod_cat_smartphone_motorola_115",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 31,
+      "product_id": "prod_cat_smartphone_nothing_116",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 32,
+      "product_id": "prod_cat_smartphone_apple_117",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 33,
+      "product_id": "prod_cat_smartphone_samsung_118",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 34,
+      "product_id": "prod_cat_smartphone_google_119",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 35,
+      "product_id": "prod_cat_smartphone_oneplus_120",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 36,
+      "product_id": "prod_cat_smartphone_sony_121",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 37,
+      "product_id": "prod_cat_smartphone_xiaomi_122",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 38,
+      "product_id": "prod_cat_smartphone_motorola_123",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 39,
+      "product_id": "prod_cat_smartphone_nothing_124",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 40,
+      "product_id": "prod_cat_smartphone_apple_125",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 41,
+      "product_id": "prod_cat_smartphone_samsung_126",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 42,
+      "product_id": "prod_cat_smartphone_google_127",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 43,
+      "product_id": "prod_cat_smartphone_oneplus_128",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 44,
+      "product_id": "prod_cat_smartphone_sony_129",
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 45,
+      "product_id": "prod_cat_smartphone_xiaomi_130",
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 46,
+      "product_id": "prod_cat_smartphone_motorola_131",
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 47,
+      "product_id": "prod_cat_laptop_apple_132",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 48,
+      "product_id": "prod_cat_laptop_dell_133",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 49,
+      "product_id": "prod_cat_laptop_lenovo_134",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 50,
+      "product_id": "prod_cat_laptop_hp_135",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 51,
+      "product_id": "prod_cat_laptop_asus_136",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 52,
+      "product_id": "prod_cat_laptop_microsoft_137",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 53,
+      "product_id": "prod_cat_laptop_razer_138",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 54,
+      "product_id": "prod_cat_laptop_acer_139",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 55,
+      "product_id": "prod_cat_laptop_apple_140",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 56,
+      "product_id": "prod_cat_laptop_dell_141",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 57,
+      "product_id": "prod_cat_laptop_lenovo_142",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 58,
+      "product_id": "prod_cat_laptop_hp_143",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 59,
+      "product_id": "prod_cat_laptop_asus_144",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 60,
+      "product_id": "prod_cat_laptop_microsoft_145",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 61,
+      "product_id": "prod_cat_laptop_razer_146",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 62,
+      "product_id": "prod_cat_laptop_acer_147",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 63,
+      "product_id": "prod_cat_laptop_apple_148",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 64,
+      "product_id": "prod_cat_laptop_dell_149",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 65,
+      "product_id": "prod_cat_laptop_lenovo_150",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 66,
+      "product_id": "prod_cat_laptop_hp_151",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 67,
+      "product_id": "prod_cat_laptop_asus_152",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 68,
+      "product_id": "prod_cat_laptop_microsoft_153",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 69,
+      "product_id": "prod_cat_laptop_razer_154",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 70,
+      "product_id": "prod_cat_laptop_acer_155",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 71,
+      "product_id": "prod_cat_laptop_apple_156",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 72,
+      "product_id": "prod_cat_laptop_dell_157",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 73,
+      "product_id": "prod_cat_laptop_lenovo_158",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 74,
+      "product_id": "prod_cat_laptop_hp_159",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 75,
+      "product_id": "prod_cat_laptop_asus_160",
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 76,
+      "product_id": "prod_cat_laptop_microsoft_161",
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 77,
+      "product_id": "prod_cat_laptop_razer_162",
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 78,
+      "product_id": "prod_cat_charger_anker_163",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 79,
+      "product_id": "prod_cat_charger_apple_164",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 80,
+      "product_id": "prod_cat_charger_samsung_165",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 81,
+      "product_id": "prod_cat_charger_belkin_166",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 82,
+      "product_id": "prod_cat_charger_ugreen_167",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 83,
+      "product_id": "prod_cat_charger_baseus_168",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 84,
+      "product_id": "prod_cat_charger_satechi_169",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 85,
+      "product_id": "prod_cat_charger_shargeek_170",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 86,
+      "product_id": "prod_cat_charger_anker_171",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 87,
+      "product_id": "prod_cat_charger_apple_172",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 88,
+      "product_id": "prod_cat_charger_samsung_173",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 89,
+      "product_id": "prod_cat_charger_belkin_174",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 90,
+      "product_id": "prod_cat_charger_ugreen_175",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 91,
+      "product_id": "prod_cat_charger_baseus_176",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 92,
+      "product_id": "prod_cat_charger_satechi_177",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 93,
+      "product_id": "prod_cat_charger_shargeek_178",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 94,
+      "product_id": "prod_cat_charger_anker_179",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 95,
+      "product_id": "prod_cat_charger_apple_180",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 96,
+      "product_id": "prod_cat_charger_samsung_181",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 97,
+      "product_id": "prod_cat_charger_belkin_182",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 98,
+      "product_id": "prod_cat_charger_ugreen_183",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 99,
+      "product_id": "prod_cat_charger_baseus_184",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 100,
+      "product_id": "prod_cat_charger_satechi_185",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 101,
+      "product_id": "prod_cat_charger_shargeek_186",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 102,
+      "product_id": "prod_cat_charger_anker_187",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 103,
+      "product_id": "prod_cat_charger_apple_188",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 104,
+      "product_id": "prod_cat_charger_samsung_189",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 105,
+      "product_id": "prod_cat_charger_belkin_190",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 106,
+      "product_id": "prod_cat_charger_ugreen_191",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 107,
+      "product_id": "prod_cat_charger_baseus_192",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 108,
+      "product_id": "prod_cat_charger_satechi_193",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 109,
+      "product_id": "prod_cat_powerbank_anker_194",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 110,
+      "product_id": "prod_cat_powerbank_baseus_195",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 111,
+      "product_id": "prod_cat_powerbank_ugreen_196",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 112,
+      "product_id": "prod_cat_powerbank_belkin_197",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 113,
+      "product_id": "prod_cat_powerbank_shargeek_198",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 114,
+      "product_id": "prod_cat_powerbank_xiaomi_199",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 115,
+      "product_id": "prod_cat_powerbank_iniu_200",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 116,
+      "product_id": "prod_cat_powerbank_romoss_201",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 117,
+      "product_id": "prod_cat_powerbank_anker_202",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 118,
+      "product_id": "prod_cat_powerbank_baseus_203",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 119,
+      "product_id": "prod_cat_powerbank_ugreen_204",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 120,
+      "product_id": "prod_cat_powerbank_belkin_205",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 121,
+      "product_id": "prod_cat_powerbank_shargeek_206",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 122,
+      "product_id": "prod_cat_powerbank_xiaomi_207",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 123,
+      "product_id": "prod_cat_powerbank_iniu_208",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 124,
+      "product_id": "prod_cat_powerbank_romoss_209",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 125,
+      "product_id": "prod_cat_powerbank_anker_210",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 126,
+      "product_id": "prod_cat_powerbank_baseus_211",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 127,
+      "product_id": "prod_cat_powerbank_ugreen_212",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 128,
+      "product_id": "prod_cat_powerbank_belkin_213",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 129,
+      "product_id": "prod_cat_powerbank_shargeek_214",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 130,
+      "product_id": "prod_cat_powerbank_xiaomi_215",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 131,
+      "product_id": "prod_cat_powerbank_iniu_216",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 132,
+      "product_id": "prod_cat_powerbank_romoss_217",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 133,
+      "product_id": "prod_cat_powerbank_anker_218",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 134,
+      "product_id": "prod_cat_powerbank_baseus_219",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 135,
+      "product_id": "prod_cat_powerbank_ugreen_220",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 136,
+      "product_id": "prod_cat_powerbank_belkin_221",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 137,
+      "product_id": "prod_cat_powerbank_shargeek_222",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 138,
+      "product_id": "prod_cat_powerbank_xiaomi_223",
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 139,
+      "product_id": "prod_cat_powerbank_iniu_224",
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 140,
+      "product_id": "prod_cat_cable_anker_225",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 141,
+      "product_id": "prod_cat_cable_apple_226",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 142,
+      "product_id": "prod_cat_cable_belkin_227",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 143,
+      "product_id": "prod_cat_cable_ugreen_228",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 144,
+      "product_id": "prod_cat_cable_cablecreation_229",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 145,
+      "product_id": "prod_cat_cable_baseus_230",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 146,
+      "product_id": "prod_cat_cable_nomad_231",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 147,
+      "product_id": "prod_cat_cable_native union_232",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 148,
+      "product_id": "prod_cat_cable_anker_233",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 149,
+      "product_id": "prod_cat_cable_apple_234",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 150,
+      "product_id": "prod_cat_cable_belkin_235",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 151,
+      "product_id": "prod_cat_cable_ugreen_236",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 152,
+      "product_id": "prod_cat_cable_cablecreation_237",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 153,
+      "product_id": "prod_cat_cable_baseus_238",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 154,
+      "product_id": "prod_cat_cable_nomad_239",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 155,
+      "product_id": "prod_cat_cable_native union_240",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 156,
+      "product_id": "prod_cat_cable_anker_241",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 157,
+      "product_id": "prod_cat_cable_apple_242",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 158,
+      "product_id": "prod_cat_cable_belkin_243",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 159,
+      "product_id": "prod_cat_cable_ugreen_244",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 160,
+      "product_id": "prod_cat_cable_cablecreation_245",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 161,
+      "product_id": "prod_cat_cable_baseus_246",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 162,
+      "product_id": "prod_cat_cable_nomad_247",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 163,
+      "product_id": "prod_cat_cable_native union_248",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 164,
+      "product_id": "prod_cat_cable_anker_249",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 165,
+      "product_id": "prod_cat_cable_apple_250",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 166,
+      "product_id": "prod_cat_cable_belkin_251",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 167,
+      "product_id": "prod_cat_cable_ugreen_252",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 168,
+      "product_id": "prod_cat_cable_cablecreation_253",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 169,
+      "product_id": "prod_cat_cable_baseus_254",
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 170,
+      "product_id": "prod_cat_cable_nomad_255",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 171,
+      "product_id": "prod_cat_monitor_dell_256",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 172,
+      "product_id": "prod_cat_monitor_lg_257",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 173,
+      "product_id": "prod_cat_monitor_apple_258",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 174,
+      "product_id": "prod_cat_monitor_samsung_259",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 175,
+      "product_id": "prod_cat_monitor_asus_260",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 176,
+      "product_id": "prod_cat_monitor_benq_261",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 177,
+      "product_id": "prod_cat_monitor_philips_262",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 178,
+      "product_id": "prod_cat_monitor_viewsonic_263",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 179,
+      "product_id": "prod_cat_monitor_dell_264",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 180,
+      "product_id": "prod_cat_monitor_lg_265",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 181,
+      "product_id": "prod_cat_monitor_apple_266",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 182,
+      "product_id": "prod_cat_monitor_samsung_267",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 183,
+      "product_id": "prod_cat_monitor_asus_268",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 184,
+      "product_id": "prod_cat_monitor_benq_269",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 185,
+      "product_id": "prod_cat_monitor_philips_270",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 186,
+      "product_id": "prod_cat_monitor_viewsonic_271",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 187,
+      "product_id": "prod_cat_monitor_dell_272",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 188,
+      "product_id": "prod_cat_monitor_lg_273",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 189,
+      "product_id": "prod_cat_monitor_apple_274",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 190,
+      "product_id": "prod_cat_monitor_samsung_275",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 191,
+      "product_id": "prod_cat_monitor_asus_276",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 192,
+      "product_id": "prod_cat_monitor_benq_277",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 193,
+      "product_id": "prod_cat_monitor_philips_278",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 194,
+      "product_id": "prod_cat_monitor_viewsonic_279",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 195,
+      "product_id": "prod_cat_monitor_dell_280",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 196,
+      "product_id": "prod_cat_monitor_lg_281",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 197,
+      "product_id": "prod_cat_monitor_apple_282",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 198,
+      "product_id": "prod_cat_monitor_samsung_283",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 199,
+      "product_id": "prod_cat_monitor_asus_284",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 200,
+      "product_id": "prod_cat_monitor_benq_285",
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 201,
+      "product_id": "prod_cat_monitor_philips_286",
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 202,
+      "product_id": "prod_cat_wearable_apple_287",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 203,
+      "product_id": "prod_cat_wearable_samsung_288",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 204,
+      "product_id": "prod_cat_wearable_google_289",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 205,
+      "product_id": "prod_cat_wearable_garmin_290",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 206,
+      "product_id": "prod_cat_wearable_fitbit_291",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 207,
+      "product_id": "prod_cat_wearable_oneplus_292",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 208,
+      "product_id": "prod_cat_wearable_amazfit_293",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 209,
+      "product_id": "prod_cat_wearable_polar_294",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 210,
+      "product_id": "prod_cat_wearable_apple_295",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 211,
+      "product_id": "prod_cat_wearable_samsung_296",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 212,
+      "product_id": "prod_cat_wearable_google_297",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 213,
+      "product_id": "prod_cat_wearable_garmin_298",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 214,
+      "product_id": "prod_cat_wearable_fitbit_299",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 215,
+      "product_id": "prod_cat_wearable_oneplus_300",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 216,
+      "product_id": "prod_cat_wearable_amazfit_301",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 217,
+      "product_id": "prod_cat_wearable_polar_302",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 218,
+      "product_id": "prod_cat_wearable_apple_303",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 219,
+      "product_id": "prod_cat_wearable_samsung_304",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 220,
+      "product_id": "prod_cat_wearable_google_305",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 221,
+      "product_id": "prod_cat_wearable_garmin_306",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 222,
+      "product_id": "prod_cat_wearable_fitbit_307",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 223,
+      "product_id": "prod_cat_wearable_oneplus_308",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 224,
+      "product_id": "prod_cat_wearable_amazfit_309",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 225,
+      "product_id": "prod_cat_wearable_polar_310",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 226,
+      "product_id": "prod_cat_wearable_apple_311",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 227,
+      "product_id": "prod_cat_wearable_samsung_312",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 228,
+      "product_id": "prod_cat_wearable_google_313",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 229,
+      "product_id": "prod_cat_wearable_garmin_314",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 230,
+      "product_id": "prod_cat_wearable_fitbit_315",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 231,
+      "product_id": "prod_cat_wearable_oneplus_316",
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 232,
+      "product_id": "prod_cat_wearable_amazfit_317",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 233,
+      "product_id": "prod_cat_case_apple_318",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 234,
+      "product_id": "prod_cat_case_spigen_319",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 235,
+      "product_id": "prod_cat_case_otterbox_320",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 236,
+      "product_id": "prod_cat_case_nomad_321",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 237,
+      "product_id": "prod_cat_case_torras_322",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 238,
+      "product_id": "prod_cat_case_caseology_323",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 239,
+      "product_id": "prod_cat_case_bellroy_324",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 240,
+      "product_id": "prod_cat_case_uag_325",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 241,
+      "product_id": "prod_cat_case_apple_326",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 242,
+      "product_id": "prod_cat_case_spigen_327",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 243,
+      "product_id": "prod_cat_case_otterbox_328",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 244,
+      "product_id": "prod_cat_case_nomad_329",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 245,
+      "product_id": "prod_cat_case_torras_330",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 246,
+      "product_id": "prod_cat_case_caseology_331",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 247,
+      "product_id": "prod_cat_case_bellroy_332",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 248,
+      "product_id": "prod_cat_case_uag_333",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 249,
+      "product_id": "prod_cat_case_apple_334",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 250,
+      "product_id": "prod_cat_case_spigen_335",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 251,
+      "product_id": "prod_cat_case_otterbox_336",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 252,
+      "product_id": "prod_cat_case_nomad_337",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 253,
+      "product_id": "prod_cat_case_torras_338",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 254,
+      "product_id": "prod_cat_case_caseology_339",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 255,
+      "product_id": "prod_cat_case_bellroy_340",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 256,
+      "product_id": "prod_cat_case_uag_341",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 257,
+      "product_id": "prod_cat_case_apple_342",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 258,
+      "product_id": "prod_cat_case_spigen_343",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 259,
+      "product_id": "prod_cat_case_otterbox_344",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 260,
+      "product_id": "prod_cat_case_nomad_345",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 261,
+      "product_id": "prod_cat_case_torras_346",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 262,
+      "product_id": "prod_cat_case_caseology_347",
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 263,
+      "product_id": "prod_cat_case_bellroy_348",
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 264,
+      "product_id": "prod_cat_audio_sony_349",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 265,
+      "product_id": "prod_cat_audio_apple_350",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 266,
+      "product_id": "prod_cat_audio_bose_351",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 267,
+      "product_id": "prod_cat_audio_sennheiser_352",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 268,
+      "product_id": "prod_cat_audio_samsung_353",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 269,
+      "product_id": "prod_cat_audio_jbl_354",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 270,
+      "product_id": "prod_cat_audio_anker soundcore_355",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 271,
+      "product_id": "prod_cat_audio_audio-technica_356",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 272,
+      "product_id": "prod_cat_audio_sony_357",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 273,
+      "product_id": "prod_cat_audio_apple_358",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 274,
+      "product_id": "prod_cat_audio_bose_359",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 275,
+      "product_id": "prod_cat_audio_sennheiser_360",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 276,
+      "product_id": "prod_cat_audio_samsung_361",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 277,
+      "product_id": "prod_cat_audio_jbl_362",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 278,
+      "product_id": "prod_cat_audio_anker soundcore_363",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 279,
+      "product_id": "prod_cat_audio_audio-technica_364",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 280,
+      "product_id": "prod_cat_audio_sony_365",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 281,
+      "product_id": "prod_cat_audio_apple_366",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 282,
+      "product_id": "prod_cat_audio_bose_367",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 283,
+      "product_id": "prod_cat_audio_sennheiser_368",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 284,
+      "product_id": "prod_cat_audio_samsung_369",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 285,
+      "product_id": "prod_cat_audio_jbl_370",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 286,
+      "product_id": "prod_cat_audio_anker soundcore_371",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 287,
+      "product_id": "prod_cat_audio_audio-technica_372",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 288,
+      "product_id": "prod_cat_audio_sony_373",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 289,
+      "product_id": "prod_cat_audio_apple_374",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 290,
+      "product_id": "prod_cat_audio_bose_375",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 291,
+      "product_id": "prod_cat_audio_sennheiser_376",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 292,
+      "product_id": "prod_cat_audio_samsung_377",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 293,
+      "product_id": "prod_cat_audio_jbl_378",
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 294,
+      "product_id": "prod_cat_audio_anker soundcore_379",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 295,
+      "product_id": "prod_cat_hub_caldigit_380",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 296,
+      "product_id": "prod_cat_hub_anker_381",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 297,
+      "product_id": "prod_cat_hub_satechi_382",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 298,
+      "product_id": "prod_cat_hub_hyperdrive_383",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 299,
+      "product_id": "prod_cat_hub_belkin_384",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 300,
+      "product_id": "prod_cat_hub_ugreen_385",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 301,
+      "product_id": "prod_cat_hub_dell_386",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 302,
+      "product_id": "prod_cat_hub_owc_387",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 303,
+      "product_id": "prod_cat_hub_caldigit_388",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 304,
+      "product_id": "prod_cat_hub_anker_389",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 305,
+      "product_id": "prod_cat_hub_satechi_390",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 306,
+      "product_id": "prod_cat_hub_hyperdrive_391",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 307,
+      "product_id": "prod_cat_hub_belkin_392",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 308,
+      "product_id": "prod_cat_hub_ugreen_393",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 309,
+      "product_id": "prod_cat_hub_dell_394",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 310,
+      "product_id": "prod_cat_hub_owc_395",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 311,
+      "product_id": "prod_cat_hub_caldigit_396",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 312,
+      "product_id": "prod_cat_hub_anker_397",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 313,
+      "product_id": "prod_cat_hub_satechi_398",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 314,
+      "product_id": "prod_cat_hub_hyperdrive_399",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 315,
+      "product_id": "prod_cat_hub_belkin_400",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 316,
+      "product_id": "prod_cat_hub_ugreen_401",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 317,
+      "product_id": "prod_cat_hub_dell_402",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 318,
+      "product_id": "prod_cat_hub_owc_403",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 319,
+      "product_id": "prod_cat_hub_caldigit_404",
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600",
+      "image_type": "fallback"
+    },
+    {
+      "index": 320,
+      "product_id": "prod_cat_hub_anker_405",
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    }
+  ],
+  "product_catalog": {
+    "prod_apple_iphone_15_pro": {
+      "id": "prod_apple_iphone_15_pro",
+      "name": "Apple iPhone 15 Pro (128GB, Natural Titanium)",
+      "brand": "Apple",
+      "model": "iPhone 15 Pro",
+      "category": "smartphone",
+      "price": 999.0,
+      "image_url": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600"
+    },
+    "prod_apple_iphone_14": {
+      "id": "prod_apple_iphone_14",
+      "name": "Apple iPhone 14 (128GB, Midnight)",
+      "brand": "Apple",
+      "model": "iPhone 14",
+      "category": "smartphone",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=600"
+    },
+    "prod_samsung_galaxy_s24_ultra": {
+      "id": "prod_samsung_galaxy_s24_ultra",
+      "name": "Samsung Galaxy S24 Ultra (256GB, Titanium Gray)",
+      "brand": "Samsung",
+      "model": "Galaxy S24 Ultra",
+      "category": "smartphone",
+      "price": 1299.99,
+      "image_url": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600"
+    },
+    "prod_apple_macbook_pro_14_m3": {
+      "id": "prod_apple_macbook_pro_14_m3",
+      "name": "Apple MacBook Pro 14-inch (M3 Pro, 18GB RAM, 512GB SSD, Space Black)",
+      "brand": "Apple",
+      "model": "MacBook Pro 14 (M3 Pro)",
+      "category": "laptop",
+      "price": 1999.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_dell_xps_15_9530": {
+      "id": "prod_dell_xps_15_9530",
+      "name": "Dell XPS 15 (9530, Intel Core i7-13700H, 32GB RAM, RTX 4060)",
+      "brand": "Dell",
+      "model": "XPS 15 9530",
+      "category": "laptop",
+      "price": 1899.99,
+      "image_url": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600"
+    },
+    "prod_anker_737_charger_120w": {
+      "id": "prod_anker_737_charger_120w",
+      "name": "Anker 737 Charger (GaNPrime 120W, 3 Ports)",
+      "brand": "Anker",
+      "model": "737 GaNPrime (A2148)",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_apple_20w_charger": {
+      "id": "prod_apple_20w_charger",
+      "name": "Apple 20W USB-C Power Adapter",
+      "brand": "Apple",
+      "model": "MHJA3AM/A",
+      "category": "charger",
+      "price": 19.0,
+      "image_url": "https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=600"
+    },
+    "prod_anker_lightning_cable_mfi": {
+      "id": "prod_anker_lightning_cable_mfi",
+      "name": "Anker PowerLine III USB-C to Lightning Cable (6ft, White)",
+      "brand": "Anker",
+      "model": "PowerLine III A8833",
+      "category": "cable",
+      "price": 16.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_anker_usbc_to_usbc_100w_cable": {
+      "id": "prod_anker_usbc_to_usbc_100w_cable",
+      "name": "Anker 100W USB-C to USB-C Fast Charging Cable (6ft, Black)",
+      "brand": "Anker",
+      "model": "A8758",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"
+    },
+    "prod_dell_u2723qe_4k_monitor": {
+      "id": "prod_dell_u2723qe_4k_monitor",
+      "name": "Dell UltraSharp 27 4K USB-C Hub Monitor (U2723QE)",
+      "brand": "Dell",
+      "model": "U2723QE",
+      "category": "monitor",
+      "price": 579.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_apple_watch_series_9": {
+      "id": "prod_apple_watch_series_9",
+      "name": "Apple Watch Series 9 GPS 41mm (Midnight Aluminum Case)",
+      "brand": "Apple",
+      "model": "Series 9 (A2978)",
+      "category": "smartwatch",
+      "price": 399.0,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_samsung_galaxy_watch_6": {
+      "id": "prod_samsung_galaxy_watch_6",
+      "name": "Samsung Galaxy Watch 6 (44mm, Bluetooth, Graphite)",
+      "brand": "Samsung",
+      "model": "Galaxy Watch 6 (SM-R940)",
+      "category": "smartwatch",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_sony_wh1000xm5": {
+      "id": "prod_sony_wh1000xm5",
+      "name": "Sony WH-1000XM5 Wireless Noise-Canceling Headphones (Black)",
+      "brand": "Sony",
+      "model": "WH-1000XM5",
+      "category": "audio",
+      "price": 399.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_apple_case_iphone_15_pro_finewoven": {
+      "id": "prod_apple_case_iphone_15_pro_finewoven",
+      "name": "Apple FineWoven Case with MagSafe for iPhone 15 Pro (Taupe)",
+      "brand": "Apple",
+      "model": "MT4H3ZM/A",
+      "category": "case",
+      "price": 59.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_generic_usb_hub_unverified": {
+      "id": "prod_generic_usb_hub_unverified",
+      "name": "Generic Mini 4-in-1 Hub",
+      "brand": "Generic",
+      "model": "HUB-MINI-01",
+      "category": "hub",
+      "price": 14.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_smartphone_apple_101": {
+      "id": "prod_cat_smartphone_apple_101",
+      "name": "Apple Apple Phone Series 10",
+      "brand": "Apple",
+      "model": "Apple Phone Series 10",
+      "category": "smartphone",
+      "price": 499.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_samsung_102": {
+      "id": "prod_cat_smartphone_samsung_102",
+      "name": "Samsung Samsung Phone Series 11",
+      "brand": "Samsung",
+      "model": "Samsung Phone Series 11",
+      "category": "smartphone",
+      "price": 599.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_google_103": {
+      "id": "prod_cat_smartphone_google_103",
+      "name": "Google Google Phone Series 12",
+      "brand": "Google",
+      "model": "Google Phone Series 12",
+      "category": "smartphone",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_oneplus_104": {
+      "id": "prod_cat_smartphone_oneplus_104",
+      "name": "OnePlus OnePlus Phone Series 13",
+      "brand": "OnePlus",
+      "model": "OnePlus Phone Series 13",
+      "category": "smartphone",
+      "price": 799.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_sony_105": {
+      "id": "prod_cat_smartphone_sony_105",
+      "name": "Sony Sony Phone Series 14",
+      "brand": "Sony",
+      "model": "Sony Phone Series 14",
+      "category": "smartphone",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_xiaomi_106": {
+      "id": "prod_cat_smartphone_xiaomi_106",
+      "name": "Xiaomi Xiaomi Phone Series 15",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Phone Series 15",
+      "category": "smartphone",
+      "price": 999.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_motorola_107": {
+      "id": "prod_cat_smartphone_motorola_107",
+      "name": "Motorola Motorola Phone Series 16",
+      "brand": "Motorola",
+      "model": "Motorola Phone Series 16",
+      "category": "smartphone",
+      "price": 1099.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_nothing_108": {
+      "id": "prod_cat_smartphone_nothing_108",
+      "name": "Nothing Nothing Phone Series 17",
+      "brand": "Nothing",
+      "model": "Nothing Phone Series 17",
+      "category": "smartphone",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_apple_109": {
+      "id": "prod_cat_smartphone_apple_109",
+      "name": "Apple Apple Phone Series 18",
+      "brand": "Apple",
+      "model": "Apple Phone Series 18",
+      "category": "smartphone",
+      "price": 499.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_samsung_110": {
+      "id": "prod_cat_smartphone_samsung_110",
+      "name": "Samsung Samsung Phone Series 19",
+      "brand": "Samsung",
+      "model": "Samsung Phone Series 19",
+      "category": "smartphone",
+      "price": 599.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_google_111": {
+      "id": "prod_cat_smartphone_google_111",
+      "name": "Google Google Phone Series 20",
+      "brand": "Google",
+      "model": "Google Phone Series 20",
+      "category": "smartphone",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_oneplus_112": {
+      "id": "prod_cat_smartphone_oneplus_112",
+      "name": "OnePlus OnePlus Phone Series 21",
+      "brand": "OnePlus",
+      "model": "OnePlus Phone Series 21",
+      "category": "smartphone",
+      "price": 799.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_sony_113": {
+      "id": "prod_cat_smartphone_sony_113",
+      "name": "Sony Sony Phone Series 22",
+      "brand": "Sony",
+      "model": "Sony Phone Series 22",
+      "category": "smartphone",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_xiaomi_114": {
+      "id": "prod_cat_smartphone_xiaomi_114",
+      "name": "Xiaomi Xiaomi Phone Series 23",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Phone Series 23",
+      "category": "smartphone",
+      "price": 999.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_motorola_115": {
+      "id": "prod_cat_smartphone_motorola_115",
+      "name": "Motorola Motorola Phone Series 24",
+      "brand": "Motorola",
+      "model": "Motorola Phone Series 24",
+      "category": "smartphone",
+      "price": 1099.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_nothing_116": {
+      "id": "prod_cat_smartphone_nothing_116",
+      "name": "Nothing Nothing Phone Series 25",
+      "brand": "Nothing",
+      "model": "Nothing Phone Series 25",
+      "category": "smartphone",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_apple_117": {
+      "id": "prod_cat_smartphone_apple_117",
+      "name": "Apple Apple Phone Series 26",
+      "brand": "Apple",
+      "model": "Apple Phone Series 26",
+      "category": "smartphone",
+      "price": 499.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_samsung_118": {
+      "id": "prod_cat_smartphone_samsung_118",
+      "name": "Samsung Samsung Phone Series 27",
+      "brand": "Samsung",
+      "model": "Samsung Phone Series 27",
+      "category": "smartphone",
+      "price": 599.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_google_119": {
+      "id": "prod_cat_smartphone_google_119",
+      "name": "Google Google Phone Series 28",
+      "brand": "Google",
+      "model": "Google Phone Series 28",
+      "category": "smartphone",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_oneplus_120": {
+      "id": "prod_cat_smartphone_oneplus_120",
+      "name": "OnePlus OnePlus Phone Series 29",
+      "brand": "OnePlus",
+      "model": "OnePlus Phone Series 29",
+      "category": "smartphone",
+      "price": 799.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_sony_121": {
+      "id": "prod_cat_smartphone_sony_121",
+      "name": "Sony Sony Phone Series 30",
+      "brand": "Sony",
+      "model": "Sony Phone Series 30",
+      "category": "smartphone",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_xiaomi_122": {
+      "id": "prod_cat_smartphone_xiaomi_122",
+      "name": "Xiaomi Xiaomi Phone Series 31",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Phone Series 31",
+      "category": "smartphone",
+      "price": 999.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_motorola_123": {
+      "id": "prod_cat_smartphone_motorola_123",
+      "name": "Motorola Motorola Phone Series 32",
+      "brand": "Motorola",
+      "model": "Motorola Phone Series 32",
+      "category": "smartphone",
+      "price": 1099.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_nothing_124": {
+      "id": "prod_cat_smartphone_nothing_124",
+      "name": "Nothing Nothing Phone Series 33",
+      "brand": "Nothing",
+      "model": "Nothing Phone Series 33",
+      "category": "smartphone",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_apple_125": {
+      "id": "prod_cat_smartphone_apple_125",
+      "name": "Apple Apple Phone Series 34",
+      "brand": "Apple",
+      "model": "Apple Phone Series 34",
+      "category": "smartphone",
+      "price": 499.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_samsung_126": {
+      "id": "prod_cat_smartphone_samsung_126",
+      "name": "Samsung Samsung Phone Series 35",
+      "brand": "Samsung",
+      "model": "Samsung Phone Series 35",
+      "category": "smartphone",
+      "price": 599.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_google_127": {
+      "id": "prod_cat_smartphone_google_127",
+      "name": "Google Google Phone Series 36",
+      "brand": "Google",
+      "model": "Google Phone Series 36",
+      "category": "smartphone",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_smartphone_oneplus_128": {
+      "id": "prod_cat_smartphone_oneplus_128",
+      "name": "OnePlus OnePlus Phone Series 37",
+      "brand": "OnePlus",
+      "model": "OnePlus Phone Series 37",
+      "category": "smartphone",
+      "price": 799.0,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_smartphone_sony_129": {
+      "id": "prod_cat_smartphone_sony_129",
+      "name": "Sony Sony Phone Series 38",
+      "brand": "Sony",
+      "model": "Sony Phone Series 38",
+      "category": "smartphone",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600"
+    },
+    "prod_cat_smartphone_xiaomi_130": {
+      "id": "prod_cat_smartphone_xiaomi_130",
+      "name": "Xiaomi Xiaomi Phone Series 39",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Phone Series 39",
+      "category": "smartphone",
+      "price": 999.0,
+      "image_url": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+    },
+    "prod_cat_smartphone_motorola_131": {
+      "id": "prod_cat_smartphone_motorola_131",
+      "name": "Motorola Motorola Phone Series 40",
+      "brand": "Motorola",
+      "model": "Motorola Phone Series 40",
+      "category": "smartphone",
+      "price": 1099.0,
+      "image_url": "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600"
+    },
+    "prod_cat_laptop_apple_132": {
+      "id": "prod_cat_laptop_apple_132",
+      "name": "Apple Apple UltraBook Pro 13",
+      "brand": "Apple",
+      "model": "Apple UltraBook Pro 13",
+      "category": "laptop",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_dell_133": {
+      "id": "prod_cat_laptop_dell_133",
+      "name": "Dell Dell UltraBook Pro 14",
+      "brand": "Dell",
+      "model": "Dell UltraBook Pro 14",
+      "category": "laptop",
+      "price": 1049.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_lenovo_134": {
+      "id": "prod_cat_laptop_lenovo_134",
+      "name": "Lenovo Lenovo UltraBook Pro 15",
+      "brand": "Lenovo",
+      "model": "Lenovo UltraBook Pro 15",
+      "category": "laptop",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_hp_135": {
+      "id": "prod_cat_laptop_hp_135",
+      "name": "HP HP UltraBook Pro 16",
+      "brand": "HP",
+      "model": "HP UltraBook Pro 16",
+      "category": "laptop",
+      "price": 1349.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_asus_136": {
+      "id": "prod_cat_laptop_asus_136",
+      "name": "Asus Asus UltraBook Pro 17",
+      "brand": "Asus",
+      "model": "Asus UltraBook Pro 17",
+      "category": "laptop",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_microsoft_137": {
+      "id": "prod_cat_laptop_microsoft_137",
+      "name": "Microsoft Microsoft UltraBook Pro 18",
+      "brand": "Microsoft",
+      "model": "Microsoft UltraBook Pro 18",
+      "category": "laptop",
+      "price": 1649.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_razer_138": {
+      "id": "prod_cat_laptop_razer_138",
+      "name": "Razer Razer UltraBook Pro 19",
+      "brand": "Razer",
+      "model": "Razer UltraBook Pro 19",
+      "category": "laptop",
+      "price": 1799.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_acer_139": {
+      "id": "prod_cat_laptop_acer_139",
+      "name": "Acer Acer UltraBook Pro 20",
+      "brand": "Acer",
+      "model": "Acer UltraBook Pro 20",
+      "category": "laptop",
+      "price": 1949.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_apple_140": {
+      "id": "prod_cat_laptop_apple_140",
+      "name": "Apple Apple UltraBook Pro 21",
+      "brand": "Apple",
+      "model": "Apple UltraBook Pro 21",
+      "category": "laptop",
+      "price": 2099.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_dell_141": {
+      "id": "prod_cat_laptop_dell_141",
+      "name": "Dell Dell UltraBook Pro 22",
+      "brand": "Dell",
+      "model": "Dell UltraBook Pro 22",
+      "category": "laptop",
+      "price": 2249.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_lenovo_142": {
+      "id": "prod_cat_laptop_lenovo_142",
+      "name": "Lenovo Lenovo UltraBook Pro 23",
+      "brand": "Lenovo",
+      "model": "Lenovo UltraBook Pro 23",
+      "category": "laptop",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_hp_143": {
+      "id": "prod_cat_laptop_hp_143",
+      "name": "HP HP UltraBook Pro 24",
+      "brand": "HP",
+      "model": "HP UltraBook Pro 24",
+      "category": "laptop",
+      "price": 1049.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_asus_144": {
+      "id": "prod_cat_laptop_asus_144",
+      "name": "Asus Asus UltraBook Pro 25",
+      "brand": "Asus",
+      "model": "Asus UltraBook Pro 25",
+      "category": "laptop",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_microsoft_145": {
+      "id": "prod_cat_laptop_microsoft_145",
+      "name": "Microsoft Microsoft UltraBook Pro 26",
+      "brand": "Microsoft",
+      "model": "Microsoft UltraBook Pro 26",
+      "category": "laptop",
+      "price": 1349.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_razer_146": {
+      "id": "prod_cat_laptop_razer_146",
+      "name": "Razer Razer UltraBook Pro 27",
+      "brand": "Razer",
+      "model": "Razer UltraBook Pro 27",
+      "category": "laptop",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_acer_147": {
+      "id": "prod_cat_laptop_acer_147",
+      "name": "Acer Acer UltraBook Pro 28",
+      "brand": "Acer",
+      "model": "Acer UltraBook Pro 28",
+      "category": "laptop",
+      "price": 1649.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_apple_148": {
+      "id": "prod_cat_laptop_apple_148",
+      "name": "Apple Apple UltraBook Pro 29",
+      "brand": "Apple",
+      "model": "Apple UltraBook Pro 29",
+      "category": "laptop",
+      "price": 1799.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_dell_149": {
+      "id": "prod_cat_laptop_dell_149",
+      "name": "Dell Dell UltraBook Pro 30",
+      "brand": "Dell",
+      "model": "Dell UltraBook Pro 30",
+      "category": "laptop",
+      "price": 1949.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_lenovo_150": {
+      "id": "prod_cat_laptop_lenovo_150",
+      "name": "Lenovo Lenovo UltraBook Pro 31",
+      "brand": "Lenovo",
+      "model": "Lenovo UltraBook Pro 31",
+      "category": "laptop",
+      "price": 2099.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_hp_151": {
+      "id": "prod_cat_laptop_hp_151",
+      "name": "HP HP UltraBook Pro 32",
+      "brand": "HP",
+      "model": "HP UltraBook Pro 32",
+      "category": "laptop",
+      "price": 2249.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_asus_152": {
+      "id": "prod_cat_laptop_asus_152",
+      "name": "Asus Asus UltraBook Pro 33",
+      "brand": "Asus",
+      "model": "Asus UltraBook Pro 33",
+      "category": "laptop",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_microsoft_153": {
+      "id": "prod_cat_laptop_microsoft_153",
+      "name": "Microsoft Microsoft UltraBook Pro 34",
+      "brand": "Microsoft",
+      "model": "Microsoft UltraBook Pro 34",
+      "category": "laptop",
+      "price": 1049.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_razer_154": {
+      "id": "prod_cat_laptop_razer_154",
+      "name": "Razer Razer UltraBook Pro 35",
+      "brand": "Razer",
+      "model": "Razer UltraBook Pro 35",
+      "category": "laptop",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_acer_155": {
+      "id": "prod_cat_laptop_acer_155",
+      "name": "Acer Acer UltraBook Pro 36",
+      "brand": "Acer",
+      "model": "Acer UltraBook Pro 36",
+      "category": "laptop",
+      "price": 1349.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_apple_156": {
+      "id": "prod_cat_laptop_apple_156",
+      "name": "Apple Apple UltraBook Pro 37",
+      "brand": "Apple",
+      "model": "Apple UltraBook Pro 37",
+      "category": "laptop",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_dell_157": {
+      "id": "prod_cat_laptop_dell_157",
+      "name": "Dell Dell UltraBook Pro 38",
+      "brand": "Dell",
+      "model": "Dell UltraBook Pro 38",
+      "category": "laptop",
+      "price": 1649.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_lenovo_158": {
+      "id": "prod_cat_laptop_lenovo_158",
+      "name": "Lenovo Lenovo UltraBook Pro 39",
+      "brand": "Lenovo",
+      "model": "Lenovo UltraBook Pro 39",
+      "category": "laptop",
+      "price": 1799.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_laptop_hp_159": {
+      "id": "prod_cat_laptop_hp_159",
+      "name": "HP HP UltraBook Pro 40",
+      "brand": "HP",
+      "model": "HP UltraBook Pro 40",
+      "category": "laptop",
+      "price": 1949.0,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_laptop_asus_160": {
+      "id": "prod_cat_laptop_asus_160",
+      "name": "Asus Asus UltraBook Pro 41",
+      "brand": "Asus",
+      "model": "Asus UltraBook Pro 41",
+      "category": "laptop",
+      "price": 2099.0,
+      "image_url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600"
+    },
+    "prod_cat_laptop_microsoft_161": {
+      "id": "prod_cat_laptop_microsoft_161",
+      "name": "Microsoft Microsoft UltraBook Pro 42",
+      "brand": "Microsoft",
+      "model": "Microsoft UltraBook Pro 42",
+      "category": "laptop",
+      "price": 2249.0,
+      "image_url": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600"
+    },
+    "prod_cat_laptop_razer_162": {
+      "id": "prod_cat_laptop_razer_162",
+      "name": "Razer Razer UltraBook Pro 43",
+      "brand": "Razer",
+      "model": "Razer UltraBook Pro 43",
+      "category": "laptop",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600"
+    },
+    "prod_cat_charger_anker_163": {
+      "id": "prod_cat_charger_anker_163",
+      "name": "Anker Anker GaN Fast Charger 20W",
+      "brand": "Anker",
+      "model": "Anker GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_apple_164": {
+      "id": "prod_cat_charger_apple_164",
+      "name": "Apple Apple GaN Fast Charger 40W",
+      "brand": "Apple",
+      "model": "Apple GaN Fast Charger 40W",
+      "category": "charger",
+      "price": 31.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_samsung_165": {
+      "id": "prod_cat_charger_samsung_165",
+      "name": "Samsung Samsung GaN Fast Charger 60W",
+      "brand": "Samsung",
+      "model": "Samsung GaN Fast Charger 60W",
+      "category": "charger",
+      "price": 43.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_belkin_166": {
+      "id": "prod_cat_charger_belkin_166",
+      "name": "Belkin Belkin GaN Fast Charger 80W",
+      "brand": "Belkin",
+      "model": "Belkin GaN Fast Charger 80W",
+      "category": "charger",
+      "price": 55.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_ugreen_167": {
+      "id": "prod_cat_charger_ugreen_167",
+      "name": "Ugreen Ugreen GaN Fast Charger 100W",
+      "brand": "Ugreen",
+      "model": "Ugreen GaN Fast Charger 100W",
+      "category": "charger",
+      "price": 67.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_baseus_168": {
+      "id": "prod_cat_charger_baseus_168",
+      "name": "Baseus Baseus GaN Fast Charger 120W",
+      "brand": "Baseus",
+      "model": "Baseus GaN Fast Charger 120W",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_satechi_169": {
+      "id": "prod_cat_charger_satechi_169",
+      "name": "Satechi Satechi GaN Fast Charger 20W",
+      "brand": "Satechi",
+      "model": "Satechi GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_shargeek_170": {
+      "id": "prod_cat_charger_shargeek_170",
+      "name": "Shargeek Shargeek GaN Fast Charger 40W",
+      "brand": "Shargeek",
+      "model": "Shargeek GaN Fast Charger 40W",
+      "category": "charger",
+      "price": 31.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_anker_171": {
+      "id": "prod_cat_charger_anker_171",
+      "name": "Anker Anker GaN Fast Charger 60W",
+      "brand": "Anker",
+      "model": "Anker GaN Fast Charger 60W",
+      "category": "charger",
+      "price": 43.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_apple_172": {
+      "id": "prod_cat_charger_apple_172",
+      "name": "Apple Apple GaN Fast Charger 80W",
+      "brand": "Apple",
+      "model": "Apple GaN Fast Charger 80W",
+      "category": "charger",
+      "price": 55.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_samsung_173": {
+      "id": "prod_cat_charger_samsung_173",
+      "name": "Samsung Samsung GaN Fast Charger 100W",
+      "brand": "Samsung",
+      "model": "Samsung GaN Fast Charger 100W",
+      "category": "charger",
+      "price": 67.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_belkin_174": {
+      "id": "prod_cat_charger_belkin_174",
+      "name": "Belkin Belkin GaN Fast Charger 120W",
+      "brand": "Belkin",
+      "model": "Belkin GaN Fast Charger 120W",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_ugreen_175": {
+      "id": "prod_cat_charger_ugreen_175",
+      "name": "Ugreen Ugreen GaN Fast Charger 20W",
+      "brand": "Ugreen",
+      "model": "Ugreen GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_baseus_176": {
+      "id": "prod_cat_charger_baseus_176",
+      "name": "Baseus Baseus GaN Fast Charger 40W",
+      "brand": "Baseus",
+      "model": "Baseus GaN Fast Charger 40W",
+      "category": "charger",
+      "price": 31.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_satechi_177": {
+      "id": "prod_cat_charger_satechi_177",
+      "name": "Satechi Satechi GaN Fast Charger 60W",
+      "brand": "Satechi",
+      "model": "Satechi GaN Fast Charger 60W",
+      "category": "charger",
+      "price": 43.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_shargeek_178": {
+      "id": "prod_cat_charger_shargeek_178",
+      "name": "Shargeek Shargeek GaN Fast Charger 80W",
+      "brand": "Shargeek",
+      "model": "Shargeek GaN Fast Charger 80W",
+      "category": "charger",
+      "price": 55.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_anker_179": {
+      "id": "prod_cat_charger_anker_179",
+      "name": "Anker Anker GaN Fast Charger 100W",
+      "brand": "Anker",
+      "model": "Anker GaN Fast Charger 100W",
+      "category": "charger",
+      "price": 67.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_apple_180": {
+      "id": "prod_cat_charger_apple_180",
+      "name": "Apple Apple GaN Fast Charger 120W",
+      "brand": "Apple",
+      "model": "Apple GaN Fast Charger 120W",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_samsung_181": {
+      "id": "prod_cat_charger_samsung_181",
+      "name": "Samsung Samsung GaN Fast Charger 20W",
+      "brand": "Samsung",
+      "model": "Samsung GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_belkin_182": {
+      "id": "prod_cat_charger_belkin_182",
+      "name": "Belkin Belkin GaN Fast Charger 40W",
+      "brand": "Belkin",
+      "model": "Belkin GaN Fast Charger 40W",
+      "category": "charger",
+      "price": 31.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_ugreen_183": {
+      "id": "prod_cat_charger_ugreen_183",
+      "name": "Ugreen Ugreen GaN Fast Charger 60W",
+      "brand": "Ugreen",
+      "model": "Ugreen GaN Fast Charger 60W",
+      "category": "charger",
+      "price": 43.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_baseus_184": {
+      "id": "prod_cat_charger_baseus_184",
+      "name": "Baseus Baseus GaN Fast Charger 80W",
+      "brand": "Baseus",
+      "model": "Baseus GaN Fast Charger 80W",
+      "category": "charger",
+      "price": 55.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_satechi_185": {
+      "id": "prod_cat_charger_satechi_185",
+      "name": "Satechi Satechi GaN Fast Charger 100W",
+      "brand": "Satechi",
+      "model": "Satechi GaN Fast Charger 100W",
+      "category": "charger",
+      "price": 67.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_shargeek_186": {
+      "id": "prod_cat_charger_shargeek_186",
+      "name": "Shargeek Shargeek GaN Fast Charger 120W",
+      "brand": "Shargeek",
+      "model": "Shargeek GaN Fast Charger 120W",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_anker_187": {
+      "id": "prod_cat_charger_anker_187",
+      "name": "Anker Anker GaN Fast Charger 20W",
+      "brand": "Anker",
+      "model": "Anker GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_apple_188": {
+      "id": "prod_cat_charger_apple_188",
+      "name": "Apple Apple GaN Fast Charger 40W",
+      "brand": "Apple",
+      "model": "Apple GaN Fast Charger 40W",
+      "category": "charger",
+      "price": 31.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_samsung_189": {
+      "id": "prod_cat_charger_samsung_189",
+      "name": "Samsung Samsung GaN Fast Charger 60W",
+      "brand": "Samsung",
+      "model": "Samsung GaN Fast Charger 60W",
+      "category": "charger",
+      "price": 43.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_belkin_190": {
+      "id": "prod_cat_charger_belkin_190",
+      "name": "Belkin Belkin GaN Fast Charger 80W",
+      "brand": "Belkin",
+      "model": "Belkin GaN Fast Charger 80W",
+      "category": "charger",
+      "price": 55.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_ugreen_191": {
+      "id": "prod_cat_charger_ugreen_191",
+      "name": "Ugreen Ugreen GaN Fast Charger 100W",
+      "brand": "Ugreen",
+      "model": "Ugreen GaN Fast Charger 100W",
+      "category": "charger",
+      "price": 67.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_charger_baseus_192": {
+      "id": "prod_cat_charger_baseus_192",
+      "name": "Baseus Baseus GaN Fast Charger 120W",
+      "brand": "Baseus",
+      "model": "Baseus GaN Fast Charger 120W",
+      "category": "charger",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_charger_satechi_193": {
+      "id": "prod_cat_charger_satechi_193",
+      "name": "Satechi Satechi GaN Fast Charger 20W",
+      "brand": "Satechi",
+      "model": "Satechi GaN Fast Charger 20W",
+      "category": "charger",
+      "price": 19.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_anker_194": {
+      "id": "prod_cat_powerbank_anker_194",
+      "name": "Anker Anker Portable Power Bank 10000mAh (20W)",
+      "brand": "Anker",
+      "model": "Anker Portable Power Bank 10000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_baseus_195": {
+      "id": "prod_cat_powerbank_baseus_195",
+      "name": "Baseus Baseus Portable Power Bank 15000mAh (45W)",
+      "brand": "Baseus",
+      "model": "Baseus Portable Power Bank 15000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_ugreen_196": {
+      "id": "prod_cat_powerbank_ugreen_196",
+      "name": "Ugreen Ugreen Portable Power Bank 20000mAh (70W)",
+      "brand": "Ugreen",
+      "model": "Ugreen Portable Power Bank 20000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_belkin_197": {
+      "id": "prod_cat_powerbank_belkin_197",
+      "name": "Belkin Belkin Portable Power Bank 25000mAh (95W)",
+      "brand": "Belkin",
+      "model": "Belkin Portable Power Bank 25000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_shargeek_198": {
+      "id": "prod_cat_powerbank_shargeek_198",
+      "name": "Shargeek Shargeek Portable Power Bank 10000mAh (120W)",
+      "brand": "Shargeek",
+      "model": "Shargeek Portable Power Bank 10000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_xiaomi_199": {
+      "id": "prod_cat_powerbank_xiaomi_199",
+      "name": "Xiaomi Xiaomi Portable Power Bank 15000mAh (20W)",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Portable Power Bank 15000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_iniu_200": {
+      "id": "prod_cat_powerbank_iniu_200",
+      "name": "INIU INIU Portable Power Bank 20000mAh (45W)",
+      "brand": "INIU",
+      "model": "INIU Portable Power Bank 20000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_romoss_201": {
+      "id": "prod_cat_powerbank_romoss_201",
+      "name": "Romoss Romoss Portable Power Bank 25000mAh (70W)",
+      "brand": "Romoss",
+      "model": "Romoss Portable Power Bank 25000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_anker_202": {
+      "id": "prod_cat_powerbank_anker_202",
+      "name": "Anker Anker Portable Power Bank 10000mAh (95W)",
+      "brand": "Anker",
+      "model": "Anker Portable Power Bank 10000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_baseus_203": {
+      "id": "prod_cat_powerbank_baseus_203",
+      "name": "Baseus Baseus Portable Power Bank 15000mAh (120W)",
+      "brand": "Baseus",
+      "model": "Baseus Portable Power Bank 15000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_ugreen_204": {
+      "id": "prod_cat_powerbank_ugreen_204",
+      "name": "Ugreen Ugreen Portable Power Bank 20000mAh (20W)",
+      "brand": "Ugreen",
+      "model": "Ugreen Portable Power Bank 20000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_belkin_205": {
+      "id": "prod_cat_powerbank_belkin_205",
+      "name": "Belkin Belkin Portable Power Bank 25000mAh (45W)",
+      "brand": "Belkin",
+      "model": "Belkin Portable Power Bank 25000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_shargeek_206": {
+      "id": "prod_cat_powerbank_shargeek_206",
+      "name": "Shargeek Shargeek Portable Power Bank 10000mAh (70W)",
+      "brand": "Shargeek",
+      "model": "Shargeek Portable Power Bank 10000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_xiaomi_207": {
+      "id": "prod_cat_powerbank_xiaomi_207",
+      "name": "Xiaomi Xiaomi Portable Power Bank 15000mAh (95W)",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Portable Power Bank 15000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_iniu_208": {
+      "id": "prod_cat_powerbank_iniu_208",
+      "name": "INIU INIU Portable Power Bank 20000mAh (120W)",
+      "brand": "INIU",
+      "model": "INIU Portable Power Bank 20000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_romoss_209": {
+      "id": "prod_cat_powerbank_romoss_209",
+      "name": "Romoss Romoss Portable Power Bank 25000mAh (20W)",
+      "brand": "Romoss",
+      "model": "Romoss Portable Power Bank 25000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_anker_210": {
+      "id": "prod_cat_powerbank_anker_210",
+      "name": "Anker Anker Portable Power Bank 10000mAh (45W)",
+      "brand": "Anker",
+      "model": "Anker Portable Power Bank 10000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_baseus_211": {
+      "id": "prod_cat_powerbank_baseus_211",
+      "name": "Baseus Baseus Portable Power Bank 15000mAh (70W)",
+      "brand": "Baseus",
+      "model": "Baseus Portable Power Bank 15000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_ugreen_212": {
+      "id": "prod_cat_powerbank_ugreen_212",
+      "name": "Ugreen Ugreen Portable Power Bank 20000mAh (95W)",
+      "brand": "Ugreen",
+      "model": "Ugreen Portable Power Bank 20000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_belkin_213": {
+      "id": "prod_cat_powerbank_belkin_213",
+      "name": "Belkin Belkin Portable Power Bank 25000mAh (120W)",
+      "brand": "Belkin",
+      "model": "Belkin Portable Power Bank 25000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_shargeek_214": {
+      "id": "prod_cat_powerbank_shargeek_214",
+      "name": "Shargeek Shargeek Portable Power Bank 10000mAh (20W)",
+      "brand": "Shargeek",
+      "model": "Shargeek Portable Power Bank 10000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_xiaomi_215": {
+      "id": "prod_cat_powerbank_xiaomi_215",
+      "name": "Xiaomi Xiaomi Portable Power Bank 15000mAh (45W)",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Portable Power Bank 15000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_iniu_216": {
+      "id": "prod_cat_powerbank_iniu_216",
+      "name": "INIU INIU Portable Power Bank 20000mAh (70W)",
+      "brand": "INIU",
+      "model": "INIU Portable Power Bank 20000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_romoss_217": {
+      "id": "prod_cat_powerbank_romoss_217",
+      "name": "Romoss Romoss Portable Power Bank 25000mAh (95W)",
+      "brand": "Romoss",
+      "model": "Romoss Portable Power Bank 25000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_anker_218": {
+      "id": "prod_cat_powerbank_anker_218",
+      "name": "Anker Anker Portable Power Bank 10000mAh (120W)",
+      "brand": "Anker",
+      "model": "Anker Portable Power Bank 10000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_baseus_219": {
+      "id": "prod_cat_powerbank_baseus_219",
+      "name": "Baseus Baseus Portable Power Bank 15000mAh (20W)",
+      "brand": "Baseus",
+      "model": "Baseus Portable Power Bank 15000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_ugreen_220": {
+      "id": "prod_cat_powerbank_ugreen_220",
+      "name": "Ugreen Ugreen Portable Power Bank 20000mAh (45W)",
+      "brand": "Ugreen",
+      "model": "Ugreen Portable Power Bank 20000mAh (45W)",
+      "category": "powerbank",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_belkin_221": {
+      "id": "prod_cat_powerbank_belkin_221",
+      "name": "Belkin Belkin Portable Power Bank 25000mAh (70W)",
+      "brand": "Belkin",
+      "model": "Belkin Portable Power Bank 25000mAh (70W)",
+      "category": "powerbank",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_shargeek_222": {
+      "id": "prod_cat_powerbank_shargeek_222",
+      "name": "Shargeek Shargeek Portable Power Bank 10000mAh (95W)",
+      "brand": "Shargeek",
+      "model": "Shargeek Portable Power Bank 10000mAh (95W)",
+      "category": "powerbank",
+      "price": 74.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_powerbank_xiaomi_223": {
+      "id": "prod_cat_powerbank_xiaomi_223",
+      "name": "Xiaomi Xiaomi Portable Power Bank 15000mAh (120W)",
+      "brand": "Xiaomi",
+      "model": "Xiaomi Portable Power Bank 15000mAh (120W)",
+      "category": "powerbank",
+      "price": 89.99,
+      "image_url": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600"
+    },
+    "prod_cat_powerbank_iniu_224": {
+      "id": "prod_cat_powerbank_iniu_224",
+      "name": "INIU INIU Portable Power Bank 20000mAh (20W)",
+      "brand": "INIU",
+      "model": "INIU Portable Power Bank 20000mAh (20W)",
+      "category": "powerbank",
+      "price": 29.99,
+      "image_url": "https://images.unsplash.com/photo-1609592426861-5509772bf2d0?w=600"
+    },
+    "prod_cat_cable_anker_225": {
+      "id": "prod_cat_cable_anker_225",
+      "name": "Anker Anker USB-C to Lightning Cable (60W)",
+      "brand": "Anker",
+      "model": "Anker USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_apple_226": {
+      "id": "prod_cat_cable_apple_226",
+      "name": "Apple Apple USB-C to USB-C Cable (240W)",
+      "brand": "Apple",
+      "model": "Apple USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_belkin_227": {
+      "id": "prod_cat_cable_belkin_227",
+      "name": "Belkin Belkin USB-C to USB-C Cable (100W)",
+      "brand": "Belkin",
+      "model": "Belkin USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_ugreen_228": {
+      "id": "prod_cat_cable_ugreen_228",
+      "name": "Ugreen Ugreen USB-C to USB-C Cable (240W)",
+      "brand": "Ugreen",
+      "model": "Ugreen USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_cablecreation_229": {
+      "id": "prod_cat_cable_cablecreation_229",
+      "name": "CableCreation CableCreation USB-C to Lightning Cable (60W)",
+      "brand": "CableCreation",
+      "model": "CableCreation USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_baseus_230": {
+      "id": "prod_cat_cable_baseus_230",
+      "name": "Baseus Baseus USB-C to USB-C Cable (240W)",
+      "brand": "Baseus",
+      "model": "Baseus USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_nomad_231": {
+      "id": "prod_cat_cable_nomad_231",
+      "name": "Nomad Nomad USB-C to USB-C Cable (100W)",
+      "brand": "Nomad",
+      "model": "Nomad USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_native union_232": {
+      "id": "prod_cat_cable_native union_232",
+      "name": "Native Union Native Union USB-C to USB-C Cable (240W)",
+      "brand": "Native Union",
+      "model": "Native Union USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_anker_233": {
+      "id": "prod_cat_cable_anker_233",
+      "name": "Anker Anker USB-C to Lightning Cable (60W)",
+      "brand": "Anker",
+      "model": "Anker USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_apple_234": {
+      "id": "prod_cat_cable_apple_234",
+      "name": "Apple Apple USB-C to USB-C Cable (240W)",
+      "brand": "Apple",
+      "model": "Apple USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_belkin_235": {
+      "id": "prod_cat_cable_belkin_235",
+      "name": "Belkin Belkin USB-C to USB-C Cable (100W)",
+      "brand": "Belkin",
+      "model": "Belkin USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_ugreen_236": {
+      "id": "prod_cat_cable_ugreen_236",
+      "name": "Ugreen Ugreen USB-C to USB-C Cable (240W)",
+      "brand": "Ugreen",
+      "model": "Ugreen USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_cablecreation_237": {
+      "id": "prod_cat_cable_cablecreation_237",
+      "name": "CableCreation CableCreation USB-C to Lightning Cable (60W)",
+      "brand": "CableCreation",
+      "model": "CableCreation USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_baseus_238": {
+      "id": "prod_cat_cable_baseus_238",
+      "name": "Baseus Baseus USB-C to USB-C Cable (240W)",
+      "brand": "Baseus",
+      "model": "Baseus USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_nomad_239": {
+      "id": "prod_cat_cable_nomad_239",
+      "name": "Nomad Nomad USB-C to USB-C Cable (100W)",
+      "brand": "Nomad",
+      "model": "Nomad USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_native union_240": {
+      "id": "prod_cat_cable_native union_240",
+      "name": "Native Union Native Union USB-C to USB-C Cable (240W)",
+      "brand": "Native Union",
+      "model": "Native Union USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_anker_241": {
+      "id": "prod_cat_cable_anker_241",
+      "name": "Anker Anker USB-C to Lightning Cable (60W)",
+      "brand": "Anker",
+      "model": "Anker USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_apple_242": {
+      "id": "prod_cat_cable_apple_242",
+      "name": "Apple Apple USB-C to USB-C Cable (240W)",
+      "brand": "Apple",
+      "model": "Apple USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_belkin_243": {
+      "id": "prod_cat_cable_belkin_243",
+      "name": "Belkin Belkin USB-C to USB-C Cable (100W)",
+      "brand": "Belkin",
+      "model": "Belkin USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_ugreen_244": {
+      "id": "prod_cat_cable_ugreen_244",
+      "name": "Ugreen Ugreen USB-C to USB-C Cable (240W)",
+      "brand": "Ugreen",
+      "model": "Ugreen USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_cablecreation_245": {
+      "id": "prod_cat_cable_cablecreation_245",
+      "name": "CableCreation CableCreation USB-C to Lightning Cable (60W)",
+      "brand": "CableCreation",
+      "model": "CableCreation USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_baseus_246": {
+      "id": "prod_cat_cable_baseus_246",
+      "name": "Baseus Baseus USB-C to USB-C Cable (240W)",
+      "brand": "Baseus",
+      "model": "Baseus USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_nomad_247": {
+      "id": "prod_cat_cable_nomad_247",
+      "name": "Nomad Nomad USB-C to USB-C Cable (100W)",
+      "brand": "Nomad",
+      "model": "Nomad USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_native union_248": {
+      "id": "prod_cat_cable_native union_248",
+      "name": "Native Union Native Union USB-C to USB-C Cable (240W)",
+      "brand": "Native Union",
+      "model": "Native Union USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_anker_249": {
+      "id": "prod_cat_cable_anker_249",
+      "name": "Anker Anker USB-C to Lightning Cable (60W)",
+      "brand": "Anker",
+      "model": "Anker USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_apple_250": {
+      "id": "prod_cat_cable_apple_250",
+      "name": "Apple Apple USB-C to USB-C Cable (240W)",
+      "brand": "Apple",
+      "model": "Apple USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_belkin_251": {
+      "id": "prod_cat_cable_belkin_251",
+      "name": "Belkin Belkin USB-C to USB-C Cable (100W)",
+      "brand": "Belkin",
+      "model": "Belkin USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_ugreen_252": {
+      "id": "prod_cat_cable_ugreen_252",
+      "name": "Ugreen Ugreen USB-C to USB-C Cable (240W)",
+      "brand": "Ugreen",
+      "model": "Ugreen USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 27.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_cablecreation_253": {
+      "id": "prod_cat_cable_cablecreation_253",
+      "name": "CableCreation CableCreation USB-C to Lightning Cable (60W)",
+      "brand": "CableCreation",
+      "model": "CableCreation USB-C to Lightning Cable (60W)",
+      "category": "cable",
+      "price": 12.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_cable_baseus_254": {
+      "id": "prod_cat_cable_baseus_254",
+      "name": "Baseus Baseus USB-C to USB-C Cable (240W)",
+      "brand": "Baseus",
+      "model": "Baseus USB-C to USB-C Cable (240W)",
+      "category": "cable",
+      "price": 17.99,
+      "image_url": "https://images.unsplash.com/photo-1544816155-12df9643f363?w=600"
+    },
+    "prod_cat_cable_nomad_255": {
+      "id": "prod_cat_cable_nomad_255",
+      "name": "Nomad Nomad USB-C to USB-C Cable (100W)",
+      "brand": "Nomad",
+      "model": "Nomad USB-C to USB-C Cable (100W)",
+      "category": "cable",
+      "price": 22.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_monitor_dell_256": {
+      "id": "prod_cat_monitor_dell_256",
+      "name": "Dell Dell UltraView 4K Monitor (65W PD)",
+      "brand": "Dell",
+      "model": "Dell UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_lg_257": {
+      "id": "prod_cat_monitor_lg_257",
+      "name": "LG LG UltraView 4K Monitor (90W PD)",
+      "brand": "LG",
+      "model": "LG UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_apple_258": {
+      "id": "prod_cat_monitor_apple_258",
+      "name": "Apple Apple UltraView 4K Monitor (115W PD)",
+      "brand": "Apple",
+      "model": "Apple UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_samsung_259": {
+      "id": "prod_cat_monitor_samsung_259",
+      "name": "Samsung Samsung UltraView 4K Monitor (65W PD)",
+      "brand": "Samsung",
+      "model": "Samsung UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_asus_260": {
+      "id": "prod_cat_monitor_asus_260",
+      "name": "Asus Asus UltraView 4K Monitor (90W PD)",
+      "brand": "Asus",
+      "model": "Asus UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_benq_261": {
+      "id": "prod_cat_monitor_benq_261",
+      "name": "BenQ BenQ UltraView 4K Monitor (115W PD)",
+      "brand": "BenQ",
+      "model": "BenQ UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_philips_262": {
+      "id": "prod_cat_monitor_philips_262",
+      "name": "Philips Philips UltraView 4K Monitor (65W PD)",
+      "brand": "Philips",
+      "model": "Philips UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_viewsonic_263": {
+      "id": "prod_cat_monitor_viewsonic_263",
+      "name": "ViewSonic ViewSonic UltraView 4K Monitor (90W PD)",
+      "brand": "ViewSonic",
+      "model": "ViewSonic UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_dell_264": {
+      "id": "prod_cat_monitor_dell_264",
+      "name": "Dell Dell UltraView 4K Monitor (115W PD)",
+      "brand": "Dell",
+      "model": "Dell UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_lg_265": {
+      "id": "prod_cat_monitor_lg_265",
+      "name": "LG LG UltraView 4K Monitor (65W PD)",
+      "brand": "LG",
+      "model": "LG UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_apple_266": {
+      "id": "prod_cat_monitor_apple_266",
+      "name": "Apple Apple UltraView 4K Monitor (90W PD)",
+      "brand": "Apple",
+      "model": "Apple UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_samsung_267": {
+      "id": "prod_cat_monitor_samsung_267",
+      "name": "Samsung Samsung UltraView 4K Monitor (115W PD)",
+      "brand": "Samsung",
+      "model": "Samsung UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_asus_268": {
+      "id": "prod_cat_monitor_asus_268",
+      "name": "Asus Asus UltraView 4K Monitor (65W PD)",
+      "brand": "Asus",
+      "model": "Asus UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_benq_269": {
+      "id": "prod_cat_monitor_benq_269",
+      "name": "BenQ BenQ UltraView 4K Monitor (90W PD)",
+      "brand": "BenQ",
+      "model": "BenQ UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_philips_270": {
+      "id": "prod_cat_monitor_philips_270",
+      "name": "Philips Philips UltraView 4K Monitor (115W PD)",
+      "brand": "Philips",
+      "model": "Philips UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_viewsonic_271": {
+      "id": "prod_cat_monitor_viewsonic_271",
+      "name": "ViewSonic ViewSonic UltraView 4K Monitor (65W PD)",
+      "brand": "ViewSonic",
+      "model": "ViewSonic UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_dell_272": {
+      "id": "prod_cat_monitor_dell_272",
+      "name": "Dell Dell UltraView 4K Monitor (90W PD)",
+      "brand": "Dell",
+      "model": "Dell UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_lg_273": {
+      "id": "prod_cat_monitor_lg_273",
+      "name": "LG LG UltraView 4K Monitor (115W PD)",
+      "brand": "LG",
+      "model": "LG UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_apple_274": {
+      "id": "prod_cat_monitor_apple_274",
+      "name": "Apple Apple UltraView 4K Monitor (65W PD)",
+      "brand": "Apple",
+      "model": "Apple UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_samsung_275": {
+      "id": "prod_cat_monitor_samsung_275",
+      "name": "Samsung Samsung UltraView 4K Monitor (90W PD)",
+      "brand": "Samsung",
+      "model": "Samsung UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_asus_276": {
+      "id": "prod_cat_monitor_asus_276",
+      "name": "Asus Asus UltraView 4K Monitor (115W PD)",
+      "brand": "Asus",
+      "model": "Asus UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_benq_277": {
+      "id": "prod_cat_monitor_benq_277",
+      "name": "BenQ BenQ UltraView 4K Monitor (65W PD)",
+      "brand": "BenQ",
+      "model": "BenQ UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_philips_278": {
+      "id": "prod_cat_monitor_philips_278",
+      "name": "Philips Philips UltraView 4K Monitor (90W PD)",
+      "brand": "Philips",
+      "model": "Philips UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_viewsonic_279": {
+      "id": "prod_cat_monitor_viewsonic_279",
+      "name": "ViewSonic ViewSonic UltraView 4K Monitor (115W PD)",
+      "brand": "ViewSonic",
+      "model": "ViewSonic UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_dell_280": {
+      "id": "prod_cat_monitor_dell_280",
+      "name": "Dell Dell UltraView 4K Monitor (65W PD)",
+      "brand": "Dell",
+      "model": "Dell UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_lg_281": {
+      "id": "prod_cat_monitor_lg_281",
+      "name": "LG LG UltraView 4K Monitor (90W PD)",
+      "brand": "LG",
+      "model": "LG UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_apple_282": {
+      "id": "prod_cat_monitor_apple_282",
+      "name": "Apple Apple UltraView 4K Monitor (115W PD)",
+      "brand": "Apple",
+      "model": "Apple UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 469.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_samsung_283": {
+      "id": "prod_cat_monitor_samsung_283",
+      "name": "Samsung Samsung UltraView 4K Monitor (65W PD)",
+      "brand": "Samsung",
+      "model": "Samsung UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 589.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_asus_284": {
+      "id": "prod_cat_monitor_asus_284",
+      "name": "Asus Asus UltraView 4K Monitor (90W PD)",
+      "brand": "Asus",
+      "model": "Asus UltraView 4K Monitor (90W PD)",
+      "category": "monitor",
+      "price": 709.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_monitor_benq_285": {
+      "id": "prod_cat_monitor_benq_285",
+      "name": "BenQ BenQ UltraView 4K Monitor (115W PD)",
+      "brand": "BenQ",
+      "model": "BenQ UltraView 4K Monitor (115W PD)",
+      "category": "monitor",
+      "price": 829.99,
+      "image_url": "https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=600"
+    },
+    "prod_cat_monitor_philips_286": {
+      "id": "prod_cat_monitor_philips_286",
+      "name": "Philips Philips UltraView 4K Monitor (65W PD)",
+      "brand": "Philips",
+      "model": "Philips UltraView 4K Monitor (65W PD)",
+      "category": "monitor",
+      "price": 349.99,
+      "image_url": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600"
+    },
+    "prod_cat_wearable_apple_287": {
+      "id": "prod_cat_wearable_apple_287",
+      "name": "Apple Apple Smartwatch Series 3",
+      "brand": "Apple",
+      "model": "Apple Smartwatch Series 3",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_samsung_288": {
+      "id": "prod_cat_wearable_samsung_288",
+      "name": "Samsung Samsung Smartwatch Series 4",
+      "brand": "Samsung",
+      "model": "Samsung Smartwatch Series 4",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_google_289": {
+      "id": "prod_cat_wearable_google_289",
+      "name": "Google Google Smartwatch Series 5",
+      "brand": "Google",
+      "model": "Google Smartwatch Series 5",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_garmin_290": {
+      "id": "prod_cat_wearable_garmin_290",
+      "name": "Garmin Garmin Smartwatch Series 6",
+      "brand": "Garmin",
+      "model": "Garmin Smartwatch Series 6",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_fitbit_291": {
+      "id": "prod_cat_wearable_fitbit_291",
+      "name": "Fitbit Fitbit Smartwatch Series 7",
+      "brand": "Fitbit",
+      "model": "Fitbit Smartwatch Series 7",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_oneplus_292": {
+      "id": "prod_cat_wearable_oneplus_292",
+      "name": "OnePlus OnePlus Smartwatch Series 8",
+      "brand": "OnePlus",
+      "model": "OnePlus Smartwatch Series 8",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_amazfit_293": {
+      "id": "prod_cat_wearable_amazfit_293",
+      "name": "Amazfit Amazfit Smartwatch Series 9",
+      "brand": "Amazfit",
+      "model": "Amazfit Smartwatch Series 9",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_polar_294": {
+      "id": "prod_cat_wearable_polar_294",
+      "name": "Polar Polar Smartwatch Series 10",
+      "brand": "Polar",
+      "model": "Polar Smartwatch Series 10",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_apple_295": {
+      "id": "prod_cat_wearable_apple_295",
+      "name": "Apple Apple Smartwatch Series 11",
+      "brand": "Apple",
+      "model": "Apple Smartwatch Series 11",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_samsung_296": {
+      "id": "prod_cat_wearable_samsung_296",
+      "name": "Samsung Samsung Smartwatch Series 12",
+      "brand": "Samsung",
+      "model": "Samsung Smartwatch Series 12",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_google_297": {
+      "id": "prod_cat_wearable_google_297",
+      "name": "Google Google Smartwatch Series 13",
+      "brand": "Google",
+      "model": "Google Smartwatch Series 13",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_garmin_298": {
+      "id": "prod_cat_wearable_garmin_298",
+      "name": "Garmin Garmin Smartwatch Series 14",
+      "brand": "Garmin",
+      "model": "Garmin Smartwatch Series 14",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_fitbit_299": {
+      "id": "prod_cat_wearable_fitbit_299",
+      "name": "Fitbit Fitbit Smartwatch Series 15",
+      "brand": "Fitbit",
+      "model": "Fitbit Smartwatch Series 15",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_oneplus_300": {
+      "id": "prod_cat_wearable_oneplus_300",
+      "name": "OnePlus OnePlus Smartwatch Series 16",
+      "brand": "OnePlus",
+      "model": "OnePlus Smartwatch Series 16",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_amazfit_301": {
+      "id": "prod_cat_wearable_amazfit_301",
+      "name": "Amazfit Amazfit Smartwatch Series 17",
+      "brand": "Amazfit",
+      "model": "Amazfit Smartwatch Series 17",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_polar_302": {
+      "id": "prod_cat_wearable_polar_302",
+      "name": "Polar Polar Smartwatch Series 18",
+      "brand": "Polar",
+      "model": "Polar Smartwatch Series 18",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_apple_303": {
+      "id": "prod_cat_wearable_apple_303",
+      "name": "Apple Apple Smartwatch Series 19",
+      "brand": "Apple",
+      "model": "Apple Smartwatch Series 19",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_samsung_304": {
+      "id": "prod_cat_wearable_samsung_304",
+      "name": "Samsung Samsung Smartwatch Series 20",
+      "brand": "Samsung",
+      "model": "Samsung Smartwatch Series 20",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_google_305": {
+      "id": "prod_cat_wearable_google_305",
+      "name": "Google Google Smartwatch Series 21",
+      "brand": "Google",
+      "model": "Google Smartwatch Series 21",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_garmin_306": {
+      "id": "prod_cat_wearable_garmin_306",
+      "name": "Garmin Garmin Smartwatch Series 22",
+      "brand": "Garmin",
+      "model": "Garmin Smartwatch Series 22",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_fitbit_307": {
+      "id": "prod_cat_wearable_fitbit_307",
+      "name": "Fitbit Fitbit Smartwatch Series 23",
+      "brand": "Fitbit",
+      "model": "Fitbit Smartwatch Series 23",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_oneplus_308": {
+      "id": "prod_cat_wearable_oneplus_308",
+      "name": "OnePlus OnePlus Smartwatch Series 24",
+      "brand": "OnePlus",
+      "model": "OnePlus Smartwatch Series 24",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_amazfit_309": {
+      "id": "prod_cat_wearable_amazfit_309",
+      "name": "Amazfit Amazfit Smartwatch Series 25",
+      "brand": "Amazfit",
+      "model": "Amazfit Smartwatch Series 25",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_polar_310": {
+      "id": "prod_cat_wearable_polar_310",
+      "name": "Polar Polar Smartwatch Series 26",
+      "brand": "Polar",
+      "model": "Polar Smartwatch Series 26",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_apple_311": {
+      "id": "prod_cat_wearable_apple_311",
+      "name": "Apple Apple Smartwatch Series 27",
+      "brand": "Apple",
+      "model": "Apple Smartwatch Series 27",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_samsung_312": {
+      "id": "prod_cat_wearable_samsung_312",
+      "name": "Samsung Samsung Smartwatch Series 28",
+      "brand": "Samsung",
+      "model": "Samsung Smartwatch Series 28",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_google_313": {
+      "id": "prod_cat_wearable_google_313",
+      "name": "Google Google Smartwatch Series 29",
+      "brand": "Google",
+      "model": "Google Smartwatch Series 29",
+      "category": "wearable",
+      "price": 279.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_garmin_314": {
+      "id": "prod_cat_wearable_garmin_314",
+      "name": "Garmin Garmin Smartwatch Series 30",
+      "brand": "Garmin",
+      "model": "Garmin Smartwatch Series 30",
+      "category": "wearable",
+      "price": 359.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_fitbit_315": {
+      "id": "prod_cat_wearable_fitbit_315",
+      "name": "Fitbit Fitbit Smartwatch Series 31",
+      "brand": "Fitbit",
+      "model": "Fitbit Smartwatch Series 31",
+      "category": "wearable",
+      "price": 439.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_wearable_oneplus_316": {
+      "id": "prod_cat_wearable_oneplus_316",
+      "name": "OnePlus OnePlus Smartwatch Series 32",
+      "brand": "OnePlus",
+      "model": "OnePlus Smartwatch Series 32",
+      "category": "wearable",
+      "price": 519.99,
+      "image_url": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600"
+    },
+    "prod_cat_wearable_amazfit_317": {
+      "id": "prod_cat_wearable_amazfit_317",
+      "name": "Amazfit Amazfit Smartwatch Series 33",
+      "brand": "Amazfit",
+      "model": "Amazfit Smartwatch Series 33",
+      "category": "wearable",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_cat_case_apple_318": {
+      "id": "prod_cat_case_apple_318",
+      "name": "Apple Apple Armor Case for iPhone 15 Pro",
+      "brand": "Apple",
+      "model": "Apple Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_spigen_319": {
+      "id": "prod_cat_case_spigen_319",
+      "name": "Spigen Spigen Armor Case for iPhone 14",
+      "brand": "Spigen",
+      "model": "Spigen Armor Case for iPhone 14",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_otterbox_320": {
+      "id": "prod_cat_case_otterbox_320",
+      "name": "OtterBox OtterBox Armor Case for Galaxy S24 Ultra",
+      "brand": "OtterBox",
+      "model": "OtterBox Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_nomad_321": {
+      "id": "prod_cat_case_nomad_321",
+      "name": "Nomad Nomad Armor Case for iPhone 15 Pro",
+      "brand": "Nomad",
+      "model": "Nomad Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_torras_322": {
+      "id": "prod_cat_case_torras_322",
+      "name": "Torras Torras Armor Case for iPhone 14",
+      "brand": "Torras",
+      "model": "Torras Armor Case for iPhone 14",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_caseology_323": {
+      "id": "prod_cat_case_caseology_323",
+      "name": "Caseology Caseology Armor Case for Galaxy S24 Ultra",
+      "brand": "Caseology",
+      "model": "Caseology Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_bellroy_324": {
+      "id": "prod_cat_case_bellroy_324",
+      "name": "Bellroy Bellroy Armor Case for iPhone 15 Pro",
+      "brand": "Bellroy",
+      "model": "Bellroy Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_uag_325": {
+      "id": "prod_cat_case_uag_325",
+      "name": "UAG UAG Armor Case for iPhone 14",
+      "brand": "UAG",
+      "model": "UAG Armor Case for iPhone 14",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_apple_326": {
+      "id": "prod_cat_case_apple_326",
+      "name": "Apple Apple Armor Case for Galaxy S24 Ultra",
+      "brand": "Apple",
+      "model": "Apple Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_spigen_327": {
+      "id": "prod_cat_case_spigen_327",
+      "name": "Spigen Spigen Armor Case for iPhone 15 Pro",
+      "brand": "Spigen",
+      "model": "Spigen Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_otterbox_328": {
+      "id": "prod_cat_case_otterbox_328",
+      "name": "OtterBox OtterBox Armor Case for iPhone 14",
+      "brand": "OtterBox",
+      "model": "OtterBox Armor Case for iPhone 14",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_nomad_329": {
+      "id": "prod_cat_case_nomad_329",
+      "name": "Nomad Nomad Armor Case for Galaxy S24 Ultra",
+      "brand": "Nomad",
+      "model": "Nomad Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_torras_330": {
+      "id": "prod_cat_case_torras_330",
+      "name": "Torras Torras Armor Case for iPhone 15 Pro",
+      "brand": "Torras",
+      "model": "Torras Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_caseology_331": {
+      "id": "prod_cat_case_caseology_331",
+      "name": "Caseology Caseology Armor Case for iPhone 14",
+      "brand": "Caseology",
+      "model": "Caseology Armor Case for iPhone 14",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_bellroy_332": {
+      "id": "prod_cat_case_bellroy_332",
+      "name": "Bellroy Bellroy Armor Case for Galaxy S24 Ultra",
+      "brand": "Bellroy",
+      "model": "Bellroy Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_uag_333": {
+      "id": "prod_cat_case_uag_333",
+      "name": "UAG UAG Armor Case for iPhone 15 Pro",
+      "brand": "UAG",
+      "model": "UAG Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_apple_334": {
+      "id": "prod_cat_case_apple_334",
+      "name": "Apple Apple Armor Case for iPhone 14",
+      "brand": "Apple",
+      "model": "Apple Armor Case for iPhone 14",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_spigen_335": {
+      "id": "prod_cat_case_spigen_335",
+      "name": "Spigen Spigen Armor Case for Galaxy S24 Ultra",
+      "brand": "Spigen",
+      "model": "Spigen Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_otterbox_336": {
+      "id": "prod_cat_case_otterbox_336",
+      "name": "OtterBox OtterBox Armor Case for iPhone 15 Pro",
+      "brand": "OtterBox",
+      "model": "OtterBox Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_nomad_337": {
+      "id": "prod_cat_case_nomad_337",
+      "name": "Nomad Nomad Armor Case for iPhone 14",
+      "brand": "Nomad",
+      "model": "Nomad Armor Case for iPhone 14",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_torras_338": {
+      "id": "prod_cat_case_torras_338",
+      "name": "Torras Torras Armor Case for Galaxy S24 Ultra",
+      "brand": "Torras",
+      "model": "Torras Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_caseology_339": {
+      "id": "prod_cat_case_caseology_339",
+      "name": "Caseology Caseology Armor Case for iPhone 15 Pro",
+      "brand": "Caseology",
+      "model": "Caseology Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_bellroy_340": {
+      "id": "prod_cat_case_bellroy_340",
+      "name": "Bellroy Bellroy Armor Case for iPhone 14",
+      "brand": "Bellroy",
+      "model": "Bellroy Armor Case for iPhone 14",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_uag_341": {
+      "id": "prod_cat_case_uag_341",
+      "name": "UAG UAG Armor Case for Galaxy S24 Ultra",
+      "brand": "UAG",
+      "model": "UAG Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_apple_342": {
+      "id": "prod_cat_case_apple_342",
+      "name": "Apple Apple Armor Case for iPhone 15 Pro",
+      "brand": "Apple",
+      "model": "Apple Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_spigen_343": {
+      "id": "prod_cat_case_spigen_343",
+      "name": "Spigen Spigen Armor Case for iPhone 14",
+      "brand": "Spigen",
+      "model": "Spigen Armor Case for iPhone 14",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_otterbox_344": {
+      "id": "prod_cat_case_otterbox_344",
+      "name": "OtterBox OtterBox Armor Case for Galaxy S24 Ultra",
+      "brand": "OtterBox",
+      "model": "OtterBox Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_nomad_345": {
+      "id": "prod_cat_case_nomad_345",
+      "name": "Nomad Nomad Armor Case for iPhone 15 Pro",
+      "brand": "Nomad",
+      "model": "Nomad Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 54.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_torras_346": {
+      "id": "prod_cat_case_torras_346",
+      "name": "Torras Torras Armor Case for iPhone 14",
+      "brand": "Torras",
+      "model": "Torras Armor Case for iPhone 14",
+      "category": "case",
+      "price": 24.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_case_caseology_347": {
+      "id": "prod_cat_case_caseology_347",
+      "name": "Caseology Caseology Armor Case for Galaxy S24 Ultra",
+      "brand": "Caseology",
+      "model": "Caseology Armor Case for Galaxy S24 Ultra",
+      "category": "case",
+      "price": 34.99,
+      "image_url": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600"
+    },
+    "prod_cat_case_bellroy_348": {
+      "id": "prod_cat_case_bellroy_348",
+      "name": "Bellroy Bellroy Armor Case for iPhone 15 Pro",
+      "brand": "Bellroy",
+      "model": "Bellroy Armor Case for iPhone 15 Pro",
+      "category": "case",
+      "price": 44.99,
+      "image_url": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600"
+    },
+    "prod_cat_audio_sony_349": {
+      "id": "prod_cat_audio_sony_349",
+      "name": "Sony Sony Pro Audio Headphones 100",
+      "brand": "Sony",
+      "model": "Sony Pro Audio Headphones 100",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_apple_350": {
+      "id": "prod_cat_audio_apple_350",
+      "name": "Apple Apple Pro Audio Headphones 101",
+      "brand": "Apple",
+      "model": "Apple Pro Audio Headphones 101",
+      "category": "audio",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_bose_351": {
+      "id": "prod_cat_audio_bose_351",
+      "name": "Bose Bose Pro Audio Headphones 102",
+      "brand": "Bose",
+      "model": "Bose Pro Audio Headphones 102",
+      "category": "audio",
+      "price": 149.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_sennheiser_352": {
+      "id": "prod_cat_audio_sennheiser_352",
+      "name": "Sennheiser Sennheiser Pro Audio Headphones 103",
+      "brand": "Sennheiser",
+      "model": "Sennheiser Pro Audio Headphones 103",
+      "category": "audio",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_samsung_353": {
+      "id": "prod_cat_audio_samsung_353",
+      "name": "Samsung Samsung Pro Audio Headphones 104",
+      "brand": "Samsung",
+      "model": "Samsung Pro Audio Headphones 104",
+      "category": "audio",
+      "price": 249.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_jbl_354": {
+      "id": "prod_cat_audio_jbl_354",
+      "name": "JBL JBL Pro Audio Headphones 105",
+      "brand": "JBL",
+      "model": "JBL Pro Audio Headphones 105",
+      "category": "audio",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_anker soundcore_355": {
+      "id": "prod_cat_audio_anker soundcore_355",
+      "name": "Anker Soundcore Anker Soundcore Pro Audio Headphones 106",
+      "brand": "Anker Soundcore",
+      "model": "Anker Soundcore Pro Audio Headphones 106",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_audio-technica_356": {
+      "id": "prod_cat_audio_audio-technica_356",
+      "name": "Audio-Technica Audio-Technica Pro Audio Headphones 107",
+      "brand": "Audio-Technica",
+      "model": "Audio-Technica Pro Audio Headphones 107",
+      "category": "audio",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_sony_357": {
+      "id": "prod_cat_audio_sony_357",
+      "name": "Sony Sony Pro Audio Headphones 108",
+      "brand": "Sony",
+      "model": "Sony Pro Audio Headphones 108",
+      "category": "audio",
+      "price": 149.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_apple_358": {
+      "id": "prod_cat_audio_apple_358",
+      "name": "Apple Apple Pro Audio Headphones 109",
+      "brand": "Apple",
+      "model": "Apple Pro Audio Headphones 109",
+      "category": "audio",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_bose_359": {
+      "id": "prod_cat_audio_bose_359",
+      "name": "Bose Bose Pro Audio Headphones 110",
+      "brand": "Bose",
+      "model": "Bose Pro Audio Headphones 110",
+      "category": "audio",
+      "price": 249.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_sennheiser_360": {
+      "id": "prod_cat_audio_sennheiser_360",
+      "name": "Sennheiser Sennheiser Pro Audio Headphones 111",
+      "brand": "Sennheiser",
+      "model": "Sennheiser Pro Audio Headphones 111",
+      "category": "audio",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_samsung_361": {
+      "id": "prod_cat_audio_samsung_361",
+      "name": "Samsung Samsung Pro Audio Headphones 112",
+      "brand": "Samsung",
+      "model": "Samsung Pro Audio Headphones 112",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_jbl_362": {
+      "id": "prod_cat_audio_jbl_362",
+      "name": "JBL JBL Pro Audio Headphones 113",
+      "brand": "JBL",
+      "model": "JBL Pro Audio Headphones 113",
+      "category": "audio",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_anker soundcore_363": {
+      "id": "prod_cat_audio_anker soundcore_363",
+      "name": "Anker Soundcore Anker Soundcore Pro Audio Headphones 114",
+      "brand": "Anker Soundcore",
+      "model": "Anker Soundcore Pro Audio Headphones 114",
+      "category": "audio",
+      "price": 149.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_audio-technica_364": {
+      "id": "prod_cat_audio_audio-technica_364",
+      "name": "Audio-Technica Audio-Technica Pro Audio Headphones 115",
+      "brand": "Audio-Technica",
+      "model": "Audio-Technica Pro Audio Headphones 115",
+      "category": "audio",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_sony_365": {
+      "id": "prod_cat_audio_sony_365",
+      "name": "Sony Sony Pro Audio Headphones 116",
+      "brand": "Sony",
+      "model": "Sony Pro Audio Headphones 116",
+      "category": "audio",
+      "price": 249.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_apple_366": {
+      "id": "prod_cat_audio_apple_366",
+      "name": "Apple Apple Pro Audio Headphones 117",
+      "brand": "Apple",
+      "model": "Apple Pro Audio Headphones 117",
+      "category": "audio",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_bose_367": {
+      "id": "prod_cat_audio_bose_367",
+      "name": "Bose Bose Pro Audio Headphones 118",
+      "brand": "Bose",
+      "model": "Bose Pro Audio Headphones 118",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_sennheiser_368": {
+      "id": "prod_cat_audio_sennheiser_368",
+      "name": "Sennheiser Sennheiser Pro Audio Headphones 119",
+      "brand": "Sennheiser",
+      "model": "Sennheiser Pro Audio Headphones 119",
+      "category": "audio",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_samsung_369": {
+      "id": "prod_cat_audio_samsung_369",
+      "name": "Samsung Samsung Pro Audio Headphones 120",
+      "brand": "Samsung",
+      "model": "Samsung Pro Audio Headphones 120",
+      "category": "audio",
+      "price": 149.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_jbl_370": {
+      "id": "prod_cat_audio_jbl_370",
+      "name": "JBL JBL Pro Audio Headphones 121",
+      "brand": "JBL",
+      "model": "JBL Pro Audio Headphones 121",
+      "category": "audio",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_anker soundcore_371": {
+      "id": "prod_cat_audio_anker soundcore_371",
+      "name": "Anker Soundcore Anker Soundcore Pro Audio Headphones 122",
+      "brand": "Anker Soundcore",
+      "model": "Anker Soundcore Pro Audio Headphones 122",
+      "category": "audio",
+      "price": 249.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_audio-technica_372": {
+      "id": "prod_cat_audio_audio-technica_372",
+      "name": "Audio-Technica Audio-Technica Pro Audio Headphones 123",
+      "brand": "Audio-Technica",
+      "model": "Audio-Technica Pro Audio Headphones 123",
+      "category": "audio",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_sony_373": {
+      "id": "prod_cat_audio_sony_373",
+      "name": "Sony Sony Pro Audio Headphones 124",
+      "brand": "Sony",
+      "model": "Sony Pro Audio Headphones 124",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_apple_374": {
+      "id": "prod_cat_audio_apple_374",
+      "name": "Apple Apple Pro Audio Headphones 125",
+      "brand": "Apple",
+      "model": "Apple Pro Audio Headphones 125",
+      "category": "audio",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_bose_375": {
+      "id": "prod_cat_audio_bose_375",
+      "name": "Bose Bose Pro Audio Headphones 126",
+      "brand": "Bose",
+      "model": "Bose Pro Audio Headphones 126",
+      "category": "audio",
+      "price": 149.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_sennheiser_376": {
+      "id": "prod_cat_audio_sennheiser_376",
+      "name": "Sennheiser Sennheiser Pro Audio Headphones 127",
+      "brand": "Sennheiser",
+      "model": "Sennheiser Pro Audio Headphones 127",
+      "category": "audio",
+      "price": 199.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_samsung_377": {
+      "id": "prod_cat_audio_samsung_377",
+      "name": "Samsung Samsung Pro Audio Headphones 128",
+      "brand": "Samsung",
+      "model": "Samsung Pro Audio Headphones 128",
+      "category": "audio",
+      "price": 249.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_audio_jbl_378": {
+      "id": "prod_cat_audio_jbl_378",
+      "name": "JBL JBL Pro Audio Headphones 129",
+      "brand": "JBL",
+      "model": "JBL Pro Audio Headphones 129",
+      "category": "audio",
+      "price": 299.99,
+      "image_url": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600"
+    },
+    "prod_cat_audio_anker soundcore_379": {
+      "id": "prod_cat_audio_anker soundcore_379",
+      "name": "Anker Soundcore Anker Soundcore Pro Audio Headphones 130",
+      "brand": "Anker Soundcore",
+      "model": "Anker Soundcore Pro Audio Headphones 130",
+      "category": "audio",
+      "price": 49.99,
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+    },
+    "prod_cat_hub_caldigit_380": {
+      "id": "prod_cat_hub_caldigit_380",
+      "name": "CalDigit CalDigit Multi-Port Hub (5 Ports)",
+      "brand": "CalDigit",
+      "model": "CalDigit Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_anker_381": {
+      "id": "prod_cat_hub_anker_381",
+      "name": "Anker Anker Multi-Port Hub (6 Ports)",
+      "brand": "Anker",
+      "model": "Anker Multi-Port Hub (6 Ports)",
+      "category": "hub",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_satechi_382": {
+      "id": "prod_cat_hub_satechi_382",
+      "name": "Satechi Satechi Multi-Port Hub (7 Ports)",
+      "brand": "Satechi",
+      "model": "Satechi Multi-Port Hub (7 Ports)",
+      "category": "hub",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_hyperdrive_383": {
+      "id": "prod_cat_hub_hyperdrive_383",
+      "name": "HyperDrive HyperDrive Multi-Port Hub (8 Ports)",
+      "brand": "HyperDrive",
+      "model": "HyperDrive Multi-Port Hub (8 Ports)",
+      "category": "hub",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_belkin_384": {
+      "id": "prod_cat_hub_belkin_384",
+      "name": "Belkin Belkin Multi-Port Hub (9 Ports)",
+      "brand": "Belkin",
+      "model": "Belkin Multi-Port Hub (9 Ports)",
+      "category": "hub",
+      "price": 119.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_ugreen_385": {
+      "id": "prod_cat_hub_ugreen_385",
+      "name": "Ugreen Ugreen Multi-Port Hub (5 Ports)",
+      "brand": "Ugreen",
+      "model": "Ugreen Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_dell_386": {
+      "id": "prod_cat_hub_dell_386",
+      "name": "Dell Dell Multi-Port Hub (6 Ports)",
+      "brand": "Dell",
+      "model": "Dell Multi-Port Hub (6 Ports)",
+      "category": "hub",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_owc_387": {
+      "id": "prod_cat_hub_owc_387",
+      "name": "OWC OWC Multi-Port Hub (7 Ports)",
+      "brand": "OWC",
+      "model": "OWC Multi-Port Hub (7 Ports)",
+      "category": "hub",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_caldigit_388": {
+      "id": "prod_cat_hub_caldigit_388",
+      "name": "CalDigit CalDigit Multi-Port Hub (8 Ports)",
+      "brand": "CalDigit",
+      "model": "CalDigit Multi-Port Hub (8 Ports)",
+      "category": "hub",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_anker_389": {
+      "id": "prod_cat_hub_anker_389",
+      "name": "Anker Anker Multi-Port Hub (9 Ports)",
+      "brand": "Anker",
+      "model": "Anker Multi-Port Hub (9 Ports)",
+      "category": "hub",
+      "price": 119.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_satechi_390": {
+      "id": "prod_cat_hub_satechi_390",
+      "name": "Satechi Satechi Multi-Port Hub (5 Ports)",
+      "brand": "Satechi",
+      "model": "Satechi Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_hyperdrive_391": {
+      "id": "prod_cat_hub_hyperdrive_391",
+      "name": "HyperDrive HyperDrive Multi-Port Hub (6 Ports)",
+      "brand": "HyperDrive",
+      "model": "HyperDrive Multi-Port Hub (6 Ports)",
+      "category": "hub",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_belkin_392": {
+      "id": "prod_cat_hub_belkin_392",
+      "name": "Belkin Belkin Multi-Port Hub (7 Ports)",
+      "brand": "Belkin",
+      "model": "Belkin Multi-Port Hub (7 Ports)",
+      "category": "hub",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_ugreen_393": {
+      "id": "prod_cat_hub_ugreen_393",
+      "name": "Ugreen Ugreen Multi-Port Hub (8 Ports)",
+      "brand": "Ugreen",
+      "model": "Ugreen Multi-Port Hub (8 Ports)",
+      "category": "hub",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_dell_394": {
+      "id": "prod_cat_hub_dell_394",
+      "name": "Dell Dell Multi-Port Hub (9 Ports)",
+      "brand": "Dell",
+      "model": "Dell Multi-Port Hub (9 Ports)",
+      "category": "hub",
+      "price": 119.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_owc_395": {
+      "id": "prod_cat_hub_owc_395",
+      "name": "OWC OWC Multi-Port Hub (5 Ports)",
+      "brand": "OWC",
+      "model": "OWC Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_caldigit_396": {
+      "id": "prod_cat_hub_caldigit_396",
+      "name": "CalDigit CalDigit Multi-Port Hub (6 Ports)",
+      "brand": "CalDigit",
+      "model": "CalDigit Multi-Port Hub (6 Ports)",
+      "category": "hub",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_anker_397": {
+      "id": "prod_cat_hub_anker_397",
+      "name": "Anker Anker Multi-Port Hub (7 Ports)",
+      "brand": "Anker",
+      "model": "Anker Multi-Port Hub (7 Ports)",
+      "category": "hub",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_satechi_398": {
+      "id": "prod_cat_hub_satechi_398",
+      "name": "Satechi Satechi Multi-Port Hub (8 Ports)",
+      "brand": "Satechi",
+      "model": "Satechi Multi-Port Hub (8 Ports)",
+      "category": "hub",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_hyperdrive_399": {
+      "id": "prod_cat_hub_hyperdrive_399",
+      "name": "HyperDrive HyperDrive Multi-Port Hub (9 Ports)",
+      "brand": "HyperDrive",
+      "model": "HyperDrive Multi-Port Hub (9 Ports)",
+      "category": "hub",
+      "price": 119.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_belkin_400": {
+      "id": "prod_cat_hub_belkin_400",
+      "name": "Belkin Belkin Multi-Port Hub (5 Ports)",
+      "brand": "Belkin",
+      "model": "Belkin Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_ugreen_401": {
+      "id": "prod_cat_hub_ugreen_401",
+      "name": "Ugreen Ugreen Multi-Port Hub (6 Ports)",
+      "brand": "Ugreen",
+      "model": "Ugreen Multi-Port Hub (6 Ports)",
+      "category": "hub",
+      "price": 59.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_dell_402": {
+      "id": "prod_cat_hub_dell_402",
+      "name": "Dell Dell Multi-Port Hub (7 Ports)",
+      "brand": "Dell",
+      "model": "Dell Multi-Port Hub (7 Ports)",
+      "category": "hub",
+      "price": 79.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_owc_403": {
+      "id": "prod_cat_hub_owc_403",
+      "name": "OWC OWC Multi-Port Hub (8 Ports)",
+      "brand": "OWC",
+      "model": "OWC Multi-Port Hub (8 Ports)",
+      "category": "hub",
+      "price": 99.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_cat_hub_caldigit_404": {
+      "id": "prod_cat_hub_caldigit_404",
+      "name": "CalDigit CalDigit Multi-Port Hub (9 Ports)",
+      "brand": "CalDigit",
+      "model": "CalDigit Multi-Port Hub (9 Ports)",
+      "category": "hub",
+      "price": 119.99,
+      "image_url": "https://images.unsplash.com/photo-1622445262464-84b150777731?w=600"
+    },
+    "prod_cat_hub_anker_405": {
+      "id": "prod_cat_hub_anker_405",
+      "name": "Anker Anker Multi-Port Hub (5 Ports)",
+      "brand": "Anker",
+      "model": "Anker Multi-Port Hub (5 Ports)",
+      "category": "hub",
+      "price": 39.99,
+      "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    }
+  }
+}

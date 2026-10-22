@@ -385,22 +385,55 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
 
 ---
 
-## 9. AI/ML Integration Boundary & Dependencies
+## 9. AI/ML Visual Embedding Pipeline (OpenAI CLIP & FAISS)
 
-- **Agreed Endpoint**: `POST /internal/search` on `ML_SERVICE_URL`.
-- **Agreed Health Endpoint**: `GET /internal/health`.
-- **Payload**: Multipart form with `file: UploadFile` and `limit: int`.
-- **Output**: JSON payload matching `MLSearchResponse` schema:
-  ```json
-  {
-    "results": [
-      { "product_id": "prod_apple_iphone_15_pro", "score": 0.9421 }
-    ],
-    "model_version": "clip-vit-base-patch32:v1.2",
-    "inference_time_ms": 38.5
-  }
-  ```
-- **Unresolved Dependencies**: Final production deployment requires pairing with the AI/ML engineer's production container hosting the trained CLIP/SigLIP inference service. For all local and testing purposes, `mock_ml_service.py` provides full functional parity with the agreed contract.
+The backend is integrated with **openai/clip-vit-base-patch32** via Hugging Face Transformers and **FAISS** vector search.
+
+### Architecture & Request Flow
+1. **User Upload**: A query image (JPEG, PNG, WebP) is received by `POST /api/visual-search` or `POST /internal/search`.
+2. **Safe Decoding & Validation**: Pillow verifies image headers and protects against decompression bombs (`Image.MAX_IMAGE_PIXELS = 20_000_000`). Images are converted to standard RGB.
+3. **Embedding Generation**: The pretrained `CLIPModel` and `CLIPProcessor` extract a 512-dimensional visual embedding inside `torch.inference_mode()`. The embedding is L2-normalized so inner products represent exact cosine similarity.
+4. **FAISS Dense Retrieval**: FAISS `IndexFlatIP(512)` retrieves the nearest neighbor vectors.
+5. **Multi-Image Aggregation**: When a product has multiple catalog images, scores are aggregated by taking the **maximum similarity score** per product ID. This prevents duplicate product cards in search results while ensuring the best matching visual angle/image is rewarded.
+6. **Catalog Enrichment**: Matching candidate IDs are retrieved from the database, enriched with full specifications, and returned preserving the exact rank ordering.
+
+### Building & Refreshing the Vector Index
+To build or update the FAISS vector index from all products in the database:
+```bash
+py build_vector_index.py
+```
+Or via module execution:
+```bash
+py -m backend.app.services.build_index
+```
+Features of the indexing pipeline:
+- **Resilient Image Fetching**: Safe HTTP client with timeouts, size limits, and format verification; broken/404 image URLs are logged as warnings without crashing the indexer.
+- **Embedding Cache**: Caches embeddings in `embedding_cache.pkl` by URL/hash so unchanged images are never re-downloaded or re-embedded.
+- **Metadata Persistence**: Atomically writes `catalog_faiss.index` and `catalog_meta.json` with versioning, model ID, creation timestamp, and entry-to-product mapping.
+
+### Configuration & Environment Variables
+Configured in `.env`:
+| Key | Default | Description |
+|---|---|---|
+| `CLIP_MODEL_ID` | `openai/clip-vit-base-patch32` | Hugging Face model repository ID |
+| `CLIP_DEVICE` | `auto` | Execution device: `auto` (detects CUDA or falls back to CPU), `cpu`, or `cuda` |
+| `VECTOR_INDEX_PATH` | `backend/app/services/catalog_faiss.index` | Path to persistent FAISS index file |
+| `VECTOR_METADATA_PATH` | `backend/app/services/catalog_meta.json` | Path to index metadata JSON |
+| `VISUAL_SEARCH_TOP_K` | `10` | Default number of candidate matches |
+| `MAX_IMAGE_UPLOAD_MB` | `10` | Maximum upload size in megabytes |
+
+### Model Download & Caching
+Weights are cached in the standard Hugging Face directory (`~/.cache/huggingface/hub/`).
+To pre-download the model weights offline or during container build:
+```python
+from transformers import CLIPModel, CLIPProcessor
+CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
+```
+
+### Important Model Limitations
+- **Visual Similarity vs Compatibility**: CLIP visual embeddings identify similar forms, silhouettes, colors, and design characteristics. A high visual similarity score is **not** proof of technical compatibility or brand authenticity.
+- **Deterministic Separation**: Compatibility validation is handled strictly by the backend deterministic rules engine (`backend/app/rules`), never by visual embeddings or generative models.
 
 ---
 
@@ -410,7 +443,7 @@ Both frontend (Next.js) and backend (FastAPI) are fully integrated with real-tim
 
 ### One-Command Full Stack Startup
 
-To start the mock ML service (port 8001), backend API (port 8000), and Next.js frontend (port 3000) simultaneously:
+To start the ML service (port 8001), backend API (port 8000), and Next.js frontend (port 3000) simultaneously:
 
 ```bash
 # Using Python
@@ -428,5 +461,5 @@ npm run dev
 - **Frontend App**: [http://localhost:3000](http://localhost:3000)
 - **Backend API & Swagger Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - **Backend Health Check**: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
-- **Mock AI/ML Service**: [http://127.0.0.1:8001/internal/health](http://127.0.0.1:8001/internal/health)
+- **AI/ML Service Health**: [http://127.0.0.1:8001/internal/health](http://127.0.0.1:8001/internal/health)
 

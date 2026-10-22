@@ -18,6 +18,9 @@ from backend.app.schemas.visual_search import (
 from backend.app.services.ml_client import MLServiceClient
 
 
+Image.MAX_IMAGE_PIXELS = 20_000_000
+
+
 class VisualSearchOrchestrator:
     """
     Orchestrates the visual product search pipeline:
@@ -37,6 +40,7 @@ class VisualSearchOrchestrator:
         upload_file: UploadFile,
         limit: int = 10,
         min_score: float = 0.0,
+        category_filter: Optional[str] = None,
     ) -> VisualSearchResponse:
         # 1. Content-Type validation
         content_type = upload_file.content_type or "application/octet-stream"
@@ -68,7 +72,7 @@ class VisualSearchOrchestrator:
                 width, height = img.size
                 # Basic verification of integrity
                 img.verify()
-        except (UnidentifiedImageError, OSError, SyntaxError) as exc:
+        except (UnidentifiedImageError, OSError, SyntaxError, ValueError) as exc:
             logger.warning(f"Failed image integrity check: {exc}")
             raise InvalidImageError(
                 "Uploaded file is corrupt or not a readable image.",
@@ -84,12 +88,13 @@ class VisualSearchOrchestrator:
             format=img_format,
         )
 
-        # 4. Call separately implemented AI/ML service
+        # 4. Call AI/ML visual embedding search service
         ml_response = self.ml_client.search_by_image(
             image_bytes=file_bytes,
             filename=upload_file.filename or "query.jpg",
             content_type=content_type,
             limit=limit,
+            category_filter=category_filter,
         )
 
         # 5. Extract ranked product IDs from ML results
@@ -115,6 +120,9 @@ class VisualSearchOrchestrator:
                 )
                 continue
 
+            if category_filter and product.category.lower() != category_filter.lower():
+                continue
+
             enriched_results.append(
                 VisualSearchResultItem(
                     rank=current_rank,
@@ -132,7 +140,13 @@ class VisualSearchOrchestrator:
         )
 
     def search_more_like_this(self, product_id: str, limit: int = 6) -> VisualSearchResponse:
+        from backend.app.core.errors import ProductNotFoundError
         from backend.app.services.faiss_engine import faiss_engine
+
+        target_prod = self.repo.get_by_id(product_id)
+        if not target_prod:
+            raise ProductNotFoundError(product_id)
+
         raw_results = faiss_engine.search_more_like_this(product_id=product_id, limit=limit)
         candidate_ids = [r["product_id"] for r in raw_results]
         db_products = self.repo.get_by_ids(candidate_ids)
@@ -152,7 +166,6 @@ class VisualSearchOrchestrator:
                 )
             )
 
-        target_prod = self.repo.get_by_id(product_id)
         return VisualSearchResponse(
             query_image=QueryImageMetadata(
                 filename=f"{product_id}.jpg",

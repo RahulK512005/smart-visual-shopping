@@ -53,13 +53,13 @@ def main():
 
     python_executable = sys.executable
 
-    # 2. Start Mock AI/ML Service on 8001
-    print("\n[2/4] Starting Mock AI/ML Service on http://127.0.0.1:8001 ...")
+    # 2. Start AI/ML Visual Search Service on 8001
+    print("\n[2/4] Starting AI/ML Visual Search Service (OpenAI CLIP + FAISS) on http://127.0.0.1:8001 ...")
     ml_proc = subprocess.Popen(
         [python_executable, "-m", "uvicorn", "mock_ml_service:app", "--host", "127.0.0.1", "--port", "8001"],
         cwd=str(ROOT_DIR),
     )
-    processes.append(("Mock ML Service", ml_proc))
+    processes.append(("AI/ML CLIP Service", ml_proc))
 
     time.sleep(1)
 

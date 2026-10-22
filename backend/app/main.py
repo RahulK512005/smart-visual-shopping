@@ -20,8 +20,13 @@ async def lifespan(app: FastAPI):
     try:
         count = init_db()
         logger.info(f"Database ready with {count} catalog products.")
+        from backend.app.services.faiss_engine import faiss_engine
+        if faiss_engine.is_ready:
+            logger.info(f"FAISS vector index ready with {faiss_engine.index.ntotal} vectors.")
+        else:
+            logger.warning("FAISS vector index not loaded or empty.")
     except Exception as exc:
-        logger.error(f"Error initializing database during startup: {exc}")
+        logger.error(f"Error during startup initialization: {exc}")
     yield
     # Shutdown
     logger.info("Shutting down Smart Visual Shopping API...")

@@ -24,8 +24,16 @@ class Settings(BaseSettings):
     ML_SERVICE_CONNECT_TIMEOUT_SECONDS: float = 2.0
 
     # Uploads
+    MAX_IMAGE_UPLOAD_MB: int = 10
     MAX_UPLOAD_SIZE_BYTES: int = 10 * 1024 * 1024  # 10 MB
     ALLOWED_IMAGE_MIME_TYPES: str = "image/jpeg,image/png,image/webp,image/gif"
+
+    # CLIP & Vector Index Configuration
+    CLIP_MODEL_ID: str = "openai/clip-vit-base-patch32"
+    CLIP_DEVICE: str = "auto"
+    VECTOR_INDEX_PATH: str = "backend/app/services/catalog_faiss.index"
+    VECTOR_METADATA_PATH: str = "backend/app/services/catalog_meta.json"
+    VISUAL_SEARCH_TOP_K: int = 10
 
     model_config = SettingsConfigDict(
         env_file=".env",

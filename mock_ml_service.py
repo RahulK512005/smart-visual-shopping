@@ -1,68 +1,138 @@
 """
-AI/ML Visual Embedding Search Microservice (FAISS-powered).
+AI/ML Visual Embedding Search Microservice (OpenAI CLIP + FAISS).
 Provides:
-- GET /internal/health
-- POST /internal/search (Visual search over dense FAISS vectors)
-- GET /internal/more-like-this/{product_id}
+- GET /internal/health: Health & readiness check with model device and vector count.
+- POST /internal/search: Visual search using openai/clip-vit-base-patch32 and FAISS.
+- GET /internal/more-like-this/{product_id}: Nearest visual neighbors for an indexed product.
 """
+from contextlib import asynccontextmanager
 import io
 import time
 from typing import List, Optional
-from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile, status
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
+from backend.app.core.config import settings
+from backend.app.core.logging import logger
+from backend.app.schemas.ml_contract import MLSearchItemResult, MLSearchResponse
+from backend.app.services.clip_service import get_clip_service
 from backend.app.services.faiss_engine import faiss_engine
 
+# Maximum upload limit from settings (default 10MB)
+MAX_UPLOAD_BYTES = getattr(settings, "MAX_UPLOAD_SIZE_BYTES", 10 * 1024 * 1024)
+ALLOWED_MIME_TYPES = set(getattr(settings, "allowed_mime_types_list", ["image/jpeg", "image/png", "image/webp"]))
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Eagerly load CLIP model and verify FAISS index during startup
+    logger.info("Initializing CLIP embedding service...")
+    try:
+        clip_service = get_clip_service()
+        clip_service.load_model()
+        logger.info(f"CLIP model ready on device: {clip_service.device}")
+    except Exception as exc:
+        logger.error(f"Error loading CLIP model during startup: {exc}")
+
+    if not faiss_engine.is_ready:
+        logger.info("Loading / building FAISS vector index...")
+        faiss_engine.load_index()
+
+    logger.info(f"Visual embedding microservice ready. Total vectors: {faiss_engine.index.ntotal if faiss_engine.index else 0}")
+    yield
+    logger.info("Shutting down Visual Embedding Search Service...")
+
+
 app = FastAPI(
-    title="AI/ML Visual Embedding Search Service (FAISS)",
-    description="Vector search microservice using FAISS dense embeddings and visual feature extraction.",
+    title="AI/ML Visual Embedding Search Service (OpenAI CLIP + FAISS)",
+    description="Vector search microservice using openai/clip-vit-base-patch32 embeddings and FAISS similarity retrieval.",
     version="2.0.0",
+    lifespan=lifespan,
 )
-
-
-class MLSearchItemResult(BaseModel):
-    product_id: str
-    score: float
-    detection_label: Optional[str] = None
-    similarity_explanation: Optional[str] = None
-
-
-class MLSearchResponse(BaseModel):
-    results: List[MLSearchItemResult]
-    model_version: str
-    inference_time_ms: float
 
 
 @app.get("/internal/health")
 def health_check():
+    clip_service = get_clip_service()
+    index_size = faiss_engine.index.ntotal if faiss_engine.index else 0
+    is_ready = clip_service.is_ready and faiss_engine.is_ready
+
     return {
-        "status": "healthy",
+        "status": "healthy" if is_ready else "degraded",
         "service": "visual-embedding-inference",
-        "model": "faiss-clip-vit-hybrid",
+        "model": clip_service.model_id,
+        "device": str(clip_service.device),
         "version": "v2.0.0",
-        "index_size": faiss_engine.index.ntotal if faiss_engine.index else 0,
+        "index_size": index_size,
+        "index_ready": faiss_engine.is_ready,
     }
 
 
 @app.post("/internal/search", response_model=MLSearchResponse)
 async def search_visual_similarity(
-    file: UploadFile = File(...),
-    limit: int = Form(6),
-    category_filter: Optional[str] = Form(None),
+    file: UploadFile = File(..., description="Query image file (JPEG, PNG, WebP)"),
+    limit: int = Form(10, description="Max results to return"),
+    category_filter: Optional[str] = Form(None, description="Optional category filter"),
 ):
     start_time = time.time()
 
-    contents = await file.read()
-    image = Image.open(io.BytesIO(contents))
-    image.verify()
+    # 1. Validate MIME type
+    content_type = (file.content_type or "").lower()
+    if content_type and content_type not in ALLOWED_MIME_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Unsupported image type '{content_type}'. Allowed: {', '.join(sorted(ALLOWED_MIME_TYPES))}",
+        )
 
-    # Perform real FAISS search on the uploaded image
-    raw_results = faiss_engine.search_by_image_bytes(
-        image_bytes=contents,
-        limit=limit,
-        category_filter=category_filter,
-    )
+    # 2. Read bytes safely with size check
+    contents = await file.read()
+    if len(contents) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Uploaded file is empty.",
+        )
+    if len(contents) > MAX_UPLOAD_BYTES:
+        max_mb = MAX_UPLOAD_BYTES / (1024 * 1024)
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"File size exceeds maximum allowed limit of {max_mb:.1f}MB.",
+        )
+
+    # 3. Decode & verify image integrity with Pillow
+    try:
+        stream = io.BytesIO(contents)
+        with Image.open(stream) as img:
+            img.verify()
+    except (UnidentifiedImageError, OSError, SyntaxError, ValueError) as exc:
+        logger.warning(f"Failed image integrity check on ML service: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Uploaded file is corrupt or not a readable image.",
+        )
+
+    # 4. Verify vector index readiness
+    if not faiss_engine.is_ready:
+        if not faiss_engine.load_index() or not faiss_engine.is_ready:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Vector search index is not available. Please build the index.",
+            )
+
+    # 5. Perform real CLIP embedding extraction and FAISS similarity search
+    try:
+        raw_results = faiss_engine.search_by_image_bytes(
+            image_bytes=contents,
+            limit=limit,
+            category_filter=category_filter,
+        )
+    except Exception as exc:
+        logger.error(f"Inference error in search_by_image_bytes: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Visual embedding inference failed.",
+        )
 
     items = [
         MLSearchItemResult(
@@ -74,11 +144,12 @@ async def search_visual_similarity(
         for r in raw_results
     ]
 
-    inference_ms = round((time.time() - start_time) * 1000 + 12.0, 2)
+    inference_ms = round((time.time() - start_time) * 1000, 2)
+    clip_service = get_clip_service()
 
     return MLSearchResponse(
         results=items,
-        model_version="faiss-clip-vit-hybrid:v2.0.0",
+        model_version=f"{clip_service.model_id}:v2.0.0",
         inference_time_ms=inference_ms,
     )
 
@@ -86,6 +157,14 @@ async def search_visual_similarity(
 @app.get("/internal/more-like-this/{product_id}", response_model=MLSearchResponse)
 def more_like_this(product_id: str, limit: int = 6):
     start_time = time.time()
+
+    if not faiss_engine.is_ready:
+        if not faiss_engine.load_index() or not faiss_engine.is_ready:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Vector search index is not available. Please build the index.",
+            )
+
     raw_results = faiss_engine.search_more_like_this(product_id=product_id, limit=limit)
 
     items = [
@@ -97,11 +176,13 @@ def more_like_this(product_id: str, limit: int = 6):
         )
         for r in raw_results
     ]
-    inference_ms = round((time.time() - start_time) * 1000 + 4.5, 2)
+
+    inference_ms = round((time.time() - start_time) * 1000, 2)
+    clip_service = get_clip_service()
 
     return MLSearchResponse(
         results=items,
-        model_version="faiss-clip-vit-hybrid:v2.0.0",
+        model_version=f"{clip_service.model_id}:v2.0.0",
         inference_time_ms=inference_ms,
     )
 
