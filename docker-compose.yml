@@ -1,0 +1,75 @@
+version: "3.8"
+
+services:
+  # 1. AI/ML Visual Embedding Search Service (OpenAI CLIP + FAISS)
+  ml-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ml
+    container_name: smart-visual-ml
+    ports:
+      - "8001:8001"
+    environment:
+      - CLIP_MODEL_ID=openai/clip-vit-base-patch32
+      - CLIP_DEVICE=auto
+      - VECTOR_INDEX_PATH=/app/backend/app/services/catalog_faiss.index
+      - VECTOR_METADATA_PATH=/app/backend/app/services/catalog_meta.json
+    volumes:
+      - vector-data:/app/backend/app/services
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/internal/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  # 2. FastAPI Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: smart-visual-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=Smart Visual Shopping API
+      - APP_ENV=production
+      - DEBUG=false
+      - ML_SERVICE_URL=http://ml-service:8001
+      - DATABASE_URL=sqlite:///./smart_visual_shopping.db
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+      - VECTOR_INDEX_PATH=/app/backend/app/services/catalog_faiss.index
+      - VECTOR_METADATA_PATH=/app/backend/app/services/catalog_meta.json
+    depends_on:
+      ml-service:
+        condition: service_healthy
+    volumes:
+      - backend-db:/app
+      - vector-data:/app/backend/app/services:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # 3. Next.js Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    container_name: smart-visual-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  vector-data:
+  backend-db:
