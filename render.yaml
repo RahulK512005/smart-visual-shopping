@@ -41,8 +41,7 @@ services:
     buildCommand: npm ci && npm run build
     startCommand: npm run start
     envVars:
+      - key: NEXT_PUBLIC_API_BASE_URL
+        value: https://smart-visual-backend.onrender.com
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: smart-visual-backend
-          property: host
+        value: https://smart-visual-backend.onrender.com

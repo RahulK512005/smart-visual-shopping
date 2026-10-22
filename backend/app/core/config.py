@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./smart_visual_shopping.db"
 
     # CORS
-    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173"
+    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000,http://127.0.0.1:5173,https://smart-visual-frontend.onrender.com"
 
     # ML Service boundary
     ML_SERVICE_URL: str = "http://localhost:8001"
@@ -43,7 +43,10 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins_list(self) -> List[str]:
-        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        origins = [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        if "https://smart-visual-frontend.onrender.com" not in origins and "*" not in origins:
+            origins.append("https://smart-visual-frontend.onrender.com")
+        return origins
 
     @property
     def allowed_mime_types_list(self) -> List[str]:
