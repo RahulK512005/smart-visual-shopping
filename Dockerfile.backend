@@ -18,6 +18,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Pre-download and cache CLIP model weights into the container image
+RUN python -c "from transformers import CLIPModel, CLIPProcessor; \
+    print('Pre-caching openai/clip-vit-base-patch32 weights...'); \
+    CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32'); \
+    CLIPModel.from_pretrained('openai/clip-vit-base-patch32'); \
+    print('CLIP model cached successfully.')"
+
 # Copy backend application and seed data
 COPY backend/ backend/
 COPY seed_catalog.py .env.example .
@@ -27,4 +34,4 @@ EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=5s --start-period=15s --retries=3 \
     CMD curl -f http://localhost:8000/api/health || exit 1
 
-CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
+CMD ["sh", "-c", "exec uvicorn backend.app.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1"]

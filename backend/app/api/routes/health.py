@@ -22,8 +22,25 @@ def get_health(db: Session = Depends(get_db)):
     except Exception as e:
         db_status = f"unhealthy: {str(e)}"
 
-    ml_client = MLServiceClient()
-    ml_health = ml_client.check_health()
+    from backend.app.core.config import settings
+
+    if getattr(settings, "ML_SERVICE_URL", "").lower() in ("local", "internal", "embedded"):
+        from backend.app.services.faiss_engine import faiss_engine
+        from backend.app.services.clip_service import get_clip_service
+        clip_service = get_clip_service()
+        ml_health = {
+            "status": "reachable",
+            "details": {
+                "status": "healthy" if faiss_engine.is_ready else "degraded",
+                "service": "embedded-clip-faiss",
+                "model": clip_service.model_id,
+                "index_size": faiss_engine.index.ntotal if faiss_engine.index else 0,
+                "index_ready": faiss_engine.is_ready,
+            }
+        }
+    else:
+        ml_client = MLServiceClient()
+        ml_health = ml_client.check_health()
 
     is_healthy = db_status == "healthy"
     overall_status = "healthy" if (is_healthy and ml_health.get("status") == "reachable") else ("degraded" if is_healthy else "unhealthy")

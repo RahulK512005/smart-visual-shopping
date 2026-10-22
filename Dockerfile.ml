@@ -36,4 +36,4 @@ EXPOSE 8001
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=3 \
     CMD curl -f http://localhost:8001/internal/health || exit 1
 
-CMD ["uvicorn", "ml_service:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "2"]
+CMD ["sh", "-c", "exec uvicorn ml_service:app --host 0.0.0.0 --port ${PORT:-8001} --workers 1"]
