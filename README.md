@@ -56,7 +56,19 @@ Backend application for **Smart Visual Shopping**, providing visual search orche
 ## 3. Directory Structure
 
 ```
-smart visual shopping/
+├── .agents/                             # Antigravity agent customizations
+│   ├── rules/
+│   │   └── ponytail.md                  # Ponytail lazy senior dev ruleset
+│   ├── plugins/
+│   │   └── ponytail/                    # Bundled Ponytail plugin package
+│   └── skills/
+│       ├── ponytail/                    # Mode toggle & core lazy dev instructions
+│       ├── ponytail-audit/              # Whole-repo health & bloat audit skill
+│       ├── ponytail-review/             # PR & diff quality reviewer skill
+│       ├── ponytail-debt/               # Shortcut & deferral tracker skill
+│       ├── ponytail-gain/               # Benchmark impact scoreboard skill
+│       └── ponytail-help/               # Ponytail quick reference guide
+├── AGENTS.md                            # Always-on senior dev agent ruleset
 ├── backend/
 │   ├── app/
 │   │   ├── main.py                      # FastAPI application entrypoint & middleware
@@ -64,8 +76,8 @@ smart visual shopping/
 │   │   │   └── routes/
 │   │   │       ├── health.py            # GET /api/health
 │   │   │       ├── products.py          # GET /api/products, GET /api/products/{id}
-│   │   │       ├── visual_search.py     # POST /api/visual-search
-│   │   │       └── compatibility.py     # POST /api/compatibility/check
+│   │   │       ├── visual_search.py     # POST /api/visual-search, GET /more-like-this/{id}
+│   │   │       └── compatibility.py     # POST /api/compatibility/check & /identify-photo
 │   │   ├── core/
 │   │   │   ├── config.py                # Pydantic Settings & environment variables
 │   │   │   ├── errors.py                # Domain exceptions & error codes
@@ -74,7 +86,7 @@ smart visual shopping/
 │   │   │   ├── session.py               # Database engine & sessionmaker
 │   │   │   ├── models.py                # Product SQLAlchemy model
 │   │   │   ├── init_db.py               # Database initialization routine
-│   │   │   ├── seed_data.py             # 15 curated seed products with verified specs
+│   │   │   ├── seed_data.py             # Curated seed products with verified specs
 │   │   │   └── repositories/
 │   │   │       └── product_repo.py      # Parameterized catalog repository
 │   │   ├── schemas/
@@ -86,6 +98,8 @@ smart visual shopping/
 │   │   │   ├── product_service.py       # Catalog query orchestration
 │   │   │   ├── ml_client.py             # Internal ML HTTP client with timeouts
 │   │   │   ├── visual_search_orchestrator.py # Image validation & ML enrichment
+│   │   │   ├── faiss_engine.py          # Vector search engine with multi-image aggregation
+│   │   │   ├── clip_service.py          # OpenAI CLIP embedding inference service
 │   │   │   └── compatibility_service.py # Deterministic compatibility evaluator
 │   │   └── rules/
 │   │       ├── base.py                  # Base rule abstractions & RuleContext
@@ -102,11 +116,19 @@ smart visual shopping/
 │       ├── test_health.py               # Health & dependency status tests
 │       ├── test_products.py             # Catalog pagination & filtering tests
 │       ├── test_visual_search.py        # Visual search & rank preservation tests
-│       ├── test_compatibility.py        # Cross-category compatibility tests
+│       ├── test_compatibility.py        # Cross-category compatibility & upload tests
 │       ├── test_ml_client.py            # ML client timeout & error tests
+│       ├── test_clip_service.py         # CLIP model initialization & normalization tests
+│       ├── test_clip_integration.py     # Full-pipeline visual search integration tests
+│       ├── test_faiss_engine.py         # FAISS vector index & aggregation tests
 │       └── test_rules_engine.py         # Seed idempotency, display & audio tests
-├── mock_ml_service.py                   # Standalone mock ML microservice for local dev
+├── frontend/                            # Next.js 15 + React 19 web application
+│   ├── src/                             # App router, components, context, and API client
+│   └── tests/                           # Vitest frontend component & contract tests
+├── mock_ml_service.py                   # Standalone CLIP + FAISS microservice (port 8001)
+├── run_all.py                           # Full stack launcher (ML + Backend + Frontend)
 ├── seed_catalog.py                      # Standalone catalog seeder runner
+├── build_vector_index.py                # FAISS vector index generator script
 ├── requirements.txt                     # Pinned project dependencies
 ├── .env.example                         # Environment configuration template
 └── README.md                            # Comprehensive technical documentation
@@ -174,16 +196,38 @@ uvicorn mock_ml_service:app --port 8001 --reload
 
 ## 6. Running Automated Tests
 
-Run the complete test suite with verbose output:
+### Backend Test Suite (Pytest)
+Run all 59 backend integration, vector index, and rule verification tests:
 ```bash
-pytest -v
+# From repository root
+pytest -v backend/tests
+
+# Or using Python runner
+py -m pytest backend/tests -v
 ```
-All 30 unit and integration tests validate:
-- Product queries, filtering, and 404 responses.
-- Image size limits, format restrictions, and header validation.
-- External ML service timeouts, 502/503 errors, and rank ordering preservation.
-- Compatible, incompatible, and cannot_verify outcomes across all categories.
-- Database initialization and seed idempotency.
+The backend test suite validates:
+- **Product Catalog**: Pagination, category/brand/price filtering, and 404 responses.
+- **Image Upload Validation**: MIME type checks, 10MB limits, Pillow header integrity, and empty/corrupt file rejection (`/visual-search` and `/compatibility/identify-photo`).
+- **ML Boundary & Resilience**: External ML timeouts, connection refused, 500 error propagation, and non-blocking threadpool dispatch.
+- **Vector Search & Aggregation**: FAISS `IndexFlatIP` normalization, multi-image per-product max-score deduplication, and category restriction.
+- **Compatibility Engine**: All category pair rules, deterministic outcomes (`compatible`, `incompatible`, `cannot_verify`), and unverified specification handling.
+
+### Frontend Test Suite (Vitest)
+Run the 19 frontend unit and React component tests:
+```bash
+cd frontend
+npm test
+```
+The frontend test suite validates:
+- API payload normalization and error handling (`tests/normalize.test.ts`).
+- Backend HTTP contracts and exception mapping (`tests/backendContract.test.ts`).
+- Image upload drag-and-drop & file type constraints (`tests/ImageUploader.test.tsx`).
+- Visual search result cards, match percentage badges, and compatibility status indicators (`tests/ResultView.test.tsx`).
+
+### Run Both Simultaneously
+```bash
+npm test
+```
 
 ---
 
@@ -284,6 +328,15 @@ curl -X POST "http://localhost:8000/api/visual-search" \
 }
 ```
 
+#### More Like This (Visual Neighbors)
+`GET /api/visual-search/more-like-this/{product_id}`
+
+Retrieves visually similar neighbor products using dense FAISS embeddings while automatically excluding the source product from the recommendation list.
+
+```bash
+curl -X GET "http://localhost:8000/api/visual-search/more-like-this/prod_apple_iphone_15_pro?limit=4"
+```
+
 ---
 
 ### 4. Compatibility Check
@@ -364,6 +417,39 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
       "product_name": "Generic Mini 4-in-1 Hub",
       "missing_property": "output_ports",
       "impact_reason": "Cannot verify connector interface compatibility"
+    }
+  ]
+}
+```
+
+---
+
+### 5. Identify Owned Device From Photo
+`POST /api/compatibility/identify-photo`
+
+Identifies what device the user owns from a single camera photo or upload. Validates image size and headers, extracts visual embeddings, and returns matching catalog candidates with similarity confidence scores.
+
+```bash
+curl -X POST "http://localhost:8000/api/compatibility/identify-photo" \
+  -F "file=@my_phone.jpg;type=image/jpeg"
+```
+
+**Response:**
+```json
+{
+  "identified": {
+    "id": "prod_apple_iphone_15_pro",
+    "name": "Apple iPhone 15 Pro (128GB, Natural Titanium)",
+    "brand": "Apple",
+    "model": "iPhone 15 Pro",
+    "category": "smartphone"
+  },
+  "confidence": 0.9421,
+  "candidates": [
+    {
+      "product": { "id": "prod_apple_iphone_15_pro", "name": "Apple iPhone 15 Pro..." },
+      "score": 0.9421,
+      "explanation": "High visual affinity with smartphone silhouette (94% visual match)"
     }
   ]
 }
@@ -462,4 +548,31 @@ npm run dev
 - **Backend API & Swagger Docs**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - **Backend Health Check**: [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
 - **AI/ML Service Health**: [http://127.0.0.1:8001/internal/health](http://127.0.0.1:8001/internal/health)
+
+---
+
+## 11. AI Pair Programming & Ponytail Integration
+
+This project adheres to **[Ponytail](https://github.com/DietrichGebert/ponytail.git)**: lazy senior developer rules that prioritize the simplest, leanest solution with minimal code diffs and strict correctness guarantees.
+
+### The Decision Ladder
+Before introducing new code or dependencies, AI agents (Antigravity, Claude Code, Codex, Cursor) follow this hierarchy:
+1. **YAGNI**: Does this feature or abstraction need to exist? Skip unasked-for flexibility.
+2. **Reuse Existing Patterns**: Use existing helpers, repositories, and models in the project.
+3. **Standard Library / Native**: Prefer Python/Web native features over external libraries.
+4. **Existing Dependencies**: Avoid adding new packages for a few lines of logic.
+5. **Concise & Readable**: Favor readable one-liners over multi-file boilerplate.
+6. **Minimum Complete Diff**: Make the smallest working change that includes tests for non-trivial logic.
+
+### Installed Skills & Slash Commands (`.agents/skills/`)
+| Command | Skill | Description |
+|---|---|---|
+| `/ponytail [lite\|full\|ultra\|off]` | `ponytail` | Switches agent mode intensity (`lite`: names smaller alternatives; `full`: default lean senior dev; `ultra`: aggressively challenges requests). |
+| `/ponytail-audit` | `ponytail-audit` | Performs a ranked whole-repository health, bloat, and security audit. |
+| `/ponytail-review` | `ponytail-review` | Senior developer review of diffs and PRs (correctness, safety, scale, missing tests, lean cuts). |
+| `/ponytail-debt` | `ponytail-debt` | Scans for `shortcut:` / `ponytail:` comments into a ledger to prevent technical debt rot. |
+| `/ponytail-gain` | `ponytail-gain` | Displays measured benchmark savings (lines of code, token usage, runtime speed). |
+| `/ponytail-help` | `ponytail-help` | Reference card for commands, levels, and environment variables. |
+
+Customization files reside in `AGENTS.md` and `.agents/rules/ponytail.md` for team-wide version control and automatic discovery across AI coding tools.
 
