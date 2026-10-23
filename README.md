@@ -57,7 +57,7 @@ Backend application for **Smart Visual Shopping**, providing visual search orche
 ## 3. Directory Structure
 
 ```
-├── .agents/                             # Antigravity agent customizations
+├── .agents/
 │   ├── rules/
 │   │   └── ponytail.md                  # Ponytail lazy senior dev ruleset
 │   ├── plugins/
