@@ -132,3 +132,18 @@ def test_compatibility_product_not_found(client):
     assert response.status_code == 404
     data = response.json()
     assert data["error_code"] == "PRODUCT_NOT_FOUND"
+
+
+def test_identify_photo_corrupt_upload_rejected(client):
+    files = {"file": ("corrupt.jpg", b"not-a-real-image", "image/jpeg")}
+    response = client.post("/api/compatibility/identify-photo", files=files)
+    assert response.status_code == 400
+    assert response.json()["error_code"] == "CORRUPT_IMAGE"
+
+
+def test_identify_photo_empty_upload_rejected(client):
+    files = {"file": ("empty.jpg", b"", "image/jpeg")}
+    response = client.post("/api/compatibility/identify-photo", files=files)
+    assert response.status_code == 400
+    assert response.json()["error_code"] == "EMPTY_FILE"
+

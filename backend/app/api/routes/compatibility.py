@@ -45,11 +45,30 @@ async def identify_owned_photo(
     POST /api/compatibility/identify-photo
     Identifies the product the user owns from an uploaded photo using FAISS vector search.
     """
+    from io import BytesIO
+    from PIL import Image
+    from backend.app.core.config import settings
+    from backend.app.core.errors import InvalidImageError
     from backend.app.services.faiss_engine import faiss_engine
     from backend.app.db.repositories.product_repo import ProductRepository
     from backend.app.schemas.product import ProductRead
 
+    content_type = (file.content_type or "").lower()
+    if content_type and content_type not in settings.allowed_mime_types_list:
+        raise InvalidImageError(f"Unsupported image type '{content_type}'.", error_code="UNSUPPORTED_MEDIA_TYPE")
+
     contents = await file.read()
+    if not contents:
+        raise InvalidImageError("Uploaded file is empty.", error_code="EMPTY_FILE")
+    if len(contents) > settings.MAX_UPLOAD_SIZE_BYTES:
+        raise InvalidImageError("File size exceeds maximum allowed limit.", error_code="FILE_TOO_LARGE")
+
+    try:
+        with Image.open(BytesIO(contents)) as img:
+            img.verify()
+    except Exception:
+        raise InvalidImageError("Uploaded file is corrupt or not a readable image.", error_code="CORRUPT_IMAGE")
+
     raw_results = faiss_engine.search_by_image_bytes(contents, limit=3)
     if not raw_results:
         return {"identified": None, "candidates": []}

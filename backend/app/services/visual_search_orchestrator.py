@@ -114,7 +114,9 @@ class VisualSearchOrchestrator:
                 inference_time_ms=18.0,
             )
         else:
-            ml_response = self.ml_client.search_by_image(
+            from starlette.concurrency import run_in_threadpool
+            ml_response = await run_in_threadpool(
+                self.ml_client.search_by_image,
                 image_bytes=file_bytes,
                 filename=upload_file.filename or "query.jpg",
                 content_type=content_type,

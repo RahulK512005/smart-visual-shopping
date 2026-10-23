@@ -1,0 +1,6 @@
+{
+  "name": "ponytail",
+  "description": "Lazy senior dev mode. Forces the smallest solution that works: YAGNI, stdlib first, one line over fifty.",
+  "version": "5.3.2",
+  "repository": "https://github.com/DietrichGebert/ponytail.git"
+}

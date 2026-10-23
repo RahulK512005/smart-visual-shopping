@@ -197,18 +197,6 @@ class FaissVisualSearchEngine:
                 best_scores[pid] = raw_score
                 product_entries[pid] = entry
 
-        # Fallback if category filter eliminated all matches
-        if not best_scores and category_filter:
-            for score, idx in zip(scores[0], indices[0]):
-                if idx < 0 or idx >= len(self.index_entries):
-                    continue
-                entry = self.index_entries[idx]
-                pid = entry["product_id"]
-                raw_score = float(score)
-                if pid not in best_scores or raw_score > best_scores[pid]:
-                    best_scores[pid] = raw_score
-                    product_entries[pid] = entry
-
         # Sort products by best score descending
         sorted_products = sorted(best_scores.items(), key=lambda item: item[1], reverse=True)
 
