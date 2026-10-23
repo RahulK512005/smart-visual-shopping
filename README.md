@@ -35,6 +35,7 @@ Backend application for **Smart Visual Shopping**, providing visual search orche
 ```
 
 ### AI/ML Boundary
+
 - **Backend Responsibility**: Request validation, safe image buffering, invoking the AI/ML service via an explicit client, preserving ML ranking order, enriching candidate IDs with verified catalog records, and executing deterministic compatibility evaluation.
 - **AI/ML Service Responsibility**: Image embeddings (CLIP/SigLIP), vector index search (FAISS), and returning ranked candidate product IDs with similarity scores.
 - **No Generative Guesswork**: The backend owns compatibility rules deterministically. Compatibility decisions are never delegated to an LLM or ML classifier. If required specifications are unverified or absent, the engine reports `cannot_verify`.
@@ -139,13 +140,17 @@ Backend application for **Smart Visual Shopping**, providing visual search orche
 ## 4. Setup & Installation
 
 ### Step 1: Create Virtual Environment
+
 Using `uv`:
+
 ```bash
 uv venv .venv
 .venv\Scripts\activate
 uv pip install -r requirements.txt
 ```
+
 Or standard Python:
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
@@ -153,7 +158,9 @@ pip install -r requirements.txt
 ```
 
 ### Step 2: Configure Environment
+
 Copy the example environment configuration:
+
 ```bash
 cp .env.example .env
 ```
@@ -168,7 +175,9 @@ Key environment settings in `.env`:
 | `CORS_ORIGINS` | `http://localhost:3000,...` | Allowed frontend origins |
 
 ### Step 3: Seed Catalog Data
+
 Initialize the database tables and populate 15 curated products:
+
 ```bash
 python seed_catalog.py
 ```
@@ -178,16 +187,22 @@ python seed_catalog.py
 ## 5. Running Locally
 
 ### Starting the Backend API
+
 Run with Uvicorn:
+
 ```bash
 uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
 Interactive OpenAPI documentation is available at:
+
 - Swagger UI: `http://localhost:8000/docs`
 - ReDoc: `http://localhost:8000/redoc`
 
 ### Starting the Mock ML Service (for Local Development)
+
 To test visual search locally without needing the AI/ML team's GPU infrastructure:
+
 ```bash
 uvicorn mock_ml_service:app --port 8001 --reload
 ```
@@ -197,7 +212,9 @@ uvicorn mock_ml_service:app --port 8001 --reload
 ## 6. Running Automated Tests
 
 ### Backend Test Suite (Pytest)
+
 Run all 59 backend integration, vector index, and rule verification tests:
+
 ```bash
 # From repository root
 pytest -v backend/tests
@@ -205,7 +222,9 @@ pytest -v backend/tests
 # Or using Python runner
 py -m pytest backend/tests -v
 ```
+
 The backend test suite validates:
+
 - **Product Catalog**: Pagination, category/brand/price filtering, and 404 responses.
 - **Image Upload Validation**: MIME type checks, 10MB limits, Pillow header integrity, and empty/corrupt file rejection (`/visual-search` and `/compatibility/identify-photo`).
 - **ML Boundary & Resilience**: External ML timeouts, connection refused, 500 error propagation, and non-blocking threadpool dispatch.
@@ -213,18 +232,23 @@ The backend test suite validates:
 - **Compatibility Engine**: All category pair rules, deterministic outcomes (`compatible`, `incompatible`, `cannot_verify`), and unverified specification handling.
 
 ### Frontend Test Suite (Vitest)
+
 Run the 19 frontend unit and React component tests:
+
 ```bash
 cd frontend
 npm test
 ```
+
 The frontend test suite validates:
+
 - API payload normalization and error handling (`tests/normalize.test.ts`).
 - Backend HTTP contracts and exception mapping (`tests/backendContract.test.ts`).
 - Image upload drag-and-drop & file type constraints (`tests/ImageUploader.test.tsx`).
 - Visual search result cards, match percentage badges, and compatibility status indicators (`tests/ResultView.test.tsx`).
 
 ### Run Both Simultaneously
+
 ```bash
 npm test
 ```
@@ -234,12 +258,15 @@ npm test
 ## 7. API Endpoints & Sample Requests
 
 ### 1. Health Check
+
 `GET /api/health`
 
 ```bash
 curl -X GET "http://localhost:8000/api/health"
 ```
+
 **Response:**
+
 ```json
 {
   "status": "healthy",
@@ -262,9 +289,11 @@ curl -X GET "http://localhost:8000/api/health"
 ---
 
 ### 2. Product Catalog
+
 `GET /api/products`
 
 **Query Parameters:**
+
 - `category` (optional, e.g. `smartphone`, `charger`, `monitor`)
 - `brand` (optional, e.g. `Apple`, `Samsung`, `Dell`, `Anker`)
 - `q` (optional full-text search)
@@ -284,6 +313,7 @@ curl -X GET "http://localhost:8000/api/products/prod_apple_iphone_15_pro"
 ---
 
 ### 3. Visual Search
+
 `POST /api/visual-search`
 
 Uploads an image, contacts the ML service for similarity scoring, and returns ranked products with full catalog details.
@@ -295,6 +325,7 @@ curl -X POST "http://localhost:8000/api/visual-search" \
 ```
 
 **Response:**
+
 ```json
 {
   "query_image": {
@@ -318,7 +349,11 @@ curl -X POST "http://localhost:8000/api/visual-search" \
         "category": "smartphone",
         "specifications": {
           "port_type": "USB-C",
-          "charging_protocols": ["USB Power Delivery (PD 3.0)", "Qi2", "MagSafe"],
+          "charging_protocols": [
+            "USB Power Delivery (PD 3.0)",
+            "Qi2",
+            "MagSafe"
+          ],
           "max_charging_wattage_w": 27.0
         },
         "verification_status": "verified"
@@ -329,6 +364,7 @@ curl -X POST "http://localhost:8000/api/visual-search" \
 ```
 
 #### More Like This (Visual Neighbors)
+
 `GET /api/visual-search/more-like-this/{product_id}`
 
 Retrieves visually similar neighbor products using dense FAISS embeddings while automatically excluding the source product from the recommendation list.
@@ -340,11 +376,13 @@ curl -X GET "http://localhost:8000/api/visual-search/more-like-this/prod_apple_i
 ---
 
 ### 4. Compatibility Check
+
 `POST /api/compatibility/check`
 
 Evaluates deterministic compatibility between the user's existing device and a candidate accessory.
 
 #### Example 1: Incompatible Connector (iPhone 15 Pro + Lightning Cable)
+
 ```bash
 curl -X POST "http://localhost:8000/api/compatibility/check" \
   -H "Content-Type: application/json" \
@@ -353,7 +391,9 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
     "candidate_product_id": "prod_anker_lightning_cable_mfi"
   }'
 ```
+
 **Response:**
+
 ```json
 {
   "verdict": "incompatible",
@@ -380,6 +420,7 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
 ```
 
 #### Example 2: Incompatible Ecosystem (Galaxy S24 Ultra + Apple Watch)
+
 ```bash
 curl -X POST "http://localhost:8000/api/compatibility/check" \
   -H "Content-Type: application/json" \
@@ -388,7 +429,9 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
     "candidate_product_id": "prod_apple_watch_series_9"
   }'
 ```
+
 **Response:**
+
 ```json
 {
   "verdict": "incompatible",
@@ -397,6 +440,7 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
 ```
 
 #### Example 3: Missing Specifications (Phone + Unverified Hub)
+
 ```bash
 curl -X POST "http://localhost:8000/api/compatibility/check" \
   -H "Content-Type: application/json" \
@@ -405,7 +449,9 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
     "candidate_product_id": "prod_generic_usb_hub_unverified"
   }'
 ```
+
 **Response:**
+
 ```json
 {
   "verdict": "cannot_verify",
@@ -425,6 +471,7 @@ curl -X POST "http://localhost:8000/api/compatibility/check" \
 ---
 
 ### 5. Identify Owned Device From Photo
+
 `POST /api/compatibility/identify-photo`
 
 Identifies what device the user owns from a single camera photo or upload. Validates image size and headers, extracts visual embeddings, and returns matching catalog candidates with similarity confidence scores.
@@ -435,6 +482,7 @@ curl -X POST "http://localhost:8000/api/compatibility/identify-photo" \
 ```
 
 **Response:**
+
 ```json
 {
   "identified": {
@@ -447,7 +495,10 @@ curl -X POST "http://localhost:8000/api/compatibility/identify-photo" \
   "confidence": 0.9421,
   "candidates": [
     {
-      "product": { "id": "prod_apple_iphone_15_pro", "name": "Apple iPhone 15 Pro..." },
+      "product": {
+        "id": "prod_apple_iphone_15_pro",
+        "name": "Apple iPhone 15 Pro..."
+      },
       "score": 0.9421,
       "explanation": "High visual affinity with smartphone silhouette (94% visual match)"
     }
@@ -459,15 +510,15 @@ curl -X POST "http://localhost:8000/api/compatibility/identify-photo" \
 
 ## 8. Summary of Implemented Compatibility Rules
 
-| Category Pair | Properties Evaluated | Deterministic Decision Logic |
-|---|---|---|
-| **Charger ↔ Device** | `output_ports`, `charging_protocols`, `max_output_wattage_w`, `min_recommended_charger_w` | Fails if charger port cannot connect to device or wattage is below minimum device requirement. Warns if below maximum fast-charging rate. |
-| **Cable ↔ Device** | `source_connector`, `target_connector`, `max_supported_wattage_w`, `mfi_certified` | Fails if connector ends (e.g. Lightning vs USB-C) do not mate. Warns if cable wattage throttles laptop power. |
-| **Monitor ↔ Computer** | `video_inputs`, `video_out_support`, `usb_c_power_delivery_w` | Validates DP Alt Mode / HDMI / Thunderbolt match. Verifies monitor reverse power delivery satisfies laptop wattage. |
-| **Smartwatch ↔ Phone** | `compatible_os`, `min_os_version`, `bluetooth_version` | Enforces iOS vs Android ecosystem boundaries. Checks OS release version numbers. |
-| **Case ↔ Phone** | `target_device_model`, `dimensions_mm` | Validates exact model name match and sub-millimeter physical dimension tolerance. |
-| **Audio ↔ Device** | `bluetooth_version`, `headphone_jack_3_5mm`, `bluetooth_codecs` | Verifies Bluetooth radio and validates 3.5mm jack requirement against host chassis. |
-| **Unverified / Missing Specs** | Any required technical attribute | Emits `cannot_verify` with explicit missing attribute notices; never guesses or hallucinates. |
+| Category Pair                  | Properties Evaluated                                                                      | Deterministic Decision Logic                                                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **Charger ↔ Device**           | `output_ports`, `charging_protocols`, `max_output_wattage_w`, `min_recommended_charger_w` | Fails if charger port cannot connect to device or wattage is below minimum device requirement. Warns if below maximum fast-charging rate. |
+| **Cable ↔ Device**             | `source_connector`, `target_connector`, `max_supported_wattage_w`, `mfi_certified`        | Fails if connector ends (e.g. Lightning vs USB-C) do not mate. Warns if cable wattage throttles laptop power.                             |
+| **Monitor ↔ Computer**         | `video_inputs`, `video_out_support`, `usb_c_power_delivery_w`                             | Validates DP Alt Mode / HDMI / Thunderbolt match. Verifies monitor reverse power delivery satisfies laptop wattage.                       |
+| **Smartwatch ↔ Phone**         | `compatible_os`, `min_os_version`, `bluetooth_version`                                    | Enforces iOS vs Android ecosystem boundaries. Checks OS release version numbers.                                                          |
+| **Case ↔ Phone**               | `target_device_model`, `dimensions_mm`                                                    | Validates exact model name match and sub-millimeter physical dimension tolerance.                                                         |
+| **Audio ↔ Device**             | `bluetooth_version`, `headphone_jack_3_5mm`, `bluetooth_codecs`                           | Verifies Bluetooth radio and validates 3.5mm jack requirement against host chassis.                                                       |
+| **Unverified / Missing Specs** | Any required technical attribute                                                          | Emits `cannot_verify` with explicit missing attribute notices; never guesses or hallucinates.                                             |
 
 ---
 
@@ -476,6 +527,7 @@ curl -X POST "http://localhost:8000/api/compatibility/identify-photo" \
 The backend is integrated with **openai/clip-vit-base-patch32** via Hugging Face Transformers and **FAISS** vector search.
 
 ### Architecture & Request Flow
+
 1. **User Upload**: A query image (JPEG, PNG, WebP) is received by `POST /api/visual-search` or `POST /internal/search`.
 2. **Safe Decoding & Validation**: Pillow verifies image headers and protects against decompression bombs (`Image.MAX_IMAGE_PIXELS = 20_000_000`). Images are converted to standard RGB.
 3. **Embedding Generation**: The pretrained `CLIPModel` and `CLIPProcessor` extract a 512-dimensional visual embedding inside `torch.inference_mode()`. The embedding is L2-normalized so inner products represent exact cosine similarity.
@@ -484,20 +536,27 @@ The backend is integrated with **openai/clip-vit-base-patch32** via Hugging Face
 6. **Catalog Enrichment**: Matching candidate IDs are retrieved from the database, enriched with full specifications, and returned preserving the exact rank ordering.
 
 ### Building & Refreshing the Vector Index
+
 To build or update the FAISS vector index from all products in the database:
+
 ```bash
 py build_vector_index.py
 ```
+
 Or via module execution:
+
 ```bash
 py -m backend.app.services.build_index
 ```
+
 Features of the indexing pipeline:
+
 - **Resilient Image Fetching**: Safe HTTP client with timeouts, size limits, and format verification; broken/404 image URLs are logged as warnings without crashing the indexer.
 - **Embedding Cache**: Caches embeddings in `embedding_cache.pkl` by URL/hash so unchanged images are never re-downloaded or re-embedded.
 - **Metadata Persistence**: Atomically writes `catalog_faiss.index` and `catalog_meta.json` with versioning, model ID, creation timestamp, and entry-to-product mapping.
 
 ### Configuration & Environment Variables
+
 Configured in `.env`:
 | Key | Default | Description |
 |---|---|---|
@@ -509,8 +568,10 @@ Configured in `.env`:
 | `MAX_IMAGE_UPLOAD_MB` | `10` | Maximum upload size in megabytes |
 
 ### Model Download & Caching
+
 Weights are cached in the standard Hugging Face directory (`~/.cache/huggingface/hub/`).
 To pre-download the model weights offline or during container build:
+
 ```python
 from transformers import CLIPModel, CLIPProcessor
 CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
@@ -518,6 +579,7 @@ CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 ```
 
 ### Important Model Limitations
+
 - **Visual Similarity vs Compatibility**: CLIP visual embeddings identify similar forms, silhouettes, colors, and design characteristics. A high visual similarity score is **not** proof of technical compatibility or brand authenticity.
 - **Deterministic Separation**: Compatibility validation is handled strictly by the backend deterministic rules engine (`backend/app/rules`), never by visual embeddings or generative models.
 
@@ -550,29 +612,3 @@ npm run dev
 - **AI/ML Service Health**: [http://127.0.0.1:8001/internal/health](http://127.0.0.1:8001/internal/health)
 
 ---
-
-## 11. AI Pair Programming & Ponytail Integration
-
-This project adheres to **[Ponytail](https://github.com/DietrichGebert/ponytail.git)**: lazy senior developer rules that prioritize the simplest, leanest solution with minimal code diffs and strict correctness guarantees.
-
-### The Decision Ladder
-Before introducing new code or dependencies, AI agents (Antigravity, Claude Code, Codex, Cursor) follow this hierarchy:
-1. **YAGNI**: Does this feature or abstraction need to exist? Skip unasked-for flexibility.
-2. **Reuse Existing Patterns**: Use existing helpers, repositories, and models in the project.
-3. **Standard Library / Native**: Prefer Python/Web native features over external libraries.
-4. **Existing Dependencies**: Avoid adding new packages for a few lines of logic.
-5. **Concise & Readable**: Favor readable one-liners over multi-file boilerplate.
-6. **Minimum Complete Diff**: Make the smallest working change that includes tests for non-trivial logic.
-
-### Installed Skills & Slash Commands (`.agents/skills/`)
-| Command | Skill | Description |
-|---|---|---|
-| `/ponytail [lite\|full\|ultra\|off]` | `ponytail` | Switches agent mode intensity (`lite`: names smaller alternatives; `full`: default lean senior dev; `ultra`: aggressively challenges requests). |
-| `/ponytail-audit` | `ponytail-audit` | Performs a ranked whole-repository health, bloat, and security audit. |
-| `/ponytail-review` | `ponytail-review` | Senior developer review of diffs and PRs (correctness, safety, scale, missing tests, lean cuts). |
-| `/ponytail-debt` | `ponytail-debt` | Scans for `shortcut:` / `ponytail:` comments into a ledger to prevent technical debt rot. |
-| `/ponytail-gain` | `ponytail-gain` | Displays measured benchmark savings (lines of code, token usage, runtime speed). |
-| `/ponytail-help` | `ponytail-help` | Reference card for commands, levels, and environment variables. |
-
-Customization files reside in `AGENTS.md` and `.agents/rules/ponytail.md` for team-wide version control and automatic discovery across AI coding tools.
-
