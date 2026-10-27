@@ -93,9 +93,11 @@ class VisualSearchOrchestrator:
             from backend.app.schemas.ml_contract import MLSearchItemResult, MLSearchResponse
             from backend.app.services.faiss_engine import faiss_engine
             from backend.app.services.clip_service import get_clip_service
+            from starlette.concurrency import run_in_threadpool
 
             clip_service = get_clip_service()
-            raw_results = faiss_engine.search_by_image_bytes(
+            raw_results = await run_in_threadpool(
+                faiss_engine.search_by_image_bytes,
                 image_bytes=file_bytes,
                 limit=limit,
                 category_filter=category_filter,

@@ -21,6 +21,13 @@ async def lifespan(app: FastAPI):
         count = init_db()
         logger.info(f"Database ready with {count} catalog products.")
         from backend.app.services.faiss_engine import faiss_engine
+        from backend.app.services.clip_service import get_clip_service
+
+        if getattr(settings, "ML_SERVICE_URL", "").lower() in ("local", "internal", "embedded"):
+            clip_service = get_clip_service()
+            clip_service.load_model()
+            logger.info("CLIP model pre-loaded successfully during startup.")
+
         if faiss_engine.is_ready:
             logger.info(f"FAISS vector index ready with {faiss_engine.index.ntotal} vectors.")
         else:

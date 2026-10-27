@@ -69,7 +69,8 @@ async def identify_owned_photo(
     except Exception:
         raise InvalidImageError("Uploaded file is corrupt or not a readable image.", error_code="CORRUPT_IMAGE")
 
-    raw_results = faiss_engine.search_by_image_bytes(contents, limit=3)
+    from starlette.concurrency import run_in_threadpool
+    raw_results = await run_in_threadpool(faiss_engine.search_by_image_bytes, contents, limit=3)
     if not raw_results:
         return {"identified": None, "candidates": []}
 

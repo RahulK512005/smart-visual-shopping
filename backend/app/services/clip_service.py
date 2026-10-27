@@ -53,8 +53,16 @@ class ClipEmbeddingService:
 
         logger.info(f"Loading CLIP model '{self.model_id}' on device: {self.device}")
         try:
-            self.processor = CLIPProcessor.from_pretrained(self.model_id)
-            self.model = CLIPModel.from_pretrained(self.model_id)
+            try:
+                self.processor = CLIPProcessor.from_pretrained(self.model_id, local_files_only=True)
+                self.model = CLIPModel.from_pretrained(self.model_id, local_files_only=True)
+            except Exception:
+                self.processor = CLIPProcessor.from_pretrained(self.model_id)
+                self.model = CLIPModel.from_pretrained(self.model_id)
+
+            if self.device.type == "cpu":
+                torch.set_num_threads(min(4, max(1, os.cpu_count() or 1)))
+
             self.model.to(self.device)
             self.model.eval()
             self._is_initialized = True
@@ -92,6 +100,9 @@ class ClipEmbeddingService:
             stream.seek(0)
             img = Image.open(stream)
             rgb_image = img.convert("RGB")
+            # Downscale oversized images (CLIP operates on 224x224) to save CPU/memory
+            if max(rgb_image.size) > 1024:
+                rgb_image.thumbnail((1024, 1024), Image.Resampling.BILINEAR)
             # Force loading pixel data before closing stream
             rgb_image.load()
             return rgb_image

@@ -31,10 +31,46 @@ const HTTP_HINTS: Record<number, string> = {
   503: "The service is unavailable right now. Try again shortly.",
 };
 
-async function request<T>(path: string, parse: (raw: unknown) => T, init: RequestInit = {}, signal?: AbortSignal): Promise<T> {
+async function prepareImageForUpload(file: File): Promise<Blob | File> {
+  if (typeof window === "undefined" || typeof createImageBitmap === "undefined" || !file.type.startsWith("image/") || file.size < 600 * 1024) {
+    return file;
+  }
+  try {
+    const bitmap = await createImageBitmap(file);
+    const maxDim = 1024;
+    let { width, height } = bitmap;
+    if (width <= maxDim && height <= maxDim) {
+      bitmap.close();
+      return file;
+    }
+    if (width > height) {
+      height = Math.round((height * maxDim) / width);
+      width = maxDim;
+    } else {
+      width = Math.round((width * maxDim) / height);
+      height = maxDim;
+    }
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      bitmap.close();
+      return file;
+    }
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.85));
+    return blob || file;
+  } catch {
+    return file;
+  }
+}
+
+async function request<T>(path: string, parse: (raw: unknown) => T, init: RequestInit = {}, signal?: AbortSignal, timeoutMs: number = API_TIMEOUT_MS): Promise<T> {
   const controller = new AbortController();
   let timedOut = false;
-  const timer = setTimeout(() => { timedOut = true; controller.abort(); }, API_TIMEOUT_MS);
+  const timer = setTimeout(() => { timedOut = true; controller.abort(); }, timeoutMs);
   signal?.addEventListener("abort", () => controller.abort());
   try {
     const res = await fetch(`${API_BASE_URL}${path}`, { ...init, signal: controller.signal });
@@ -72,10 +108,11 @@ export const getProducts = (signal?: AbortSignal): Promise<Product[]> =>
 export const getProduct = (id: string, signal?: AbortSignal): Promise<Product> =>
   request(`/api/products/${encodeURIComponent(id)}`, normalizeProduct, {}, signal);
 
-export const visualSearch = (image: File, signal?: AbortSignal): Promise<SearchResult[]> => {
+export const visualSearch = async (image: File, signal?: AbortSignal): Promise<SearchResult[]> => {
+  const prepared = await prepareImageForUpload(image);
   const form = new FormData();
-  form.append("file", image); // backend: UploadFile field named "file"
-  return request("/api/visual-search?limit=6", normalizeSearchResults, { method: "POST", body: form }, signal);
+  form.append("file", prepared, image.name || "query.jpg");
+  return request("/api/visual-search?limit=6", normalizeSearchResults, { method: "POST", body: form }, signal, 90000);
 };
 
 export const searchMoreLikeThis = (productId: string, signal?: AbortSignal): Promise<SearchResult[]> =>
@@ -99,9 +136,10 @@ interface RawPhotoIdentifyResponse {
   candidates?: RawCandidateItem[];
 }
 
-export const identifyOwnedPhoto = (image: File, signal?: AbortSignal): Promise<IdentifyPhotoResponse> => {
+export const identifyOwnedPhoto = async (image: File, signal?: AbortSignal): Promise<IdentifyPhotoResponse> => {
+  const prepared = await prepareImageForUpload(image);
   const form = new FormData();
-  form.append("file", image);
+  form.append("file", prepared, image.name || "query.jpg");
   return request("/api/compatibility/identify-photo", (raw: unknown) => {
     const data = raw as RawPhotoIdentifyResponse;
     return {
@@ -115,7 +153,7 @@ export const identifyOwnedPhoto = (image: File, signal?: AbortSignal): Promise<I
           }))
         : [],
     };
-  }, { method: "POST", body: form }, signal);
+  }, { method: "POST", body: form }, signal, 90000);
 };
 
 
