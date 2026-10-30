@@ -29,7 +29,7 @@ export function Header() {
     <header
       className={`sticky top-0 z-40 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/5 py-2"
+          ? "py-2"
           : "bg-transparent py-4"
       }`}
       style={scrolled ? { background: "rgba(10,10,15,.85)", backdropFilter: "blur(20px)" } : undefined}
