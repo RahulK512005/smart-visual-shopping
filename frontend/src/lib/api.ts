@@ -105,6 +105,29 @@ export const getHealth = () =>
 export const getProducts = (signal?: AbortSignal): Promise<Product[]> =>
   request("/api/products?page_size=100", normalizeProductList, {}, signal);
 
+export interface ProductPage { items: Product[]; total: number; page: number; totalPages: number }
+
+export const getProductPage = (
+  params: { q?: string; category?: string; page?: number; pageSize?: number },
+  signal?: AbortSignal,
+): Promise<ProductPage> => {
+  const qs = new URLSearchParams();
+  if (params.q?.trim()) qs.set("q", params.q.trim());
+  if (params.category) qs.set("category", params.category);
+  qs.set("page", String(params.page ?? 1));
+  qs.set("page_size", String(params.pageSize ?? 12));
+  return request(`/api/products?${qs}`, (raw: unknown) => {
+    const r = (raw ?? {}) as Record<string, unknown>;
+    const items = normalizeProductList(raw);
+    return {
+      items,
+      total: Number(r.total ?? items.length),
+      page: Number(r.page ?? 1),
+      totalPages: Number(r.total_pages ?? 1),
+    };
+  }, {}, signal);
+};
+
 export const getProduct = (id: string, signal?: AbortSignal): Promise<Product> =>
   request(`/api/products/${encodeURIComponent(id)}`, normalizeProduct, {}, signal);
 

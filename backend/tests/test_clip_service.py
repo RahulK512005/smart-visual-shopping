@@ -1,6 +1,7 @@
 """
-Unit tests for ClipEmbeddingService (openai/clip-vit-base-patch32).
-Tests embedding dimensions, L2 normalization, error handling, and batch extraction.
+Unit tests for FashionCLIP Embedding Service (Marqo/marqo-fashionCLIP).
+Tests embedding dimensions, L2 normalization, error handling, batch extraction,
+and cross-modal text embedding generation.
 """
 import io
 import numpy as np
@@ -34,6 +35,18 @@ def test_clip_embedding_dimension_and_normalization(test_clip_service):
 
     # L2 norm must be approximately 1.0
     norm = float(np.linalg.norm(embedding))
+    assert pytest.approx(norm, abs=1e-5) == 1.0
+
+
+def test_clip_text_embedding_generation(test_clip_service):
+    text = "vintage floral summer dress"
+    text_emb = test_clip_service.extract_text_embedding(text)
+
+    assert isinstance(text_emb, np.ndarray)
+    assert text_emb.shape == (EMBEDDING_DIM,)
+    assert text_emb.dtype == np.float32
+
+    norm = float(np.linalg.norm(text_emb))
     assert pytest.approx(norm, abs=1e-5) == 1.0
 
 
@@ -80,7 +93,7 @@ def test_clip_empty_bytes_raises_value_error(test_clip_service):
 
 def test_clip_model_initialization_failure():
     service = ClipEmbeddingService(model_id="non-existent/fake-model-id-12345")
-    with pytest.raises(RuntimeError, match="Could not initialize CLIP model"):
+    with pytest.raises(RuntimeError, match="Could not initialize FashionCLIP model"):
         service.load_model()
 
 

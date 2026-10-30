@@ -33,7 +33,7 @@ def test_ml_service_health(ml_client):
     assert response.status_code == 200
     data = response.json()
     assert data["status"] in ["healthy", "degraded"]
-    assert "openai/clip-vit-base-patch32" in data["model"]
+    assert "Marqo/marqo-fashionCLIP" in data["model"]
     assert data["index_size"] > 0
     assert data["index_ready"] is True
 
@@ -48,7 +48,7 @@ def test_ml_service_search_endpoint(ml_client, valid_query_image):
     assert "results" in res_data
     assert len(res_data["results"]) <= 5
     assert len(res_data["results"]) > 0
-    assert "openai/clip-vit-base-patch32" in res_data["model_version"]
+    assert "Marqo/marqo-fashionCLIP" in res_data["model_version"]
 
     first_item = res_data["results"][0]
     assert "product_id" in first_item

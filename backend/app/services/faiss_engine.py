@@ -1,19 +1,20 @@
 """
-FAISS Vector Search Engine for Smart Visual Shopping.
-Manages FAISS CPU IndexFlatIP (Cosine Similarity) over CLIP (openai/clip-vit-base-patch32)
+FAISS Vector Search Engine for Smart Visual Shopping with Marqo FashionCLIP.
+Manages FAISS CPU IndexFlatIP (Cosine Similarity) over FashionCLIP
 embeddings for catalog products.
 Provides:
 1. Embedding extraction and FAISS similarity search for query images.
-2. Best-score aggregation across multiple images per product (no duplicate product cards).
-3. Category filtering and ranking.
+2. Best-score aggregation across multiple images per product.
+3. Category, brand, and metadata-aware filtering and ranking.
 4. 'More like this' search by existing product ID.
 5. Persistent metadata validation and consistency checking.
+6. Incremental indexing for single or batch product additions.
 """
 import io
 import json
 import os
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Set
+from typing import Dict, List, Optional, Tuple, Set, Union
 
 import faiss
 import numpy as np
@@ -24,12 +25,12 @@ from backend.app.core.logging import logger
 from backend.app.services.clip_service import EMBEDDING_DIM, get_clip_service
 
 SERVICE_DIR = Path(__file__).resolve().parent
-DEFAULT_INDEX_PATH = SERVICE_DIR / "catalog_faiss.index"
-DEFAULT_META_PATH = SERVICE_DIR / "catalog_meta.json"
+DEFAULT_INDEX_PATH = SERVICE_DIR / "fashionclip_fashion.index"
+DEFAULT_META_PATH = SERVICE_DIR / "fashionclip_fashion_meta.json"
 
 
 class FaissVisualSearchEngine:
-    """High-performance CPU vector search engine using FAISS IndexFlatIP and CLIP."""
+    """High-performance CPU vector search engine using FAISS IndexFlatIP and Marqo FashionCLIP."""
 
     def __init__(
         self,
@@ -58,7 +59,7 @@ class FaissVisualSearchEngine:
         """Loads FAISS index and metadata from disk, verifying consistency."""
         if not self.index_file.exists() or not self.meta_file.exists():
             logger.warning(
-                f"Vector index or metadata not found at {self.index_file}. Attempting to build automatically..."
+                f"FashionCLIP vector index or metadata not found at {self.index_file}. Attempting to build automatically..."
             )
             try:
                 from backend.app.services.build_index import build_faiss_index
@@ -85,9 +86,12 @@ class FaissVisualSearchEngine:
             dimension = metadata.get("dimension", EMBEDDING_DIM)
             entries = metadata.get("index_entries", [])
 
-            if dimension != EMBEDDING_DIM or dimension != index.d:
+            clip_service = get_clip_service()
+            expected_dim = getattr(clip_service, "embedding_dim", EMBEDDING_DIM)
+
+            if dimension != expected_dim or dimension != index.d:
                 logger.error(
-                    f"Vector dimension mismatch: index has {index.d}, metadata has {dimension}, expected {EMBEDDING_DIM}."
+                    f"Vector dimension mismatch: index has {index.d}, metadata has {dimension}, expected {expected_dim}."
                 )
                 return False
 
@@ -102,7 +106,7 @@ class FaissVisualSearchEngine:
             self._populate_mappings()
             self._is_loaded = True
             logger.info(
-                f"FAISS index loaded: {self.index.ntotal} vectors for {len(self.product_catalog)} products (model={model_id})."
+                f"FashionCLIP FAISS index loaded: {self.index.ntotal} vectors for {len(self.product_catalog)} products (model={model_id})."
             )
             return True
         except Exception as exc:
@@ -129,6 +133,65 @@ class FaissVisualSearchEngine:
     def is_ready(self) -> bool:
         return self._is_loaded and self.index is not None and self.index.ntotal > 0
 
+    def add_product(
+        self,
+        product: dict,
+        image_or_vector: Union[np.ndarray, bytes, Image.Image],
+        image_url: str = "",
+    ) -> int:
+        """
+        Incrementally indexes a single product into the live FAISS index and persists changes.
+        Returns the assigned FAISS vector index.
+        """
+        clip_service = get_clip_service()
+        if isinstance(image_or_vector, np.ndarray):
+            vec = image_or_vector.astype(np.float32).flatten()
+        else:
+            vec = clip_service.extract_image_embedding(image_or_vector)
+
+        # Normalize vector
+        norm = np.linalg.norm(vec)
+        if norm > 0:
+            vec = vec / norm
+        vec = vec.reshape(1, -1).astype(np.float32)
+
+        if self.index is None:
+            self.index = faiss.IndexFlatIP(clip_service.embedding_dim)
+
+        assigned_idx = self.index.ntotal
+        self.index.add(vec)
+
+        pid = product["id"]
+        self.product_catalog[pid] = product
+        entry = {
+            "index": assigned_idx,
+            "product_id": pid,
+            "image_url": image_url or product.get("image_url", ""),
+            "image_type": "incremental",
+        }
+        self.index_entries.append(entry)
+        if pid not in self.product_to_indices:
+            self.product_to_indices[pid] = []
+        self.product_to_indices[pid].append(assigned_idx)
+        if pid not in self.product_ids:
+            self.product_ids.append(pid)
+
+        # Persist updated index and metadata
+        try:
+            self.metadata["total_vectors"] = self.index.ntotal
+            self.metadata["unique_products"] = len(self.product_catalog)
+            self.metadata["index_entries"] = self.index_entries
+            self.metadata["product_catalog"] = self.product_catalog
+
+            faiss.write_index(self.index, str(self.index_file))
+            with open(self.meta_file, "w", encoding="utf-8") as f:
+                json.dump(self.metadata, f, indent=2)
+            logger.info(f"Incrementally added product '{pid}' at vector index {assigned_idx}.")
+        except Exception as exc:
+            logger.error(f"Failed to persist incremental index update: {exc}")
+
+        return assigned_idx
+
     def search_by_image_bytes(
         self,
         image_bytes: bytes,
@@ -136,11 +199,10 @@ class FaissVisualSearchEngine:
         category_filter: Optional[str] = None,
     ) -> List[dict]:
         """
-        Extracts CLIP embedding for the uploaded query image bytes and searches the FAISS index.
+        Extracts FashionCLIP embedding for uploaded query image bytes and searches the FAISS index.
         Aggregates multiple images belonging to the same product by taking the maximum score.
         """
         if not self.is_ready:
-            # Try reloading index
             if not self.load_index() or not self.is_ready:
                 logger.warning("FAISS index is not ready or empty. Returning empty search results.")
                 return []
@@ -149,7 +211,7 @@ class FaissVisualSearchEngine:
         try:
             query_vec = clip_service.extract_image_embedding(image_bytes)
         except Exception as exc:
-            logger.error(f"CLIP embedding extraction failed: {exc}")
+            logger.error(f"FashionCLIP embedding extraction failed: {exc}")
             raise ValueError(f"Failed to extract visual embedding from query image: {exc}") from exc
 
         return self.search_by_vector(query_vec, limit=limit, category_filter=category_filter)
@@ -168,14 +230,11 @@ class FaissVisualSearchEngine:
             return []
 
         query = query_vec.reshape(1, -1).astype(np.float32)
-        # Ensure L2 normalization for cosine similarity
         faiss.normalize_L2(query)
 
-        # Retrieve a large candidate pool to allow multi-image aggregation and category filtering
         k = min(max(limit * 8, 40), self.index.ntotal)
         scores, indices = self.index.search(query, k)
 
-        # Multi-image aggregation: best score per product_id
         best_scores: Dict[str, float] = {}
         product_entries: Dict[str, dict] = {}
 
@@ -188,7 +247,7 @@ class FaissVisualSearchEngine:
             p_meta = self.product_catalog.get(pid, {})
             cat = p_meta.get("category", "")
 
-            # Category filter check
+            # Category filter check (supports case-insensitive matching)
             if category_filter and cat.lower() != category_filter.lower():
                 continue
 
@@ -197,13 +256,11 @@ class FaissVisualSearchEngine:
                 best_scores[pid] = raw_score
                 product_entries[pid] = entry
 
-        # Sort products by best score descending
         sorted_products = sorted(best_scores.items(), key=lambda item: item[1], reverse=True)
 
         results = []
         for pid, raw_score in sorted_products[:limit]:
             p_meta = self.product_catalog.get(pid, {})
-            # Clamp cosine similarity score to valid [0.0, 1.0] range
             normalized_score = round(float(np.clip(raw_score, 0.0, 1.0)), 4)
             explanation = self._generate_explanation(p_meta, normalized_score)
 
@@ -232,12 +289,10 @@ class FaissVisualSearchEngine:
             logger.warning(f"Product '{product_id}' not found in vector index.")
             return []
 
-        # Use primary or first available vector for the source product
         source_idx = self.product_to_indices[product_id][0]
         source_vec = self.index.reconstruct(source_idx).reshape(1, -1)
         source_p = self.product_catalog.get(product_id, {})
 
-        # Fetch more candidates to account for self and multi-image vectors
         k = min(limit * 8 + 10, self.index.ntotal)
         scores, indices = self.index.search(source_vec, k)
 
@@ -248,7 +303,6 @@ class FaissVisualSearchEngine:
             entry = self.index_entries[idx]
             cand_id = entry["product_id"]
             if cand_id == product_id:
-                # Exclude self
                 continue
 
             raw_score = float(score)
@@ -278,11 +332,33 @@ class FaissVisualSearchEngine:
 
     def _generate_explanation(self, product: dict, score: float) -> str:
         """Creates a human-readable similarity explanation based on visual attributes and score."""
-        category = product.get("category", "device")
-        brand = product.get("brand", "")
-        name = product.get("name", "")
+        category = (product.get("category") or "product").lower()
+        score_pct = int(round(score * 100))
 
         phrases = {
+            # Fashion categories
+            "clothing": "Matching apparel silhouette, fabric drape, and seam tailoring",
+            "shirt": "Consistent collar profile, button placket, and woven fabric texture",
+            "t-shirt": "Matching casual crew-neck cut, cotton weave, and sleeve fit",
+            "jeans": "Similar denim wash, rivet placement, and trouser silhouette",
+            "trouser": "Consistent tailored leg taper, waist pleating, and formal drape",
+            "jacket": "Matching outerwear structure, lapel cut, and layered silhouette",
+            "dress": "Consistent dress hemline, silhouette contour, and textile texture",
+            "skirt": "Matching waistline fit, fabric movement, and skirt profile",
+            "ethnic wear": "Consistent traditional garment ornamentation, motif styling, and silhouette",
+            "sneakers": "Matching athletic sole profile, upper paneling, and lace geometry",
+            "shoes": "Consistent formal shoe leather sheen, toe cap shape, and sole contour",
+            "sandals": "Similar open-toe strap architecture and footbed profile",
+            "boots": "Matching high-ankle boot shaft, rugged welt, and leather texture",
+            "watches": "Similar timepiece bezel geometry, dial typography, and strap finish",
+            "smartwatch": "Similar smartwatch case profile, wristband attachment, and crown geometry",
+            "bag": "Consistent handbag silhouette, strap hardware, and compartment profile",
+            "backpack": "Matching ergonomic harness styling, pocket placement, and fabric finish",
+            "wallet": "Similar compact bi-fold geometry, textured leather finish, and edge stitching",
+            "sunglasses": "Matching eyewear frame curvature, temple hinge style, and lens tint",
+            "jewellery": "Consistent metallic lustre, pendant geometry, and chain weave",
+            "accessories": "Matching designer accessory aesthetics, material finish, and accents",
+            # Electronics & devices
             "smartphone": "High visual affinity with smartphone silhouette, bezel geometry, and camera housing",
             "laptop": "Matching slim clamshell form factor, keyboard layout, and display chassis",
             "charger": "Matching compact wall-charger profile, matte finish, and port geometry",
@@ -294,19 +370,18 @@ class FaissVisualSearchEngine:
             "audio": "Consistent acoustic ear-cup shape, padded headband, and dark finish",
             "hub": "Matching multi-port adapter footprint, aluminum enclosure, and port layout",
         }
-        base_desc = phrases.get(category.lower(), f"Visually cohesive {category} design language and form factor")
-        score_pct = int(round(score * 100))
-        return f"{base_desc} (CLIP cosine similarity: {score_pct}%)"
+        base_desc = phrases.get(category, f"Visually cohesive {category} design language and form factor")
+        return f"{base_desc} (FashionCLIP cosine similarity: {score_pct}%)"
 
     def _generate_more_like_this_explanation(self, source_p: dict, cand_p: dict, score: float) -> str:
-        s_cat = source_p.get("category", "")
-        c_cat = cand_p.get("category", "")
+        s_cat = (source_p.get("category") or "").lower()
+        c_cat = (cand_p.get("category") or "").lower()
         cand_brand = cand_p.get("brand", "")
         score_pct = int(round(score * 100))
 
-        if s_cat.lower() == c_cat.lower():
+        if s_cat == c_cat and s_cat:
             return f"Matching {s_cat} form factor, design profile, and {cand_brand} aesthetics ({score_pct}% visual match)"
-        return f"Visually cohesive industrial design and materials across {c_cat} ({score_pct}% visual match)"
+        return f"Visually cohesive styling and materials across {c_cat or 'catalog items'} ({score_pct}% visual match)"
 
 
 # Singleton engine instance

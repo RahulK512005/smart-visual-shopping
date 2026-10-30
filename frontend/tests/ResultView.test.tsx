@@ -9,8 +9,9 @@ const base: CompatibilityResult = { verdict: "compatible", checks: [], missingSp
 describe("ResultView", () => {
   it.each([
     ["compatible", "Compatible"],
-    ["incompatible", "Incompatible"],
-    ["cannot_verify", "Cannot verify"],
+    ["partially_compatible", "Partly compatible"],
+    ["incompatible", "Not compatible"],
+    ["cannot_verify", "Not enough information"],
   ] as const)("shows a text label for %s", (verdict, label) => {
     render(<ResultView result={{ ...base, verdict }} owned={p("1", "Own")} candidate={p("2", "Buy")} onChange={() => {}} />);
     expect(screen.getByText(label)).toBeInTheDocument();

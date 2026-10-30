@@ -28,11 +28,11 @@ class Settings(BaseSettings):
     MAX_UPLOAD_SIZE_BYTES: int = 10 * 1024 * 1024  # 10 MB
     ALLOWED_IMAGE_MIME_TYPES: str = "image/jpeg,image/png,image/webp,image/gif"
 
-    # CLIP & Vector Index Configuration
-    CLIP_MODEL_ID: str = "openai/clip-vit-base-patch32"
+    # FashionCLIP & Vector Index Configuration (Marqo FashionCLIP)
+    CLIP_MODEL_ID: str = "hf-hub:Marqo/marqo-fashionCLIP"
     CLIP_DEVICE: str = "auto"
-    VECTOR_INDEX_PATH: str = "backend/app/services/catalog_faiss.index"
-    VECTOR_METADATA_PATH: str = "backend/app/services/catalog_meta.json"
+    VECTOR_INDEX_PATH: str = "backend/app/services/fashionclip_fashion.index"
+    VECTOR_METADATA_PATH: str = "backend/app/services/fashionclip_fashion_meta.json"
     VISUAL_SEARCH_TOP_K: int = 10
 
     model_config = SettingsConfigDict(

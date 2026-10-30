@@ -1,8 +1,8 @@
 """
-AI/ML Visual Embedding Search Microservice (OpenAI CLIP + FAISS).
+AI/ML Visual Embedding Search Microservice (Marqo FashionCLIP + FAISS).
 Provides:
 - GET /internal/health: Health & readiness check with model device and vector count.
-- POST /internal/search: Visual search using openai/clip-vit-base-patch32 and FAISS.
+- POST /internal/search: Visual search using Marqo/marqo-fashionCLIP and FAISS.
 - GET /internal/more-like-this/{product_id}: Nearest visual neighbors for an indexed product.
 """
 from contextlib import asynccontextmanager
@@ -27,17 +27,17 @@ ALLOWED_MIME_TYPES = set(getattr(settings, "allowed_mime_types_list", ["image/jp
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Eagerly load CLIP model and verify FAISS index during startup
-    logger.info("Initializing CLIP embedding service...")
+    # Eagerly load FashionCLIP model and verify FAISS index during startup
+    logger.info("Initializing Marqo FashionCLIP embedding service...")
     try:
         clip_service = get_clip_service()
         clip_service.load_model()
-        logger.info(f"CLIP model ready on device: {clip_service.device}")
+        logger.info(f"FashionCLIP model ready on device: {clip_service.device}")
     except Exception as exc:
-        logger.error(f"Error loading CLIP model during startup: {exc}")
+        logger.error(f"Error loading FashionCLIP model during startup: {exc}")
 
     if not faiss_engine.is_ready:
-        logger.info("Loading / building FAISS vector index...")
+        logger.info("Loading / building FashionCLIP FAISS vector index...")
         faiss_engine.load_index()
 
     logger.info(f"Visual embedding microservice ready. Total vectors: {faiss_engine.index.ntotal if faiss_engine.index else 0}")
@@ -46,9 +46,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="AI/ML Visual Embedding Search Service (OpenAI CLIP + FAISS)",
-    description="Vector search microservice using openai/clip-vit-base-patch32 embeddings and FAISS similarity retrieval.",
-    version="2.0.0",
+    title="AI/ML Visual Embedding Search Service (Marqo FashionCLIP + FAISS)",
+    description="Vector search microservice using Marqo/marqo-fashionCLIP embeddings and FAISS similarity retrieval.",
+    version="3.0.0",
     lifespan=lifespan,
 )
 
@@ -64,7 +64,7 @@ def health_check():
         "service": "visual-embedding-inference",
         "model": clip_service.model_id,
         "device": str(clip_service.device),
-        "version": "v2.0.0",
+        "version": "v3.0.0",
         "index_size": index_size,
         "index_ready": faiss_engine.is_ready,
     }
@@ -100,19 +100,18 @@ async def search_visual_similarity(
             detail=f"File size exceeds maximum allowed limit of {max_mb:.1f}MB.",
         )
 
-    # 3. Decode & verify image integrity with Pillow
+    # 3. Readability & integrity verification
     try:
         stream = io.BytesIO(contents)
         with Image.open(stream) as img:
             img.verify()
     except (UnidentifiedImageError, OSError, SyntaxError, ValueError) as exc:
-        logger.warning(f"Failed image integrity check on ML service: {exc}")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Uploaded file is corrupt or not a readable image.",
+            detail=f"Corrupted or invalid image file: {exc}",
         )
 
-    # 4. Verify vector index readiness
+    # 4. Check FAISS index availability
     if not faiss_engine.is_ready:
         if not faiss_engine.load_index() or not faiss_engine.is_ready:
             raise HTTPException(
@@ -120,7 +119,7 @@ async def search_visual_similarity(
                 detail="Vector search index is not available. Please build the index.",
             )
 
-    # 5. Perform real CLIP embedding extraction and FAISS similarity search
+    # 5. Execute vector search
     try:
         raw_results = faiss_engine.search_by_image_bytes(
             image_bytes=contents,
@@ -128,10 +127,10 @@ async def search_visual_similarity(
             category_filter=category_filter,
         )
     except Exception as exc:
-        logger.error(f"Inference error in search_by_image_bytes: {exc}")
+        logger.error(f"Inference error during vector search: {exc}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Visual embedding inference failed.",
+            detail=f"Visual search inference error: {exc}",
         )
 
     items = [
@@ -149,7 +148,7 @@ async def search_visual_similarity(
 
     return MLSearchResponse(
         results=items,
-        model_version=f"{clip_service.model_id}:v2.0.0",
+        model_version=f"{clip_service.model_id}:v3.0.0",
         inference_time_ms=inference_ms,
     )
 
@@ -182,7 +181,7 @@ def more_like_this(product_id: str, limit: int = 6):
 
     return MLSearchResponse(
         results=items,
-        model_version=f"{clip_service.model_id}:v2.0.0",
+        model_version=f"{clip_service.model_id}:v3.0.0",
         inference_time_ms=inference_ms,
     )
 
