@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "./config";
 import type {
-  CheckStatus, CompatibilityCheck, CompatibilityResult, Product, SearchResult, SpecValue, Verdict,
+  CheckStatus, CompatibilityCheck, CompatibilityResult, Product, SearchResult, SpecValue, UniversalFashionSearchResponse, Verdict,
 } from "./types";
 
 export class ParseError extends Error {}
@@ -85,6 +85,20 @@ export function normalizeSearchResults(raw: unknown): SearchResult[] {
       explanation: str(item.similarity_explanation ?? item.explanation ?? item.detection_label),
     };
   });
+}
+
+export function normalizeUniversalSearch(raw: unknown): UniversalFashionSearchResponse {
+  if (!isRec(raw)) throw new ParseError("Universal search response format invalid.");
+  const results = normalizeSearchResults(raw);
+  const ext = isRec(raw.extracted_filters) ? (raw.extracted_filters as any) : undefined;
+  return {
+    query: str(raw.query),
+    mode: ((str(raw.mode) as any) ?? "text"),
+    total_matches: num(raw.total_matches) ?? results.length,
+    extracted_filters: ext,
+    results,
+    inference_time_ms: num(raw.inference_time_ms),
+  };
 }
 
 const VERDICTS: Record<string, Verdict> = {

@@ -109,6 +109,16 @@ export function ResultView({ result, owned, candidate, onChange }: { result: Com
   const meta = VERDICT_META[result.verdict];
   const by = (s: CompatibilityCheck["status"][]) => result.checks.filter((c) => s.includes(c.status));
 
+  const isFashionPair = Boolean(
+    [owned, candidate].some(
+      (p) => p && ["clothing", "footwear", "watches", "accessories"].includes((p.category || "").toLowerCase())
+    )
+  );
+
+  const bundleTotal = (owned.price || 0) + (candidate.price || 0);
+  const bundleDiscount = bundleTotal * 0.9;
+  const currency = candidate.currency || owned.currency || "INR";
+
   return (
     <div className="animate-rise space-y-6" data-testid="compat-result">
       {/* Verdict hero */}
@@ -123,15 +133,19 @@ export function ResultView({ result, owned, candidate, onChange }: { result: Com
           <div className="orb absolute -right-16 -top-16 h-48 w-48 opacity-20" style={{ background: "radial-gradient(circle,rgba(255,255,255,.3),transparent)" }} />
           <div className="orb absolute -bottom-20 right-32 h-40 w-40 opacity-10" style={{ background: "radial-gradient(circle,rgba(255,255,255,.3),transparent)" }} />
         </div>
-        <p className="eyebrow relative">Verdict</p>
+        <p className="eyebrow relative">{isFashionPair ? "Outfit Pairing Analysis" : "Verdict"}</p>
         <div className="animate-pop relative mt-3"><VerdictBadge verdict={result.verdict} /></div>
         <p className="relative mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">{result.summary ?? meta.blurb}</p>
-        <p className="relative mt-4 text-xs font-semibold text-white/40">Decided by the VYUMI rules engine from verified specs. It is not an AI guess.</p>
+        <p className="relative mt-4 text-xs font-semibold text-white/40">
+          {isFashionPair
+            ? "Evaluated deterministically by the VYUMI fashion styling & color harmony engine."
+            : "Decided by the VYUMI rules engine from verified specs. It is not an AI guess."}
+        </p>
       </section>
 
       {/* Products comparison */}
       <div className="grid items-center gap-3 sm:grid-cols-[1fr_auto_1fr]">
-        <Summary title="What you own" p={owned} />
+        <Summary title={isFashionPair ? "Wardrobe Item" : "What you own"} p={owned} />
         <span
           aria-hidden
           className="hidden h-10 w-10 items-center justify-center rounded-full font-display text-lg font-extrabold text-ink sm:flex"
@@ -139,13 +153,78 @@ export function ResultView({ result, owned, candidate, onChange }: { result: Com
         >
           +
         </span>
-        <Summary title="What you want" p={candidate} />
+        <Summary title={isFashionPair ? "Item to Pair With" : "What you want"} p={candidate} />
       </div>
 
+      {/* E-Commerce Curated Outfit Bundle CTA */}
+      {isFashionPair && (
+        <section
+          className="relative overflow-hidden rounded-2xl p-6 sm:p-7 border transition-all"
+          style={{
+            background: "linear-gradient(135deg, rgba(6,255,165,.08) 0%, rgba(0,217,255,.05) 50%, rgba(124,58,237,.08) 100%)",
+            borderColor: "rgba(6,255,165,.25)",
+            boxShadow: "0 10px 40px rgba(6,255,165,.08)",
+          }}
+        >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-ink bg-gradient-to-r from-neon to-cyan">
+                🛍️ E-Commerce Curated Bundle · Save 10%
+              </span>
+              <h3 className="mt-2 text-lg sm:text-xl font-display font-extrabold text-white">
+                Complete The Outfit
+              </h3>
+              <p className="mt-1 text-xs sm:text-sm text-white/70 max-w-xl">
+                Pair <span className="text-white font-semibold">{owned.name}</span> with <span className="text-white font-semibold">{candidate.name}</span> for an aesthetic, street-ready coordinated look.
+              </p>
+              {bundleTotal > 0 && (
+                <div className="mt-3 flex items-baseline gap-2.5">
+                  <span className="text-xl font-extrabold text-neon">
+                    {formatPrice(bundleDiscount, currency)}
+                  </span>
+                  <span className="text-xs text-white/40 line-through">
+                    {formatPrice(bundleTotal, currency)}
+                  </span>
+                  <span className="text-xs font-bold text-volt">10% Bundle Discount applied</span>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:shrink-0">
+              <button
+                type="button"
+                onClick={() => alert(`Added ${candidate.name} (and matching outfit bundle) to your cart with 10% bundle discount!`)}
+                className="rounded-full px-5 py-2.5 text-xs sm:text-sm font-extrabold text-ink transition-all hover:scale-105 active:scale-95"
+                style={{ background: "linear-gradient(135deg, #06FFA5, #00D9FF)", boxShadow: "0 0 20px rgba(6,255,165,.4)" }}
+              >
+                Add Full Outfit to Cart
+              </button>
+              <button
+                type="button"
+                onClick={() => alert(`Saved ${owned.name} + ${candidate.name} lookbook to your wishlist!`)}
+                className="btn-secondary min-h-0 text-xs sm:text-sm px-4 py-2"
+              >
+                ♡ Save Look
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Checks */}
-      <Checks title="Failed checks" items={by(["failed"])} open />
-      <Checks title="Warnings and unverified checks" items={by(["warning", "unknown"])} open />
-      <Checks title="Passed checks" items={by(["passed"])} />
+      <Checks
+        title={isFashionPair ? "Style Clashes & Silhouette Mismatches" : "Failed checks"}
+        items={by(["failed"])}
+        open
+      />
+      <Checks
+        title={isFashionPair ? "Styling Advisories & Contrast Notes" : "Warnings and unverified checks"}
+        items={by(["warning", "unknown"])}
+        open
+      />
+      <Checks
+        title={isFashionPair ? "Aesthetic & Color Harmonies Verified" : "Passed checks"}
+        items={by(["passed"])}
+      />
       {result.checks.length === 0 && <p className="text-sm text-white/40">The backend did not return individual checks for this result.</p>}
 
       {/* Missing specs */}

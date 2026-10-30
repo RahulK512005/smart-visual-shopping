@@ -24,6 +24,29 @@ export interface SearchResult {
   explanation?: string;
 }
 
+export interface ExtractedFilters {
+  category?: string;
+  subcategory?: string;
+  colour?: string;
+  style?: string;
+  brand?: string;
+  gender?: string;
+  occasion?: string;
+  material?: string;
+  min_price?: number;
+  max_price?: number;
+  query_text?: string;
+}
+
+export interface UniversalFashionSearchResponse {
+  query?: string;
+  mode: "text" | "image" | "hybrid";
+  total_matches: number;
+  extracted_filters?: ExtractedFilters;
+  results: SearchResult[];
+  inference_time_ms?: number;
+}
+
 export type Verdict = "compatible" | "incompatible" | "cannot_verify" | "partially_compatible";
 
 export type CheckStatus = "passed" | "failed" | "warning" | "unknown";

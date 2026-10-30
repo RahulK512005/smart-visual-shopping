@@ -66,7 +66,7 @@ def main():
     # 3. Start Backend on 8000
     print("[3/4] Starting FastAPI Backend on http://127.0.0.1:8000 ...")
     backend_proc = subprocess.Popen(
-        [python_executable, "-m", "uvicorn", "backend.app.main:app", "--host", "127.0.0.1", "--port", "8000", "--reload"],
+        [python_executable, "-m", "uvicorn", "backend.app.main:app", "--host", "127.0.0.1", "--port", "8000"],
         cwd=str(ROOT_DIR),
     )
     processes.append(("Backend API", backend_proc))

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  ApiError, checkCompatibility, formatPrice, getHealth, identifyOwnedPhoto, searchMoreLikeThis, visualSearch,
+  ApiError, checkCompatibility, formatPrice, getHealth, identifyOwnedPhoto, searchMoreLikeThis, universalFashionSearch, visualSearch,
 } from "@/lib/api";
 import { useAsync } from "@/lib/useAsync";
-import type { CompatibilityResult, Product, SearchResult } from "@/lib/types";
+import type { CompatibilityResult, ExtractedFilters, Product, SearchResult } from "@/lib/types";
 import { useCompatibility } from "@/context/CompatibilityContext";
 import { FilterChips } from "./FilterChips";
 import { ImageUploader } from "./ImageUploader";
@@ -20,10 +20,39 @@ import { EmptyState, ErrorBox } from "./States";
 
 export type Mode = "search" | "compatibility";
 
+const FASHION_STYLES = [
+  "All Styles",
+  "Streetwear",
+  "Y2K",
+  "Korean Fashion",
+  "Minimalist",
+  "Old Money",
+  "Vintage",
+  "Athleisure",
+  "Casual",
+  "Formal",
+];
+
+const FASHION_CATEGORIES = [
+  "All Categories",
+  "Clothing",
+  "Footwear",
+  "Watches",
+  "Accessories",
+];
+
+const FASHION_PRICE_LIMITS = [
+  { label: "Any Price", val: undefined },
+  { label: "< ₹1,000", val: 1000 },
+  { label: "< ₹2,000", val: 2000 },
+  { label: "< ₹3,000", val: 3000 },
+  { label: "< ₹5,000", val: 5000 },
+];
+
 function BackendStatus() {
   const { state } = useAsync(() => getHealth(), []);
   const good = state.status === "ready" && state.data.ok;
-  const text = state.status === "loading" ? "Connecting…" : state.status === "error" ? "Backend offline" : good ? "Live" : "Backend degraded";
+  const text = state.status === "loading" ? "Connecting…" : state.status === "error" ? "Backend offline" : good ? "Live · FashionCLIP" : "Backend degraded";
   return (
     <p role="status" className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur-sm ${good ? "border-neon/40 text-neon bg-neon/10" : "border-white/15 text-white/50 bg-white/5"}`}>
       <span aria-hidden className={`h-2 w-2 rounded-full ${good ? "animate-pulse bg-neon shadow-[0_0_8px_rgba(6,255,165,.8)]" : "bg-white/30"}`} />
@@ -74,19 +103,38 @@ function Slot({ n, title, product, onClear, children }: { n: number; title: stri
 export function UnifiedShoppingExperience({ initialMode = "search" }: { initialMode?: Mode }) {
   const { owned, candidate, setOwned, setCandidate, swap, reset } = useCompatibility();
   const [mode, setMode] = useState<Mode>(initialMode);
+  const [searchMethod, setSearchMethod] = useState<"visual" | "text">("visual");
   const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [queryText, setQueryText] = useState("");
   const resultsRef = useRef<HTMLDivElement>(null);
   const slotsRef = useRef<HTMLDivElement>(null);
   const busy = useRef(false);
 
-  // Mode A
+  useEffect(() => {
+    if (!file) {
+      setPreviewUrl(null);
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  // Search Filters
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedStyle, setSelectedStyle] = useState("All Styles");
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState<number | undefined>(undefined);
+  const [extractedFilters, setExtractedFilters] = useState<ExtractedFilters | null>(null);
+
+  // Mode A: Search
   const [searchLoading, setSearchLoading] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[] | null>(null);
   const [cats, setCats] = useState<string[]>([]);
   const [picked, setPicked] = useState<Product | null>(null);
 
-  // Mode B
+  // Mode B: Compatibility
   const [compatLoading, setCompatLoading] = useState(false);
   const [compatError, setCompatError] = useState<string | null>(null);
   const [compat, setCompat] = useState<CompatibilityResult | null>(null);
@@ -98,38 +146,102 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
   useEffect(() => { if (results) scrollToResults(); }, [results]);
   useEffect(() => { if (compat) scrollToResults(); }, [compat]);
 
-  async function findSimilar() {
-    if (!file || busy.current) return;
+  const hasImage = Boolean(file);
+  const hasText = Boolean(queryText.trim());
+  const effectiveMode = hasImage && hasText ? "hybrid" : hasImage ? "image" : "text";
+
+  async function handleImageUpload(selectedFile: File | null) {
+    setFile(selectedFile);
+    if (!selectedFile) {
+      setResults(null);
+      setExtractedFilters(null);
+      return;
+    }
+    // Auto-search immediately on upload
+    await executeUniversalSearch(selectedFile);
+  }
+
+  async function executeUniversalSearch(fileOverride?: File | null, textOverride?: string) {
+    const activeFile = fileOverride !== undefined ? fileOverride : file;
+    const activeText = textOverride !== undefined ? textOverride : queryText;
+
+    if ((!activeFile && !activeText.trim()) || busy.current) return;
     busy.current = true;
-    setMode("search"); setSearchLoading(true); setSearchError(null); setResults(null); setPicked(null); setCats([]);
+    setMode("search");
+    setSearchLoading(true);
+    setSearchError(null);
+    setResults(null);
+    setPicked(null);
+    setCats([]);
+    setExtractedFilters(null);
     scrollToResults();
-    try { setResults((await visualSearch(file)).slice(0, 6)); }
-    catch (e) { setSearchError(e instanceof ApiError ? e.message : "We could not read this image. Please upload a clearer photo."); }
-    finally { busy.current = false; setSearchLoading(false); }
+
+    try {
+      const catParam = selectedCategory !== "All Categories" ? selectedCategory.toLowerCase() : undefined;
+      const styleParam = selectedStyle !== "All Styles" ? selectedStyle.toLowerCase() : undefined;
+
+      const currentMode = activeFile && activeText.trim() ? "hybrid" : activeFile ? "image" : "text";
+
+      const res = await universalFashionSearch({
+        query: activeText.trim() || undefined,
+        image: activeFile,
+        mode: currentMode,
+        category: catParam,
+        style: styleParam,
+        maxPrice: selectedMaxPrice,
+        limit: 12,
+      });
+
+      setResults(res.results);
+      if (res.extracted_filters && Object.keys(res.extracted_filters).length > 0) {
+        setExtractedFilters(res.extracted_filters);
+      }
+    } catch (e) {
+      setSearchError(e instanceof ApiError ? e.message : "We could not complete your fashion search. Please try again.");
+    } finally {
+      busy.current = false;
+      setSearchLoading(false);
+    }
   }
 
   async function moreLikeThis(p: Product) {
-    setSearchLoading(true); setSearchError(null); setPicked(null); setCats([]);
+    setSearchLoading(true);
+    setSearchError(null);
+    setPicked(null);
+    setCats([]);
+    setExtractedFilters(null);
     scrollToResults();
-    try { setResults((await searchMoreLikeThis(p.id)).slice(0, 6)); }
-    catch { setSearchError("We could not fetch similar items for this product. Try another."); }
-    finally { setSearchLoading(false); }
+    try {
+      setResults((await searchMoreLikeThis(p.id)).slice(0, 8));
+    } catch {
+      setSearchError("We could not fetch similar items for this product. Try another.");
+    } finally {
+      setSearchLoading(false);
+    }
   }
 
   async function identifyOwned(img: File) {
-    setIdentifying(true); setNote(null);
+    setIdentifying(true);
+    setNote(null);
     try {
       const res = await identifyOwnedPhoto(img);
       if (res.identified) {
         setOwned(res.identified);
         setNote(`We think this is ${res.identified.name} (${Math.round(res.confidence * 100)}% visual match). Not right? Remove it and pick another.`);
-      } else setNote("We could not recognise this photo. Pick your product from the catalog below.");
-    } catch { setNote("We could not read this photo. Pick your product from the catalog below."); }
-    finally { setIdentifying(false); }
+      } else {
+        setNote("We could not recognise this photo. Pick your product from the catalog below.");
+      }
+    } catch {
+      setNote("We could not read this photo. Pick your product from the catalog below.");
+    } finally {
+      setIdentifying(false);
+    }
   }
 
   function checkWithMine(p: Product) {
-    setCandidate(p); setMode("compatibility"); setCompat(null);
+    setCandidate(p);
+    setMode("compatibility");
+    setCompat(null);
     if (file && !owned) identifyOwned(file);
     requestAnimationFrame(() => slotsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
   }
@@ -137,76 +249,73 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
   async function runCheck() {
     if (!owned || !candidate || busy.current) return;
     busy.current = true;
-    setCompatLoading(true); setCompatError(null); setCompat(null);
+    setCompatLoading(true);
+    setCompatError(null);
+    setCompat(null);
     scrollToResults();
-    try { setCompat(await checkCompatibility({ ownedProductId: owned.id, candidateProductId: candidate.id })); }
-    catch (e) { setCompatError(e instanceof ApiError ? e.message : "We could not run the check. Try again."); }
-    finally { busy.current = false; setCompatLoading(false); }
+    try {
+      setCompat(await checkCompatibility({ ownedProductId: owned.id, candidateProductId: candidate.id }));
+    } catch (e) {
+      setCompatError(e instanceof ApiError ? e.message : "We could not run the check. Try again.");
+    } finally {
+      busy.current = false;
+      setCompatLoading(false);
+    }
   }
 
   const categories = useMemo(() => {
     const m = new Map<string, number>();
-    (results ?? []).forEach((r) => { const c = r.product.category?.toLowerCase(); if (c) m.set(c, (m.get(c) ?? 0) + 1); });
+    (results ?? []).forEach((r) => {
+      const c = r.product.category?.toLowerCase();
+      if (c) m.set(c, (m.get(c) ?? 0) + 1);
+    });
     return [...m].map(([value, count]) => ({ value, count }));
   }, [results]);
+
   const shown = (results ?? []).filter((r) => cats.length === 0 || cats.includes(r.product.category?.toLowerCase() ?? ""));
   const togglePick = (p: Product) => setPicked((cur) => (cur?.id === p.id ? null : p));
 
   const tabs: { id: Mode; label: string; icon: string }[] = [
-    { id: "search", label: "Find similar", icon: "🔍" },
-    { id: "compatibility", label: "Will it work with mine?", icon: "⚡" },
+    { id: "search", label: "Fashion Discovery", icon: "✨" },
+    { id: "compatibility", label: "Styling & Compatibility", icon: "⚡" },
   ];
 
   return (
     <div className="space-y-14">
-      {/* ─── HERO ─── */}
+      {/* ─── HERO & UNIVERSAL SEARCH PANEL ─── */}
       <section
-        className="relative overflow-hidden rounded-3xl p-6 sm:p-10 lg:p-14"
+        className="relative overflow-hidden rounded-3xl p-6 sm:p-10 lg:p-12"
         style={{
-          background: "linear-gradient(145deg, #0F0F1A 0%, #131025 50%, #0A0F1A 100%)",
-          border: "1px solid rgba(255,255,255,.07)",
-          boxShadow: "0 40px 80px rgba(0,0,0,.6)"
+          background: "linear-gradient(145deg, #0D0B18 0%, #16122C 50%, #090E18 100%)",
+          border: "1px solid rgba(255,255,255,.08)",
+          boxShadow: "0 40px 90px rgba(0,0,0,.7)"
         }}
-        aria-label="Smart Visual Shopping"
+        aria-label="Universal Fashion Discovery"
       >
-        {/* Background orbs */}
+        {/* Background ambient orbs */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="orb absolute -left-32 -top-32 h-96 w-96 opacity-30" style={{ background: "radial-gradient(circle, rgba(124,58,237,.6) 0%, transparent 70%)" }} />
-          <div className="orb absolute -bottom-40 -right-20 h-96 w-96 opacity-20" style={{ background: "radial-gradient(circle, rgba(0,217,255,.5) 0%, transparent 70%)" }} />
-          <div className="orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 opacity-10" style={{ background: "radial-gradient(circle, rgba(6,255,165,.5) 0%, transparent 70%)" }} />
-          {/* Grid pattern */}
+          <div className="orb absolute -left-28 -top-28 h-96 w-96 opacity-35" style={{ background: "radial-gradient(circle, rgba(124,58,237,.65) 0%, transparent 70%)" }} />
+          <div className="orb absolute -bottom-36 -right-20 h-96 w-96 opacity-25" style={{ background: "radial-gradient(circle, rgba(0,217,255,.5) 0%, transparent 70%)" }} />
+          <div className="orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-72 w-72 opacity-15" style={{ background: "radial-gradient(circle, rgba(6,255,165,.55) 0%, transparent 70%)" }} />
           <div className="absolute inset-0 opacity-[0.03]" style={{
             backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
             backgroundSize: "40px 40px"
           }} />
         </div>
 
-        <div className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
-          {/* Left: Text + Tabs */}
-          <div className="space-y-7">
+        <div className="relative space-y-8">
+          {/* Header Row */}
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="eyebrow">VYUMI · Smart Visual Shopping</span>
+              <span className="eyebrow">VYUMI · Universal AI Fashion Discovery</span>
               <BackendStatus />
             </div>
 
-            <div>
-              <h1 className="text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-7xl">
-                <span className="text-white">See it.</span>
-                <br />
-                <span className="text-gradient">Find it.</span>
-                <br />
-                <span className="text-white">Check it fits.</span>
-              </h1>
-              <p className="mt-5 max-w-md text-base text-white/50 sm:text-lg leading-relaxed">
-                Drop a photo. Get AI-ranked lookalikes, or find out instantly if a product works with what you own.
-              </p>
-            </div>
-
-            {/* Tab switcher */}
+            {/* Mode Tab Switcher */}
             <div
               role="tablist"
-              aria-label="Choose what to do"
-              className="relative grid max-w-sm grid-cols-2 rounded-full p-1.5"
+              aria-label="Search Modes"
+              className="relative grid w-full max-w-xs grid-cols-2 rounded-full p-1.5"
               style={{ background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.08)" }}
             >
               <span
@@ -227,74 +336,188 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
                   role="tab"
                   aria-selected={mode === t.id}
                   onClick={() => setMode(t.id)}
-                  className={`relative z-10 min-h-[44px] rounded-full px-3 text-sm font-bold transition-colors duration-200 flex items-center justify-center gap-1.5 ${mode === t.id ? "text-white" : "text-white/50 hover:text-white/100"}`}
+                  className={`relative z-10 min-h-[40px] rounded-full px-3 text-xs font-bold transition-colors duration-200 flex items-center justify-center gap-1.5 ${mode === t.id ? "text-white" : "text-white/50 hover:text-white"}`}
                 >
                   <span>{t.icon}</span>
-                  <span className="hidden xs:inline">{t.label}</span>
-                  <span className="xs:hidden">{t.id === "search" ? "Find" : "Check"}</span>
+                  <span>{t.label}</span>
                 </button>
               ))}
             </div>
-
-            {/* Stats row */}
-            <div className="flex items-center gap-6 text-xs text-white/30">
-              {[["🎯", "AI-ranked results"], ["⚡", "Instant matching"], ["🔒", "Rules-based check"]].map(([icon, label]) => (
-                <span key={label} className="flex items-center gap-1.5">{icon} {label}</span>
-              ))}
-            </div>
           </div>
 
-          {/* Right: Upload area */}
-          <div className="space-y-3">
-            <div
-              className="rounded-2xl p-4 sm:p-5"
-              style={{
-                background: "rgba(255,255,255,.04)",
-                border: "1px solid rgba(255,255,255,.08)",
-                backdropFilter: "blur(16px)"
-              }}
-            >
-              <ImageUploader
-                file={file}
-                scanning={searchLoading || identifying}
-                disabled={searchLoading || identifying}
-                hint={mode === "compatibility" ? "Optional: a photo of what you own" : undefined}
-                onChange={(f) => {
-                  setFile(f); setResults(null); setSearchError(null); setCompat(null); setPicked(null);
-                  if (f && mode === "compatibility" && !owned) identifyOwned(f);
-                }}
-              />
-              <div className="mt-4">
-                {mode === "search" ? (
+          {/* Title Area */}
+          <div>
+            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl text-white">
+              Smart Visual <span className="text-gradient">Shopping</span>
+            </h1>
+            <p className="mt-3 max-w-2xl text-sm sm:text-base text-white/60 leading-relaxed">
+              Describe what you want, upload an outfit photo, or combine both to instantly find matching styles across clothing, footwear, watches, and accessories.
+            </p>
+          </div>
+
+          {mode === "search" && (
+            <div className="space-y-6">
+              {/* Method Switcher: Visual (Upload Photo) vs Written Text Query */}
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2">
                   <button
                     type="button"
-                    className="btn-primary w-full text-base"
-                    disabled={!file || searchLoading}
-                    onClick={findSimilar}
+                    onClick={() => setSearchMethod("visual")}
+                    className={`rounded-full px-5 py-2 text-xs font-bold transition-all flex items-center gap-2 ${
+                      searchMethod === "visual"
+                        ? "bg-neon/20 text-neon border border-neon/40 shadow-sm"
+                        : "bg-white/5 text-white/60 hover:text-white"
+                    }`}
                   >
-                    {searchLoading ? (
-                      <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />Searching…</>
-                    ) : (
-                      <><span>✦</span>Find similar products</>
-                    )}
+                    <span>📸</span> Visual Search (Upload Image)
                   </button>
-                ) : (
                   <button
                     type="button"
-                    className="w-full min-h-[46px] rounded-full text-sm font-bold text-white transition-all flex items-center justify-center gap-2"
-                    style={{ background: "linear-gradient(135deg,rgba(124,58,237,.4),rgba(167,139,250,.2))", border: "1px solid rgba(167,139,250,.3)" }}
-                    onClick={() => slotsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })}
+                    onClick={() => setSearchMethod("text")}
+                    className={`rounded-full px-5 py-2 text-xs font-bold transition-all flex items-center gap-2 ${
+                      searchMethod === "text"
+                        ? "bg-volt/20 text-volt border border-volt/40 shadow-sm"
+                        : "bg-white/5 text-white/60 hover:text-white"
+                    }`}
                   >
-                    <span>⚡</span>Pick your products below
+                    <span>💬</span> Text Query & AI Prompts
                   </button>
-                )}
+                </div>
+
+                <div className="flex items-center gap-2 text-xs text-white/50">
+                  <span>Engine:</span>
+                  <span className="font-bold text-white/90">
+                    {effectiveMode === "hybrid" && "⚡ Smart Search (Photo + Description)"}
+                    {effectiveMode === "image" && "📸 Visual Photo Search"}
+                    {effectiveMode === "text" && "💬 Style Description Search"}
+                  </span>
+                </div>
               </div>
+
+              {/* ─── VISUAL SEARCH PANEL (Primary on image mode) ─── */}
+              {searchMethod === "visual" && (
+                <div
+                  className="rounded-3xl p-6 sm:p-8 transition-all"
+                  style={{
+                    background: "rgba(255,255,255,.03)",
+                    border: "2px dashed rgba(6,255,165,.35)",
+                    boxShadow: "0 12px 40px rgba(0,0,0,.4)",
+                  }}
+                >
+                  <div className="mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <div>
+                      <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2.5">
+                        <span className="text-neon">📸</span> Upload Any Photo to Find Similar Clothes
+                      </h2>
+                      <p className="text-xs sm:text-sm text-white/60 mt-1">
+                        Drop an outfit, sneaker, watch, or accessory photo to instantly find matching styles and lookalikes.
+                      </p>
+                    </div>
+                    {file && (
+                      <button
+                        type="button"
+                        onClick={() => { setFile(null); setResults(null); }}
+                        className="btn-ghost text-xs text-coral hover:text-white shrink-0"
+                      >
+                        ✕ Remove Photo
+                      </button>
+                    )}
+                  </div>
+
+                  <ImageUploader
+                    file={file}
+                    scanning={searchLoading}
+                    disabled={searchLoading}
+                    hint="Drag & drop any fashion photo here, or click to browse files"
+                    onChange={handleImageUpload}
+                  />
+
+                  {/* Optional refinement input */}
+                  <div className="mt-4 flex flex-col sm:flex-row items-center gap-2 rounded-2xl p-2 bg-white/5 border border-white/10">
+                    <span className="pl-3 text-xs font-semibold text-white/50 shrink-0">Refine visually similar results:</span>
+                    <input
+                      type="text"
+                      value={queryText}
+                      onChange={(e) => setQueryText(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === "Enter") executeUniversalSearch(); }}
+                      placeholder="e.g. only black color, under ₹2,000, or streetwear style..."
+                      className="w-full bg-transparent px-3 py-1.5 text-xs text-white placeholder-white/30 focus:outline-none"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => executeUniversalSearch()}
+                      disabled={searchLoading || (!file && !queryText.trim())}
+                      className="btn-primary min-h-[38px] px-5 text-xs font-bold shrink-0"
+                    >
+                      {searchLoading ? "Scanning..." : "Search"}
+                    </button>
+                  </div>
+
+                  {/* Sample photos */}
+                  <div className="mt-5 border-t border-white/10 pt-4">
+                    <SampleStrip
+                      disabled={searchLoading}
+                      onPick={(f) => {
+                        setFile(f);
+                        executeUniversalSearch(f);
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* ─── NATURAL LANGUAGE TEXT SEARCH PANEL ─── */}
+              {searchMethod === "text" && (
+                <div
+                  className="relative rounded-2xl p-2 transition-all duration-300"
+                  style={{
+                    background: "rgba(255,255,255,.05)",
+                    border: "1px solid rgba(167,139,250,.25)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,.3)",
+                  }}
+                >
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                    <div className="relative flex flex-1 items-center">
+                      <span className="pl-4 pr-2 text-lg text-white/40">🔍</span>
+                      <input
+                        type="text"
+                        value={queryText}
+                        onChange={(e) => setQueryText(e.target.value)}
+                        onKeyDown={(e) => { if (e.key === "Enter") executeUniversalSearch(); }}
+                        placeholder="Describe your style... e.g. black oversized streetwear under ₹1,000"
+                        className="w-full bg-transparent py-3 pr-4 text-sm font-medium text-white placeholder-white/40 focus:outline-none sm:text-base"
+                      />
+                      {queryText && (
+                        <button
+                          type="button"
+                          onClick={() => setQueryText("")}
+                          className="mr-2 text-xs text-white/40 hover:text-white"
+                          title="Clear query"
+                        >
+                          ✕
+                        </button>
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => executeUniversalSearch()}
+                      disabled={(!file && !queryText.trim()) || searchLoading}
+                      className="btn-primary min-h-[46px] shrink-0 px-6 text-sm font-bold"
+                    >
+                      {searchLoading ? (
+                        <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" /> Searching…</>
+                      ) : (
+                        <><span>✦</span> Discover Style</>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+
             </div>
-            <SampleStrip
-              disabled={searchLoading || identifying}
-              onPick={(f) => { setFile(f); setResults(null); setSearchError(null); setPicked(null); }}
-            />
-          </div>
+          )}
         </div>
       </section>
 
@@ -302,44 +525,171 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
       <div ref={resultsRef} className="scroll-mt-24 space-y-8">
         {mode === "search" && (
           <section className="space-y-8" aria-live="polite">
-            {searchLoading && <ScanProgress title="Finding your matches" steps={["Reading your image", "Searching the catalog", "Ranking the closest products"]} />}
-            {searchError && <ErrorBox title="We couldn't finish that search" message={searchError} onRetry={file ? findSimilar : undefined} />}
+            {searchLoading && (
+              <ScanProgress
+                title="Finding Matching Styles"
+                steps={[
+                  effectiveMode === "hybrid"
+                    ? "Analyzing photo and style description"
+                    : effectiveMode === "image"
+                    ? "Scanning photo colors, patterns, and silhouette"
+                    : "Understanding style, color, and fit details",
+                  "Finding matching items across the catalog",
+                  "Ranking the most relevant styles for you",
+                ]}
+              />
+            )}
+
+            {searchError && (
+              <ErrorBox
+                title="Search Error"
+                message={searchError}
+                onRetry={executeUniversalSearch}
+              />
+            )}
+
             {!searchLoading && !searchError && !results && (
-              <EmptyState title="Your matches will show up here">
-                Drop a photo above and press Find similar. Not sure what to try? Tap a sample.
+              <EmptyState title="Your AI fashion matches will appear here">
+                Type a natural query above (e.g. &quot;Korean summer dress&quot; or &quot;black oversized streetwear under ₹1,000&quot;), or drop a photo to begin discovery.
               </EmptyState>
             )}
+
             {results && !searchLoading && (
-              <div className="animate-rise space-y-8">
-                <div className="flex flex-wrap items-end justify-between gap-3">
+              <div className="animate-rise space-y-6">
+                {/* Result header */}
+                <div className="flex flex-wrap items-end justify-between gap-4">
                   <div>
-                    <p className="eyebrow">Top {results.length} matches</p>
+                    <p className="eyebrow">
+                      {effectiveMode.toUpperCase()} SEARCH · {results.length} MATCHES
+                    </p>
                     <h2 className="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">
-                      Closest to your photo
+                      {effectiveMode === "image" ? "Visually Similar Products" : "Curated Fashion Discoveries"}
                     </h2>
                   </div>
+
                   <span
                     className="rounded-full px-4 py-1.5 text-xs font-bold"
-                    style={{ background: "linear-gradient(135deg,rgba(167,139,250,.2),rgba(6,255,165,.15))", border: "1px solid rgba(167,139,250,.3)", color: "#A78BFA" }}
+                    style={{
+                      background: "linear-gradient(135deg,rgba(167,139,250,.2),rgba(6,255,165,.15))",
+                      border: "1px solid rgba(167,139,250,.3)",
+                      color: "#A78BFA",
+                    }}
                   >
-                    ✦ AI-ranked
+                    ✦ Marqo FashionCLIP
                   </span>
                 </div>
 
-                <p
-                  className="max-w-3xl rounded-2xl px-5 py-3.5 text-sm text-white/60 leading-relaxed"
-                  style={{ background: "rgba(167,139,250,.06)", border: "1px solid rgba(167,139,250,.12)" }}
-                >
-                  Match scores show how alike the images look. They are not the chance of an exact match, and they don&apos;t mean a product is compatible with anything you own.
-                </p>
-
-                {categories.length > 1 && (
-                  <FilterChips label="Filter results by category" multi options={categories} selected={cats} onChange={setCats} />
+                {/* Query Image Banner when searching by photo */}
+                {file && previewUrl && (
+                  <div
+                    className="flex flex-col sm:flex-row items-center gap-4 rounded-2xl p-4 transition-all"
+                    style={{ background: "rgba(6,255,165,.06)", border: "1px solid rgba(6,255,165,.25)" }}
+                  >
+                    <img
+                      src={previewUrl}
+                      alt="Query visual upload"
+                      className="h-20 w-20 shrink-0 rounded-xl object-contain bg-black/60 border border-white/20"
+                    />
+                    <div className="min-w-0 flex-1 text-center sm:text-left">
+                      <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                        <span className="eyebrow text-neon">VISUAL QUERY PHOTO</span>
+                        <span className="rounded-full bg-neon/20 px-2 py-0.5 text-[10px] font-bold text-neon">
+                          {results.length} Similar Items Found
+                        </span>
+                      </div>
+                      <p className="truncate font-bold text-white text-sm mt-0.5">{file.name}</p>
+                      <p className="text-xs text-white/50">
+                        Ranked by visual similarity in silhouette, colorway, and texture using FashionCLIP & FAISS.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFile(null);
+                        setResults(null);
+                        setQueryText("");
+                      }}
+                      className="btn-secondary text-xs shrink-0"
+                    >
+                      Clear & Upload New Photo
+                    </button>
+                  </div>
                 )}
 
-                {results.length === 0 && <EmptyState title="We could not find a close match in this demo catalog">Try a clearer photo or a different angle.</EmptyState>}
-                {results.length > 0 && shown.length === 0 && <EmptyState title="Nothing in those categories">Deselect a filter to see all matches.</EmptyState>}
+                {/* Extracted Query Filters Badges Strip */}
+                {extractedFilters && (
+                  <div
+                    className="flex flex-wrap items-center gap-2 rounded-2xl p-4 text-xs"
+                    style={{ background: "rgba(167,139,250,.06)", border: "1px solid rgba(167,139,250,.18)" }}
+                  >
+                    <span className="font-bold text-white/60">Extracted Filters:</span>
+                    {extractedFilters.category && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white">
+                        🏷️ {extractedFilters.category}
+                      </span>
+                    )}
+                    {extractedFilters.subcategory && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white">
+                        👔 {extractedFilters.subcategory}
+                      </span>
+                    )}
+                    {extractedFilters.colour && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white capitalize">
+                        🎨 {extractedFilters.colour}
+                      </span>
+                    )}
+                    {extractedFilters.style && (
+                      <span className="rounded-full bg-volt/20 text-volt border border-volt/30 px-3 py-1 font-bold capitalize">
+                        ✨ {extractedFilters.style}
+                      </span>
+                    )}
+                    {extractedFilters.brand && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white">
+                        🏢 {extractedFilters.brand}
+                      </span>
+                    )}
+                    {extractedFilters.max_price && (
+                      <span className="rounded-full bg-neon/20 text-neon border border-neon/30 px-3 py-1 font-bold">
+                        💰 ≤ ₹{extractedFilters.max_price}
+                      </span>
+                    )}
+                    {extractedFilters.gender && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white capitalize">
+                        👤 {extractedFilters.gender}
+                      </span>
+                    )}
+                    {extractedFilters.occasion && (
+                      <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-white capitalize">
+                        🎯 {extractedFilters.occasion}
+                      </span>
+                    )}
+                  </div>
+                )}
 
+                {/* Category Filter Chips */}
+                {categories.length > 1 && (
+                  <FilterChips
+                    label="Filter results by category"
+                    multi
+                    options={categories}
+                    selected={cats}
+                    onChange={setCats}
+                  />
+                )}
+
+                {results.length === 0 && (
+                  <EmptyState title="No matching fashion products found">
+                    Try broadening your price range or adjusting keywords.
+                  </EmptyState>
+                )}
+
+                {results.length > 0 && shown.length === 0 && (
+                  <EmptyState title="No items in selected category filter">
+                    Deselect category pills to view all results.
+                  </EmptyState>
+                )}
+
+                {/* Product Grid */}
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {shown.map((r) => (
                     <ProductCard
@@ -358,9 +708,16 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
                   <button
                     type="button"
                     className="btn-secondary"
-                    onClick={() => { setFile(null); setResults(null); setPicked(null); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                    onClick={() => {
+                      setFile(null);
+                      setQueryText("");
+                      setResults(null);
+                      setPicked(null);
+                      setExtractedFilters(null);
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
                   >
-                    Try another photo
+                    Clear Search
                   </button>
                 </div>
               </div>
@@ -368,43 +725,68 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
           </section>
         )}
 
-        {mode === "compatibility" && (
-          <section className="space-y-8" aria-live="polite">
-            <div ref={slotsRef} className="scroll-mt-24">
-              <p className="eyebrow">Two quick picks</p>
-              <h2 className="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">Will it work with mine?</h2>
-            </div>
+        {/* ─── COMPATIBILITY & OUTFIT STYLING MODE ─── */}
+        {mode === "compatibility" && (() => {
+          const isFashionPair = Boolean(
+            (owned && ["clothing", "footwear", "watches", "accessories"].includes((owned.category || "").toLowerCase())) ||
+            (candidate && ["clothing", "footwear", "watches", "accessories"].includes((candidate.category || "").toLowerCase()))
+          );
+          return (
+            <section className="space-y-8" aria-live="polite">
+              <div ref={slotsRef} className="scroll-mt-24">
+                <p className="eyebrow">
+                  {isFashionPair ? "AI Outfit Styling & Pairing" : "Two quick picks"}
+                </p>
+                <h2 className="mt-1 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">
+                  {isFashionPair ? "Will this pair with my outfit?" : "Will it work with mine?"}
+                </h2>
+                <p className="mt-2 text-sm text-white/60 max-w-2xl">
+                  {isFashionPair
+                    ? "Evaluating aesthetic cohesion, color theory, silhouette proportions, and occasion suitability across fashion & lifestyle items."
+                    : "Deterministic hardware rules check physical ports, wattage sufficiency, charging protocols, and ecosystem compatibility."}
+                </p>
+              </div>
 
-            {identifying && <ScanProgress title="Identifying your product" steps={["Reading your photo", "Matching it to the catalog"]} />}
-            {note && !identifying && (
-              <p
-                role="status"
-                className="animate-rise rounded-2xl px-5 py-3.5 text-sm font-medium text-white/100"
-                style={{ background: "rgba(167,139,250,.08)", border: "1px solid rgba(167,139,250,.2)" }}
-              >
-                📸 {note}
-              </p>
-            )}
-
-            <div className="relative grid gap-5 lg:grid-cols-2">
-              <Slot n={1} title="What you own" product={owned} onClear={() => { setOwned(null); setCompat(null); setNote(null); }}>
-                <ProductPicker label="owned" selected={owned} onSelect={(p) => { setOwned(p); setCompat(null); }} />
-              </Slot>
-              {owned && candidate && (
-                <button
-                  type="button"
-                  onClick={() => { swap(); setCompat(null); }}
-                  aria-label="Swap the two products"
-                  className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full font-extrabold text-white transition-all duration-300 hover:rotate-180 hover:scale-110 lg:flex"
-                  style={{ background: "linear-gradient(135deg,#7C3AED,#A78BFA)", boxShadow: "0 0 0 4px rgba(10,10,15,1), 0 0 20px rgba(124,58,237,.5)" }}
+              {identifying && <ScanProgress title="Identifying your product" steps={["Reading your photo", "Matching it to the catalog"]} />}
+              {note && !identifying && (
+                <p
+                  role="status"
+                  className="animate-rise rounded-2xl px-5 py-3.5 text-sm font-medium text-white/100"
+                  style={{ background: "rgba(167,139,250,.08)", border: "1px solid rgba(167,139,250,.2)" }}
                 >
-                  ⇄
-                </button>
+                  📸 {note}
+                </p>
               )}
-              <Slot n={2} title="What you want" product={candidate} onClear={() => { setCandidate(null); setCompat(null); }}>
-                <ProductPicker label="candidate" selected={candidate} onSelect={(p) => { setCandidate(p); setCompat(null); }} />
-              </Slot>
-            </div>
+
+              <div className="relative grid gap-5 lg:grid-cols-2">
+                <Slot
+                  n={1}
+                  title={isFashionPair ? "Wardrobe Item (What you own)" : "What you own"}
+                  product={owned}
+                  onClear={() => { setOwned(null); setCompat(null); setNote(null); }}
+                >
+                  <ProductPicker label="owned" selected={owned} onSelect={(p) => { setOwned(p); setCompat(null); }} />
+                </Slot>
+                {owned && candidate && (
+                  <button
+                    type="button"
+                    onClick={() => { swap(); setCompat(null); }}
+                    aria-label={isFashionPair ? "Swap outfit pieces" : "Swap the two products"}
+                    className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full font-extrabold text-white transition-all duration-300 hover:rotate-180 hover:scale-110 lg:flex"
+                    style={{ background: "linear-gradient(135deg,#7C3AED,#A78BFA)", boxShadow: "0 0 0 4px rgba(10,10,15,1), 0 0 20px rgba(124,58,237,.5)" }}
+                  >
+                    ⇄
+                  </button>
+                )}
+                <Slot
+                  n={2}
+                  title={isFashionPair ? "Item to Pair With (What you want)" : "What you want"}
+                  product={candidate}
+                  onClear={() => { setCandidate(null); setCompat(null); }}
+                >
+                  <ProductPicker label="candidate" selected={candidate} onSelect={(p) => { setCandidate(p); setCompat(null); }} />
+                </Slot>
+              </div>
 
             {compatLoading && <ScanProgress title="Checking compatibility" steps={["Reading both specifications", "Running the category rules", "Writing your verdict"]} />}
             {compatError && <ErrorBox title="We couldn't run that check" message={compatError} onRetry={runCheck} />}
@@ -417,7 +799,8 @@ export function UnifiedShoppingExperience({ initialMode = "search" }: { initialM
               />
             )}
           </section>
-        )}
+          );
+        })()}
       </div>
 
       {/* ─── FLOATING ACTION BAR ─── */}

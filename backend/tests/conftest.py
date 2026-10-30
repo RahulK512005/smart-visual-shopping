@@ -1,17 +1,25 @@
 import io
+import os
+os.environ["TESTING"] = "1"
+
 import pytest
 from PIL import Image
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import StaticPool
 from fastapi.testclient import TestClient
 
 from backend.app.db.session import Base, get_db
 from backend.app.db.init_db import init_db
 from backend.app.main import app
 
-# In-memory test SQLite engine
+# In-memory test SQLite engine with StaticPool to retain tables across connections
 TEST_DATABASE_URL = "sqlite:///:memory:"
-test_engine = create_engine(TEST_DATABASE_URL, connect_args={"check_same_thread": False})
+test_engine = create_engine(
+    TEST_DATABASE_URL,
+    connect_args={"check_same_thread": False},
+    poolclass=StaticPool,
+)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
 
@@ -27,15 +35,9 @@ def setup_test_db():
 
 @pytest.fixture
 def db_session():
-    connection = test_engine.connect()
-    transaction = connection.begin()
-    session = TestingSessionLocal(bind=connection)
-
+    session = TestingSessionLocal()
     yield session
-
     session.close()
-    transaction.rollback()
-    connection.close()
 
 
 @pytest.fixture

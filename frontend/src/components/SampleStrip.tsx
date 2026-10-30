@@ -4,12 +4,12 @@ import { getProductPage } from "@/lib/api";
 import { useAsync } from "@/lib/useAsync";
 import { ProductImage } from "./ProductImage";
 
-const CATS = ["smartphone", "charger", "cable", "laptop", "case"];
+const CATS = ["clothing", "footwear", "accessories", "watches"];
 
 /** Demo inputs so an evaluator knows what to upload. Tries to load the catalog photo as an upload. */
 export function SampleStrip({ onPick, disabled }: { onPick: (f: File) => void; disabled?: boolean }) {
   const { state } = useAsync(async (signal) => {
-    const pages = await Promise.all(CATS.map((c) => getProductPage({ category: c, pageSize: 1 }, signal).catch(() => null)));
+    const pages = await Promise.all(CATS.map((c) => getProductPage({ category: c, pageSize: 2 }, signal).catch(() => null)));
     return pages.flatMap((p) => p?.items ?? []).filter((p) => p.imageUrl);
   }, []);
   const [busy, setBusy] = useState<string | null>(null);

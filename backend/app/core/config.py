@@ -20,8 +20,8 @@ class Settings(BaseSettings):
 
     # ML Service boundary
     ML_SERVICE_URL: str = "http://localhost:8001"
-    ML_SERVICE_TIMEOUT_SECONDS: float = 5.0
-    ML_SERVICE_CONNECT_TIMEOUT_SECONDS: float = 2.0
+    ML_SERVICE_TIMEOUT_SECONDS: float = 15.0
+    ML_SERVICE_CONNECT_TIMEOUT_SECONDS: float = 5.0
 
     # Uploads
     MAX_IMAGE_UPLOAD_MB: int = 10

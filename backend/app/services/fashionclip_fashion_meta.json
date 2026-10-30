@@ -2,9 +2,9 @@
   "version": "3.0.0",
   "model_id": "hf-hub:Marqo/marqo-fashionCLIP",
   "dimension": 512,
-  "created_at": "2026-10-30T06:28:08.327260+00:00",
-  "total_vectors": 321,
-  "unique_products": 320,
+  "created_at": "2026-10-30T10:10:22.543159+00:00",
+  "total_vectors": 351,
+  "unique_products": 347,
   "index_entries": [
     {
       "index": 0,
@@ -1930,6 +1930,186 @@
       "index": 320,
       "product_id": "prod_cat_hub_anker_405",
       "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 321,
+      "product_id": "prod_fashion_tshirt_black_oversized",
+      "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 322,
+      "product_id": "prod_fashion_tshirt_black_oversized",
+      "image_url": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600",
+      "image_type": "additional"
+    },
+    {
+      "index": 323,
+      "product_id": "prod_fashion_tshirt_white_vintage_graphic",
+      "image_url": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 324,
+      "product_id": "prod_fashion_shirt_korean_striped",
+      "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 325,
+      "product_id": "prod_fashion_shirt_linen_white",
+      "image_url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 326,
+      "product_id": "prod_fashion_dress_korean_summer_floral",
+      "image_url": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 327,
+      "product_id": "prod_fashion_dress_korean_summer_floral",
+      "image_url": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600",
+      "image_type": "additional"
+    },
+    {
+      "index": 328,
+      "product_id": "prod_fashion_dress_black_slip",
+      "image_url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 329,
+      "product_id": "prod_fashion_dress_cottagecore_green",
+      "image_url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 330,
+      "product_id": "prod_fashion_skirt_y2k_pleated",
+      "image_url": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 331,
+      "product_id": "prod_fashion_jacket_black_leather",
+      "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 332,
+      "product_id": "prod_fashion_jacket_denim_vintage",
+      "image_url": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 333,
+      "product_id": "prod_fashion_hoodie_grey_heavyweight",
+      "image_url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 334,
+      "product_id": "prod_fashion_pants_cargo_baggy",
+      "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 335,
+      "product_id": "prod_fashion_pants_pleated_old_money",
+      "image_url": "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 336,
+      "product_id": "prod_fashion_shoes_white_sneakers",
+      "image_url": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 337,
+      "product_id": "prod_fashion_shoes_white_sneakers",
+      "image_url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",
+      "image_type": "additional"
+    },
+    {
+      "index": 338,
+      "product_id": "prod_fashion_shoes_running_breathable",
+      "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 339,
+      "product_id": "prod_fashion_shoes_formal_oxford_black",
+      "image_url": "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 340,
+      "product_id": "prod_fashion_shoes_chelsea_boots_brown",
+      "image_url": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 341,
+      "product_id": "prod_fashion_shoes_heels_strappy_black",
+      "image_url": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 342,
+      "product_id": "prod_fashion_watch_minimalist_silver",
+      "image_url": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 343,
+      "product_id": "prod_fashion_watch_vintage_gold_digital",
+      "image_url": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 344,
+      "product_id": "prod_fashion_watch_luxury_chronograph",
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 345,
+      "product_id": "prod_fashion_bag_brown_leather_tote",
+      "image_url": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 346,
+      "product_id": "prod_fashion_bag_black_crossbody",
+      "image_url": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 347,
+      "product_id": "prod_fashion_sunglasses_retro_oval",
+      "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 348,
+      "product_id": "prod_fashion_sunglasses_y2k_silver_wrap",
+      "image_url": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 349,
+      "product_id": "prod_fashion_jewellery_cuban_chain",
+      "image_url": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600",
+      "image_type": "primary"
+    },
+    {
+      "index": 350,
+      "product_id": "prod_fashion_accessories_cap_vintage",
+      "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600",
       "image_type": "primary"
     }
   ],
@@ -4813,6 +4993,249 @@
       "category": "hub",
       "price": 39.99,
       "image_url": "https://images.unsplash.com/photo-1588508065123-287b28e013da?w=600"
+    },
+    "prod_fashion_tshirt_black_oversized": {
+      "id": "prod_fashion_tshirt_black_oversized",
+      "name": "Oversized Heavyweight Black Streetwear T-Shirt",
+      "brand": "Urban Monkey",
+      "model": "Drop-Shoulder Boxy Tee",
+      "category": "clothing",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600"
+    },
+    "prod_fashion_tshirt_white_vintage_graphic": {
+      "id": "prod_fashion_tshirt_white_vintage_graphic",
+      "name": "Vintage Washed Graphic Off-White T-Shirt",
+      "brand": "H&M",
+      "model": "Relaxed Graphic Crew",
+      "category": "clothing",
+      "price": 799.0,
+      "image_url": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600"
+    },
+    "prod_fashion_shirt_korean_striped": {
+      "id": "prod_fashion_shirt_korean_striped",
+      "name": "Korean Oversized Blue Striped Poplin Shirt",
+      "brand": "Zara",
+      "model": "K-Style Drop Poplin",
+      "category": "clothing",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600"
+    },
+    "prod_fashion_shirt_linen_white": {
+      "id": "prod_fashion_shirt_linen_white",
+      "name": "Old Money Relaxed White Linen Button-Down Shirt",
+      "brand": "Massimo Dutti",
+      "model": "Riviera Pure Linen",
+      "category": "clothing",
+      "price": 2499.0,
+      "image_url": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600"
+    },
+    "prod_fashion_dress_korean_summer_floral": {
+      "id": "prod_fashion_dress_korean_summer_floral",
+      "name": "Korean Floral Summer Midi Dress",
+      "brand": "Chuu",
+      "model": "Seoul Bloom Tiered Midi",
+      "category": "clothing",
+      "price": 1299.0,
+      "image_url": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600"
+    },
+    "prod_fashion_dress_black_slip": {
+      "id": "prod_fashion_dress_black_slip",
+      "name": "Minimalist Black Silk-Satin Slip Dress",
+      "brand": "Mango",
+      "model": "Nocturne Bias-Cut Slip",
+      "category": "clothing",
+      "price": 1999.0,
+      "image_url": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600"
+    },
+    "prod_fashion_dress_cottagecore_green": {
+      "id": "prod_fashion_dress_cottagecore_green",
+      "name": "Sage Green Puff Sleeve Tiered Cottagecore Dress",
+      "brand": "FabAlley",
+      "model": "Meadow Ruffle Dress",
+      "category": "clothing",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600"
+    },
+    "prod_fashion_skirt_y2k_pleated": {
+      "id": "prod_fashion_skirt_y2k_pleated",
+      "name": "Y2K Pleated Tennis Skirt with Built-in Shorts",
+      "brand": "Bershka",
+      "model": "Court Pleat Mini",
+      "category": "clothing",
+      "price": 899.0,
+      "image_url": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600"
+    },
+    "prod_fashion_jacket_black_leather": {
+      "id": "prod_fashion_jacket_black_leather",
+      "name": "Oversized Vintage Faux Leather Biker Jacket",
+      "brand": "Zara",
+      "model": "Rebel Rider Oversized",
+      "category": "clothing",
+      "price": 3299.0,
+      "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600"
+    },
+    "prod_fashion_jacket_denim_vintage": {
+      "id": "prod_fashion_jacket_denim_vintage",
+      "name": "Washed Blue Denim Trucker Jacket",
+      "brand": "Levi's",
+      "model": "Classic Type III Trucker",
+      "category": "clothing",
+      "price": 2899.0,
+      "image_url": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600"
+    },
+    "prod_fashion_hoodie_grey_heavyweight": {
+      "id": "prod_fashion_hoodie_grey_heavyweight",
+      "name": "Minimalist Charcoal Heavyweight Boxy Hoodie",
+      "brand": "Uniqlo",
+      "model": "Ultra Warm French Terry Hoodie",
+      "category": "clothing",
+      "price": 1799.0,
+      "image_url": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600"
+    },
+    "prod_fashion_pants_cargo_baggy": {
+      "id": "prod_fashion_pants_cargo_baggy",
+      "name": "Baggy Wide-Leg Parachute Cargo Pants",
+      "brand": "Urbanic",
+      "model": "Tactical Parachute Trouser",
+      "category": "clothing",
+      "price": 1499.0,
+      "image_url": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600"
+    },
+    "prod_fashion_pants_pleated_old_money": {
+      "id": "prod_fashion_pants_pleated_old_money",
+      "name": "Tailored Double-Pleated Grey Wool Trousers",
+      "brand": "Massimo Dutti",
+      "model": "Sartorial Double Pleat",
+      "category": "clothing",
+      "price": 2799.0,
+      "image_url": "https://images.unsplash.com/photo-1479064555552-3ef4979f8908?w=600"
+    },
+    "prod_fashion_shoes_white_sneakers": {
+      "id": "prod_fashion_shoes_white_sneakers",
+      "name": "Chunky White Platform Leather Sneakers",
+      "brand": "Nike",
+      "model": "Air Force 1 Low Retro",
+      "category": "footwear",
+      "price": 2499.0,
+      "image_url": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600"
+    },
+    "prod_fashion_shoes_running_breathable": {
+      "id": "prod_fashion_shoes_running_breathable",
+      "name": "Lightweight Breathable Running Shoes",
+      "brand": "Adidas",
+      "model": "Ultraboost Light Mesh",
+      "category": "footwear",
+      "price": 3499.0,
+      "image_url": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=600"
+    },
+    "prod_fashion_shoes_formal_oxford_black": {
+      "id": "prod_fashion_shoes_formal_oxford_black",
+      "name": "Classic Handcrafted Black Oxford Leather Shoes",
+      "brand": "Clarks",
+      "model": "Sartorial Cap-Toe Oxford",
+      "category": "footwear",
+      "price": 3899.0,
+      "image_url": "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600"
+    },
+    "prod_fashion_shoes_chelsea_boots_brown": {
+      "id": "prod_fashion_shoes_chelsea_boots_brown",
+      "name": "Suede Brown Chelsea Boots",
+      "brand": "Red Tape",
+      "model": "Urban Suede Chelsea",
+      "category": "footwear",
+      "price": 2799.0,
+      "image_url": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600"
+    },
+    "prod_fashion_shoes_heels_strappy_black": {
+      "id": "prod_fashion_shoes_heels_strappy_black",
+      "name": "Minimalist Black Strappy Heeled Sandals",
+      "brand": "Charles & Keith",
+      "model": "Sculptural Kitten Heel",
+      "category": "footwear",
+      "price": 2199.0,
+      "image_url": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600"
+    },
+    "prod_fashion_watch_minimalist_silver": {
+      "id": "prod_fashion_watch_minimalist_silver",
+      "name": "Minimalist Bauhaus Silver Analog Watch",
+      "brand": "Nordgreen",
+      "model": "Philosopher Silver Mesh",
+      "category": "watches",
+      "price": 2999.0,
+      "image_url": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600"
+    },
+    "prod_fashion_watch_vintage_gold_digital": {
+      "id": "prod_fashion_watch_vintage_gold_digital",
+      "name": "Vintage Gold Retro Digital Watch",
+      "brand": "Casio",
+      "model": "A168WG Vintage Illuminator",
+      "category": "watches",
+      "price": 1899.0,
+      "image_url": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600"
+    },
+    "prod_fashion_watch_luxury_chronograph": {
+      "id": "prod_fashion_watch_luxury_chronograph",
+      "name": "Old Money Chronograph Leather Strap Watch",
+      "brand": "Tissot",
+      "model": "Tradition Chrono Classic",
+      "category": "watches",
+      "price": 4999.0,
+      "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600"
+    },
+    "prod_fashion_bag_brown_leather_tote": {
+      "id": "prod_fashion_bag_brown_leather_tote",
+      "name": "Brown Pebbled Genuine Leather Tote Bag",
+      "brand": "Fossil",
+      "model": "Carmen Leather Shopper",
+      "category": "accessories",
+      "price": 2699.0,
+      "image_url": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
+    },
+    "prod_fashion_bag_black_crossbody": {
+      "id": "prod_fashion_bag_black_crossbody",
+      "name": "Y2K Nylon Crescent Crossbody Bag",
+      "brand": "Baggu",
+      "model": "Medium Nylon Crescent",
+      "category": "accessories",
+      "price": 1199.0,
+      "image_url": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600"
+    },
+    "prod_fashion_sunglasses_retro_oval": {
+      "id": "prod_fashion_sunglasses_retro_oval",
+      "name": "Retro Oval Tortoiseshell Acetate Sunglasses",
+      "brand": "Ray-Ban",
+      "model": "Oval 1970 Vintage Acetate",
+      "category": "accessories",
+      "price": 1799.0,
+      "image_url": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600"
+    },
+    "prod_fashion_sunglasses_y2k_silver_wrap": {
+      "id": "prod_fashion_sunglasses_y2k_silver_wrap",
+      "name": "Cyber Y2K Futuristic Silver Wrap Sunglasses",
+      "brand": "Oakley",
+      "model": "K-Matrix Wrap Shield",
+      "category": "accessories",
+      "price": 1399.0,
+      "image_url": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600"
+    },
+    "prod_fashion_jewellery_cuban_chain": {
+      "id": "prod_fashion_jewellery_cuban_chain",
+      "name": "Silver Cuban Link Chain Necklace",
+      "brand": "Giva",
+      "model": "925 Sterling Cuban Choker 18-inch",
+      "category": "accessories",
+      "price": 1899.0,
+      "image_url": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600"
+    },
+    "prod_fashion_accessories_cap_vintage": {
+      "id": "prod_fashion_accessories_cap_vintage",
+      "name": "Vintage Washed Cotton Baseball Dad Cap",
+      "brand": "New Era",
+      "model": "9TWENTY Unstructured Clean",
+      "category": "accessories",
+      "price": 699.0,
+      "image_url": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600"
     }
   }
 }

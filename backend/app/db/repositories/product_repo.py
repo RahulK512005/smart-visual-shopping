@@ -33,7 +33,11 @@ class ProductRepository:
         q = self.db.query(Product).filter(Product.is_active == True)
 
         if category:
-            q = q.filter(Product.category.ilike(category.strip()))
+            if "," in category:
+                cats = [c.strip().lower() for c in category.split(",") if c.strip()]
+                q = q.filter(Product.category.in_(cats))
+            else:
+                q = q.filter(Product.category.ilike(category.strip()))
         if brand:
             q = q.filter(Product.brand.ilike(brand.strip()))
         if query:

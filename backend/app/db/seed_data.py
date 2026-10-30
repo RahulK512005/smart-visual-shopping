@@ -392,3 +392,11 @@ try:
 except Exception:
     pass
 
+try:
+    from backend.app.db.fashion_catalog_data import FASHION_PRODUCTS
+    for _fp in FASHION_PRODUCTS:
+        if _fp['id'] not in _orig_ids:
+            SAMPLE_PRODUCTS.append(_fp)
+            _orig_ids.add(_fp['id'])
+except Exception:
+    pass

@@ -21,6 +21,7 @@ __pycache__/
 # Testing & Coverage
 .coverage
 htmlcov/
+*.bak
 
 # Operating System
 .DS_Store

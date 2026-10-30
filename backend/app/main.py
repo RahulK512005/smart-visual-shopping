@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -7,7 +8,7 @@ from backend.app.core.config import settings
 from backend.app.core.errors import AppBaseException
 from backend.app.core.logging import setup_logging, logger
 from backend.app.db.init_db import init_db
-from backend.app.api.routes import health, products, visual_search, compatibility
+from backend.app.api.routes import health, products, visual_search, compatibility, search
 
 # Setup logging
 setup_logging()
@@ -15,6 +16,10 @@ setup_logging()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    if os.environ.get("TESTING") == "1":
+        yield
+        return
+
     # Startup: ensure database tables exist and seed data is available
     logger.info("Starting up Smart Visual Shopping API...")
     try:
@@ -44,12 +49,13 @@ app = FastAPI(
     description=(
         "Smart Visual Shopping Backend API.\n\n"
         "Features:\n"
-        "- Visual product search integration with AI/ML embedding services.\n"
-        "- Rich product catalog with verified technical specifications.\n"
+        "- Universal natural-language and visual fashion discovery using Marqo FashionCLIP.\n"
+        "- Multimodal hybrid search (image + text) with FAISS vector retrieval.\n"
+        "- Rich product catalog with verified technical and fashion specifications.\n"
         "- Deterministic, category-specific compatibility rules engine.\n"
         "- Traceable compatibility verdicts with pass/fail evidence."
     ),
-    version="1.0.0",
+    version="3.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
@@ -101,6 +107,7 @@ api_prefix = settings.API_V1_STR
 app.include_router(health.router, prefix=api_prefix)
 app.include_router(products.router, prefix=api_prefix)
 app.include_router(visual_search.router, prefix=api_prefix)
+app.include_router(search.router, prefix=api_prefix)
 app.include_router(compatibility.router, prefix=api_prefix)
 
 
@@ -108,7 +115,8 @@ app.include_router(compatibility.router, prefix=api_prefix)
 def root():
     return {
         "app": settings.APP_NAME,
-        "version": "1.0.0",
+        "version": "3.0.0",
         "documentation": "/docs",
         "health": f"{api_prefix}/health",
+        "search": f"{api_prefix}/search",
     }

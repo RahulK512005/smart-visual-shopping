@@ -7,12 +7,14 @@ from backend.app.rules.categories.display_rules import DisplayDeviceCompatibilit
 from backend.app.rules.categories.wearable_rules import WearablePhoneCompatibilityRule
 from backend.app.rules.categories.case_rules import ProtectiveCaseCompatibilityRule
 from backend.app.rules.categories.audio_rules import AudioDeviceCompatibilityRule
+from backend.app.rules.categories.fashion_rules import FashionOutfitStylingRule
 from backend.app.schemas.compatibility import CheckOutcome, CheckSeverity
 
 
 class CompatibilityRuleRegistry:
     def __init__(self):
         self._rules: List[BaseCategoryRule] = [
+            FashionOutfitStylingRule(),
             ChargerDevicePowerRule(),
             CableDeviceCompatibilityRule(),
             DisplayDeviceCompatibilityRule(),

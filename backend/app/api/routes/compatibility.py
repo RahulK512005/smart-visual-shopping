@@ -12,28 +12,19 @@ router = APIRouter(prefix="/compatibility", tags=["Compatibility Engine"])
 
 
 @router.post("/check", response_model=CompatibilityCheckResponse)
-def check_compatibility(
+async def check_compatibility(
     payload: CompatibilityCheckRequest,
     db: Session = Depends(get_db),
 ):
-    """
-    POST /api/compatibility/check
-    Evaluates compatibility between existing product and candidate product using
-    deterministic, category-specific rules.
-
-    Returns:
-    - verdict: compatible | incompatible | cannot_verify
-    - passed_checks: details of verified passing rules
-    - failed_checks: details of failed compatibility requirements
-    - cannot_verify_checks: unverified properties or missing specifications
-    - summary_explanation: transparent human-readable explanation
-    """
+    print(">>> ENTERED check_compatibility route handler!", flush=True)
     service = CompatibilityService(db=db)
-    return service.evaluate(
+    result = service.evaluate(
         existing_product_id=payload.existing_product_id,
         candidate_product_id=payload.candidate_product_id,
         context=payload.context,
     )
+    print(">>> COMPLETED evaluate in route handler!", flush=True)
+    return result
 
 
 @router.post("/identify-photo")
@@ -41,10 +32,6 @@ async def identify_owned_photo(
     file: UploadFile = File(..., description="Uploaded photo of the product you own"),
     db: Session = Depends(get_db),
 ):
-    """
-    POST /api/compatibility/identify-photo
-    Identifies the product the user owns from an uploaded photo using FAISS vector search.
-    """
     from io import BytesIO
     from PIL import Image
     from backend.app.core.config import settings
@@ -95,4 +82,3 @@ async def identify_owned_photo(
         "confidence": raw_results[0]["score"],
         "candidates": candidates,
     }
-

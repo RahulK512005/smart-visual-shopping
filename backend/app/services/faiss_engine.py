@@ -216,6 +216,72 @@ class FaissVisualSearchEngine:
 
         return self.search_by_vector(query_vec, limit=limit, category_filter=category_filter)
 
+    def search_by_text(
+        self,
+        query_text: str,
+        limit: int = 10,
+        category_filter: Optional[str] = None,
+    ) -> List[dict]:
+        """
+        Extracts FashionCLIP embedding for natural language text query and searches FAISS index.
+        """
+        if not self.is_ready:
+            if not self.load_index() or not self.is_ready:
+                logger.warning("FAISS index is not ready or empty. Returning empty search results.")
+                return []
+
+        clean_text = (query_text or "").strip()
+        if not clean_text:
+            return []
+
+        clip_service = get_clip_service()
+        try:
+            query_vec = clip_service.extract_text_embedding(clean_text)
+        except Exception as exc:
+            logger.error(f"FashionCLIP text embedding extraction failed: {exc}")
+            raise ValueError(f"Failed to extract text embedding from query: {exc}") from exc
+
+        return self.search_by_vector(query_vec, limit=limit, category_filter=category_filter)
+
+    def search_hybrid(
+        self,
+        image_bytes: bytes,
+        query_text: str,
+        image_weight: float = 0.7,
+        text_weight: float = 0.3,
+        limit: int = 10,
+        category_filter: Optional[str] = None,
+    ) -> List[dict]:
+        """
+        Multimodal hybrid search combining FashionCLIP image embedding and text embedding
+        with configurable weighted strategy.
+        """
+        if not self.is_ready:
+            if not self.load_index() or not self.is_ready:
+                return []
+
+        clip_service = get_clip_service()
+        img_vec = clip_service.extract_image_embedding(image_bytes)
+        img_norm = np.linalg.norm(img_vec)
+        if img_norm > 0:
+            img_vec = img_vec / img_norm
+
+        clean_text = (query_text or "").strip()
+        if clean_text:
+            txt_vec = clip_service.extract_text_embedding(clean_text)
+            txt_norm = np.linalg.norm(txt_vec)
+            if txt_norm > 0:
+                txt_vec = txt_vec / txt_norm
+
+            combined = (image_weight * img_vec) + (text_weight * txt_vec)
+            comb_norm = np.linalg.norm(combined)
+            if comb_norm > 0:
+                combined = combined / comb_norm
+            return self.search_by_vector(combined, limit=limit, category_filter=category_filter)
+        else:
+            return self.search_by_vector(img_vec, limit=limit, category_filter=category_filter)
+
+
     def search_by_vector(
         self,
         query_vec: np.ndarray,

@@ -53,6 +53,23 @@ app = FastAPI(
 )
 
 
+@app.get("/", include_in_schema=False)
+def root():
+    return {
+        "service": "AI/ML Visual Embedding Search Microservice",
+        "model": "Marqo/marqo-fashionCLIP",
+        "documentation": "/docs",
+        "health": "/internal/health",
+        "endpoints": [
+            "GET  /internal/health",
+            "POST /internal/search",
+            "POST /internal/search-text",
+            "POST /internal/search-hybrid",
+            "GET  /internal/more-like-this/{product_id}",
+        ],
+    }
+
+
 @app.get("/internal/health")
 def health_check():
     clip_service = get_clip_service()
@@ -151,6 +168,130 @@ async def search_visual_similarity(
         model_version=f"{clip_service.model_id}:v3.0.0",
         inference_time_ms=inference_ms,
     )
+
+
+class MLTextSearchRequest(BaseModel):
+    query: str
+    limit: int = 10
+    category_filter: Optional[str] = None
+
+
+@app.post("/internal/search-text", response_model=MLSearchResponse)
+def search_text_similarity(payload: MLTextSearchRequest):
+    start_time = time.time()
+    if not faiss_engine.is_ready:
+        if not faiss_engine.load_index() or not faiss_engine.is_ready:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Vector search index is not available. Please build the index.",
+            )
+
+    try:
+        raw_results = faiss_engine.search_by_text(
+            query_text=payload.query,
+            limit=payload.limit,
+            category_filter=payload.category_filter,
+        )
+    except Exception as exc:
+        logger.error(f"Inference error during text vector search: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"FashionCLIP text inference error: {exc}",
+        )
+
+    items = [
+        MLSearchItemResult(
+            product_id=r["product_id"],
+            score=round(r["score"], 4),
+            detection_label=r.get("detection_label"),
+            similarity_explanation=r.get("similarity_explanation"),
+        )
+        for r in raw_results
+    ]
+
+    inference_ms = round((time.time() - start_time) * 1000, 2)
+    clip_service = get_clip_service()
+
+    return MLSearchResponse(
+        results=items,
+        model_version=f"{clip_service.model_id}:v3.0.0",
+        inference_time_ms=inference_ms,
+    )
+
+
+@app.post("/internal/search-hybrid", response_model=MLSearchResponse)
+async def search_hybrid_similarity(
+    file: UploadFile = File(..., description="Query image file (JPEG, PNG, WebP)"),
+    query: str = Form(..., description="Query text instructions"),
+    image_weight: float = Form(0.7, description="Weight for image embedding"),
+    text_weight: float = Form(0.3, description="Weight for text embedding"),
+    limit: int = Form(10, description="Max results to return"),
+    category_filter: Optional[str] = Form(None, description="Optional category filter"),
+):
+    start_time = time.time()
+
+    content_type = (file.content_type or "").lower()
+    if content_type and content_type not in ALLOWED_MIME_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Unsupported image type '{content_type}'. Allowed: {', '.join(sorted(ALLOWED_MIME_TYPES))}",
+        )
+
+    contents = await file.read()
+    if len(contents) == 0:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Uploaded file is empty.")
+    if len(contents) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="File size exceeds limit.")
+
+    try:
+        stream = io.BytesIO(contents)
+        with Image.open(stream) as img:
+            img.verify()
+    except (UnidentifiedImageError, OSError, SyntaxError, ValueError) as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Corrupted or invalid image: {exc}")
+
+    if not faiss_engine.is_ready:
+        if not faiss_engine.load_index() or not faiss_engine.is_ready:
+            raise HTTPException(
+                status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                detail="Vector search index is not available. Please build the index.",
+            )
+
+    try:
+        raw_results = faiss_engine.search_hybrid(
+            image_bytes=contents,
+            query_text=query,
+            image_weight=image_weight,
+            text_weight=text_weight,
+            limit=limit,
+            category_filter=category_filter,
+        )
+    except Exception as exc:
+        logger.error(f"Inference error during hybrid vector search: {exc}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Hybrid search inference error: {exc}",
+        )
+
+    items = [
+        MLSearchItemResult(
+            product_id=r["product_id"],
+            score=round(r["score"], 4),
+            detection_label=r.get("detection_label"),
+            similarity_explanation=r.get("similarity_explanation"),
+        )
+        for r in raw_results
+    ]
+
+    inference_ms = round((time.time() - start_time) * 1000, 2)
+    clip_service = get_clip_service()
+
+    return MLSearchResponse(
+        results=items,
+        model_version=f"{clip_service.model_id}:v3.0.0",
+        inference_time_ms=inference_ms,
+    )
+
 
 
 @app.get("/internal/more-like-this/{product_id}", response_model=MLSearchResponse)

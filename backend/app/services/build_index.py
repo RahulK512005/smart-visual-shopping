@@ -253,7 +253,7 @@ def build_faiss_index(
         # Fallback if image failed: compute multimodal text embedding for product
         if not has_vector:
             logger.warning(f"No usable images found for product '{pid}'. Generating multimodal text fallback vector.")
-            desc = f"{p.get('brand', '')} {p.get('name', '')} {p.get('category', '')}".strip()
+            desc = f"{p.get('brand', '')} {p.get('name', '')} {p.get('category', '')} {p.get('description', '')}".strip()
             try:
                 text_vec = clip_service.extract_text_embedding(desc or pid)
                 vectors.append(text_vec)
@@ -287,6 +287,24 @@ def build_faiss_index(
         "index_entries": index_entries,
         "product_catalog": product_catalog,
     }
+
+    # Backup existing index and metadata if they exist
+    import shutil
+    if target_index_path.exists():
+        backup_idx = target_index_path.with_suffix(".index.bak")
+        try:
+            shutil.copy2(target_index_path, backup_idx)
+            logger.info(f"Preserved backup vector index at {backup_idx}")
+        except Exception as exc:
+            logger.warning(f"Could not backup existing index: {exc}")
+
+    if target_meta_path.exists():
+        backup_meta = target_meta_path.with_suffix(".json.bak")
+        try:
+            shutil.copy2(target_meta_path, backup_meta)
+            logger.info(f"Preserved backup vector metadata at {backup_meta}")
+        except Exception as exc:
+            logger.warning(f"Could not backup existing metadata: {exc}")
 
     # Write files atomically
     faiss.write_index(index, str(target_index_path))

@@ -1,8 +1,8 @@
 import { API_BASE_URL, API_TIMEOUT_MS } from "./config";
 import {
-  ParseError, normalizeCompatibility, normalizeProduct, normalizeProductList, normalizeSearchResults,
+  ParseError, normalizeCompatibility, normalizeProduct, normalizeProductList, normalizeSearchResults, normalizeUniversalSearch,
 } from "./normalize";
-import type { CompatibilityRequest, CompatibilityResult, Product, SearchResult } from "./types";
+import type { CompatibilityRequest, CompatibilityResult, Product, SearchResult, UniversalFashionSearchResponse } from "./types";
 
 export class ApiError extends Error {
   constructor(message: string, public kind: "network" | "timeout" | "http" | "parse", public status?: number) {
@@ -136,6 +136,88 @@ export const visualSearch = async (image: File, signal?: AbortSignal): Promise<S
   const form = new FormData();
   form.append("file", prepared, image.name || "query.jpg");
   return request("/api/visual-search?limit=6", normalizeSearchResults, { method: "POST", body: form }, signal, 90000);
+};
+
+export interface UniversalSearchOptions {
+  query?: string;
+  image?: File | null;
+  mode?: "text" | "image" | "hybrid";
+  limit?: number;
+  category?: string;
+  brand?: string;
+  colour?: string;
+  style?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  imageWeight?: number;
+  textWeight?: number;
+}
+
+export const universalFashionSearch = async (
+  options: UniversalSearchOptions,
+  signal?: AbortSignal,
+): Promise<UniversalFashionSearchResponse> => {
+  const {
+    query,
+    image,
+    mode,
+    limit = 12,
+    category,
+    brand,
+    colour,
+    style,
+    minPrice,
+    maxPrice,
+    imageWeight = 0.7,
+    textWeight = 0.3,
+  } = options;
+
+  if (image) {
+    const prepared = await prepareImageForUpload(image);
+    const form = new FormData();
+    form.append("file", prepared, image.name || "query.jpg");
+    if (query?.trim()) form.append("query", query.trim());
+    if (mode) form.append("mode", mode);
+    form.append("limit", String(limit));
+    form.append("image_weight", String(imageWeight));
+    form.append("text_weight", String(textWeight));
+    if (category) form.append("category", category);
+    if (brand) form.append("brand", brand);
+    if (colour) form.append("colour", colour);
+    if (style) form.append("style", style);
+    if (minPrice !== undefined) form.append("min_price", String(minPrice));
+    if (maxPrice !== undefined) form.append("max_price", String(maxPrice));
+
+    return request(
+      "/api/search",
+      normalizeUniversalSearch,
+      { method: "POST", body: form },
+      signal,
+      90000,
+    );
+  } else {
+    return request(
+      "/api/search",
+      normalizeUniversalSearch,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query: query?.trim() || "",
+          mode: mode || "text",
+          limit,
+          category,
+          brand,
+          colour,
+          style,
+          min_price: minPrice,
+          max_price: maxPrice,
+        }),
+      },
+      signal,
+      90000,
+    );
+  }
 };
 
 export const searchMoreLikeThis = (productId: string, signal?: AbortSignal): Promise<SearchResult[]> =>
